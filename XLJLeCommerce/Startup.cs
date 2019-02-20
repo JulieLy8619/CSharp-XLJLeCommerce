@@ -20,6 +20,16 @@ namespace XLJLeCommerce
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseStaticFiles(); //so can use stylesheet
+
+            app.UseMvc(route =>
+            {
+                route.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                    );
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
