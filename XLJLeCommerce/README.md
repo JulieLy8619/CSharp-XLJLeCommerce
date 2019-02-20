@@ -1,0 +1,1 @@
+Deployed site: https://xljlecommercedotnet401.azurewebsites.net/
