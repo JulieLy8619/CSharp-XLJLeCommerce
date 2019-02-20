@@ -19,7 +19,9 @@ namespace XLJLeCommerce
         public Startup(IConfiguration configuration)
         {
 
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+            builder.AddUserSecrets<Startup>();
+            Configuration = builder.Build();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -28,7 +30,7 @@ namespace XLJLeCommerce
         {
             services.AddMvc();
             services.AddDbContext<CreaturesDbcontext>(options =>
-     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+     options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
