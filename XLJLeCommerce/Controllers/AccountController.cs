@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using XLJLeCommerce.Models;
+using XLJLeCommerce.Models.ViewModels;
 
 namespace XLJLeCommerce.Controllers
 {
@@ -17,7 +18,7 @@ namespace XLJLeCommerce.Controllers
         public IActionResult Register() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel rvm) //will create the viewmodel in the next branch
+        public async Task<IActionResult> Register(RegisterViewModel rvm) 
         {
             if (ModelState.IsValid)
             {
