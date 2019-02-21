@@ -5,4 +5,8 @@ If we need reminders:
 Julie is Dev 1 
 Xia is dev 2
 
+Notes for citing:
+Images from Pixabay
+Used this for resizing images: https://www.photoresizer.com/
+
 -->
