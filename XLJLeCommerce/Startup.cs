@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using XLJLeCommerce.Data;
 using XLJLeCommerce.Models.Interfaces;
 using XLJLeCommerce.Models.Services;
+using XLJLeCommerce.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace XLJLeCommerce
 {
@@ -31,13 +33,20 @@ namespace XLJLeCommerce
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<CreaturesDbcontext>(options =>
-     options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationDbcontext>()
+                    .AddDefaultTokenProviders();
+
+            services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             services.AddDbContext<ApplicationDbcontext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
-            services.AddScoped<Iinventory, InventoryManagementService>();
 
+            //should it be this since we're using usersecrets
+            //services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
+
+            services.AddScoped<Iinventory, InventoryManagementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
