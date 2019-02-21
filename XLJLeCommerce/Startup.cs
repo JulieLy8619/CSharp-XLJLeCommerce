@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using XLJLeCommerce.Data;
+using XLJLeCommerce.Models.Interfaces;
+using XLJLeCommerce.Models.Services;
 
 namespace XLJLeCommerce
 {
@@ -34,6 +36,7 @@ namespace XLJLeCommerce
 
             services.AddDbContext<ApplicationDbcontext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
+            services.AddScoped<Iinventory, InventoryManagementService>();
 
         }
 
