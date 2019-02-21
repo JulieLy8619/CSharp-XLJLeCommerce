@@ -46,7 +46,7 @@ namespace XLJLeCommerce
             //should it be this since we're using usersecrets
             //services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
 
-            services.AddScoped<Iinventory, InventoryManagementService>();
+            services.AddScoped<Iproduct, IproductManagementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
