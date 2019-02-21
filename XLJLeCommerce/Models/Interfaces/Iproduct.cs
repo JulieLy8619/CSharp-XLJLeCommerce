@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace XLJLeCommerce.Models.Interfaces
 {
-  public  interface Iinventory
+  public  interface Iproduct
     {
         //create product will add parameter later
         Task Create();
