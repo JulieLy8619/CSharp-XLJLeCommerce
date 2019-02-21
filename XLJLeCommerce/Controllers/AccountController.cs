@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace XLJLeCommerce.Controllers
 {
     public class AccountController: Controller
     {
+        private UserManager<ApplicationUser> _userManager;
+        private SignInManager<ApplicationUser> _signInManager;
 
         [HttpGet]
         public IActionResult Register() => View();
@@ -24,7 +27,7 @@ namespace XLJLeCommerce.Controllers
                     Email = rvm.Email,
                     FirstName = rvm.FirstName,
                     LastName = rvm.LastName,
-                    Birthday = rvm.Birthday
+                    Birthdate = rvm.Birthdate
                 };
 
                 var result = await _userManager.CreateAsync(user, rvm.Password);
