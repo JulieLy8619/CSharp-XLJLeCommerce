@@ -36,11 +36,13 @@ namespace XLJLeCommerce
                     .AddEntityFrameworkStores<ApplicationDbcontext>()
                     .AddDefaultTokenProviders();
 
-            services.AddDbContext<CreaturesDbcontext>(options =>
-     options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+            services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             services.AddDbContext<ApplicationDbcontext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
+            
+            //should it be this since we're using usersecrets
+            //services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
 
         }
 
