@@ -31,13 +31,17 @@ namespace XLJLeCommerce
             services.AddMvc();
             services.AddDbContext<CreaturesDbcontext>(options =>
      options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+
+            services.AddDbContext<ApplicationDbcontext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles(); //so can use stylesheet
-
+            app.UseAuthentication();
             app.UseMvc(route =>
             {
                 route.MapRoute(
