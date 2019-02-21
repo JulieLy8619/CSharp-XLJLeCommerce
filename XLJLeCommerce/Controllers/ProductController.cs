@@ -7,7 +7,7 @@ using XLJLeCommerce.Models.Interfaces;
 
 namespace XLJLeCommerce.Controllers
 {
-    public class ProductController
+    public class ProductController : Controller
     {
         private readonly Iproduct _context;
 
@@ -20,7 +20,7 @@ namespace XLJLeCommerce.Controllers
         public async Task<IActionResult> Index(int id)
         {
             //should un red line after next pull because Xia did the table and services
-            return View(await _Products.GetAllProducts());
+            return View(await _context.GetAllProducts());
         }
 
         //display details for just one
