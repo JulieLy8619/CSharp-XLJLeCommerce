@@ -8,19 +8,19 @@ namespace XLJLeCommerce.Models.Interfaces
   public  interface Iproduct
     {
         //create product will add parameter later
-        Task Create();
+        Task Create(Product product);
 
         //will add class later
-        Task GetByID(int id);
+        Task<Product> GetProduct(int id);
 
         //will add IEnumerable<type> later
-        Task GetAll();
+        Task<List<Product>> GetAllProducts();
 
-        // Update Room will add parmeter later
-        Task Update();
+        // Update 
+        Task UpdateProduct(Product product);
 
-        // Delete Room
-        Task Delete(int id);
+        // Delete 
+        Task DeleteProduct(int id);
 
     }
 }

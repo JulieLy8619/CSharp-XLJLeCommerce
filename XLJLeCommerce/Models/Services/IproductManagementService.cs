@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,29 +18,68 @@ namespace XLJLeCommerce.Models.Services
         {
             _context = context;
         }
-        public Task Create()
+
+      /// <summary>
+      /// create one product
+      /// </summary>
+      /// <param name="product"></param>
+      /// <returns></returns>
+        public async Task Create(Product product)
         {
-            throw new NotImplementedException();
+            if (await _context.Products.FirstOrDefaultAsync(p => p.ID == product.ID) == null)
+            {
+                _context.Products.Add(product);
+            }
+            await _context.SaveChangesAsync();
+        }
+        /// <summary>
+        /// get one product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async  Task<Product> GetProduct(int id)
+        {
+            Product product = await _context.Products.FirstOrDefaultAsync(p => p.ID == id);
+            return product;
+        }
+        /// <summary>
+        /// get all products
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Product>> GetAllProducts()
+        {
+            return await _context.Products.ToListAsync();
+        }
+        /// <summary>
+        /// update one product
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public async Task UpdateProduct(Product product)
+        {
+
+            if (await _context.Products.FirstOrDefaultAsync(p => p.ID == product.ID) == null)
+            {
+                _context.Products.Add(product);
+            }
+
+            else
+            {  //update it if it exsits
+
+                _context.Products.Update(product);
+            }
+            await _context.SaveChangesAsync();
         }
 
-        public Task Delete(int id)
+        public async Task DeleteProduct(int id)
         {
-            throw new NotImplementedException();
-        }
+            Product product = await _context.Products.FindAsync(id);
+            if (product != null)
+            {
+                _context.Products.Remove(product);
+                await _context.SaveChangesAsync();
+            }
 
-        public Task GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task GetByID(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Update()
-        {
-            throw new NotImplementedException();
         }
     }
 }

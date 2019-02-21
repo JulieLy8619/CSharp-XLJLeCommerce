@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using XLJLeCommerce.Models;
 
 namespace XLJLeCommerce.Data
 {
@@ -13,7 +14,7 @@ namespace XLJLeCommerce.Data
         }
 
 
-
+        public DbSet<Product>  Products { get; set; }
 
     }
 }
