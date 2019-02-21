@@ -36,7 +36,7 @@ namespace XLJLeCommerce
 
             services.AddDbContext<ApplicationDbcontext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
-            services.AddScoped<Iinventory, InventoryManagementService>();
+            services.AddScoped<Iproduct, IproductManagementService>();
 
         }
 

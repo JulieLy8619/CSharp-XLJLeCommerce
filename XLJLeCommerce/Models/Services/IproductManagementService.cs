@@ -7,13 +7,13 @@ using XLJLeCommerce.Models.Interfaces;
 
 namespace XLJLeCommerce.Models.Services
 {
-    public class InventoryManagementService : Iinventory
+    public class IproductManagementService : Iproduct
     {
 
 
         private CreaturesDbcontext _context { get; }
 
-        public InventoryManagementService(CreaturesDbcontext context)
+        public IproductManagementService(CreaturesDbcontext context)
         {
             _context = context;
         }
