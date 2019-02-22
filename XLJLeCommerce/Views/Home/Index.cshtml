@@ -1,9 +1,19 @@
 ﻿
+@using Microsoft.AspNetCore.Identity
+@using XLJLeCommerce.Models
+@inject SignInManager<ApplicationUser> signInManager
 
 <link href="~/homepage.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Freckle+Face|Rock+Salt|Schoolbell" rel="stylesheet">
 <h1>Total Unicorn</h1>
 <p>Welcome to our store!</p>
-<a asp-controller="Account" asp-action="Register">New Member? Register! </a>
-<a asp-controller="Account" asp-action="Login">Already a member? Sign in! </a>
+<ul><li>
+    <a href="Account/Login">login</a>
+</li>
+    <li>
+        <a href="Account/Register">Register</a>
+    </li>
+    </ul>
+
+
 
