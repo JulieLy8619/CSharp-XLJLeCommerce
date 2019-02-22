@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XLJLeCommerce.Data;
 
-namespace XLJLeCommerce.Migrations.ApplicationDbcontextMigrations
+namespace XLJLeCommerce.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
     partial class ApplicationDbcontextModelSnapshot : ModelSnapshot
@@ -165,6 +165,8 @@ namespace XLJLeCommerce.Migrations.ApplicationDbcontextMigrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<DateTime>("RegisteredDate");
 
                     b.Property<string>("SecurityStamp");
 

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace XLJLeCommerce.Migrations
+namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 {
-    public partial class intial : Migration
+    public partial class intial2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
