@@ -1,0 +1,30 @@
+﻿body {
+    background-color: beige;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Rock Salt', cursive;
+    text-align: center;
+}
+
+.parent {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+}
+
+.container {
+    display: table-cell;
+    margin-bottom: 2em;
+    border: 1px solid black;
+    margin: 1em;
+    padding: 1em;
+    text-align: left;
+    display: inline-block;
+}
+img {
+    width: 20vw;
+    height: 30vh;
+}
