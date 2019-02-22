@@ -46,7 +46,7 @@ namespace XLJLeCommerce.Controllers
 
                     Claim registerDateClaim = new Claim("RegisteredDate", $"{ user.RegisteredDate }");
 
-                    List<Claim> claims = new List<Claim> { fullNameClaim, birthdayClaim, emailClaim };
+                    List<Claim> claims = new List<Claim> { fullNameClaim, birthdayClaim, emailClaim, registerDateClaim };
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
