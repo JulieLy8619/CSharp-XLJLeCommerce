@@ -51,7 +51,7 @@ namespace XLJLeCommerce.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Login(LoginViewModel lvm) //this should un-red after I make the login view model
+        public async Task<IActionResult> Login(LoginViewModel lvm) 
         {
             if (ModelState.IsValid)
             {
