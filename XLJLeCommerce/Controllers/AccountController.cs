@@ -29,10 +29,10 @@ namespace XLJLeCommerce.Controllers
                     Email = rvm.Email,
                     FirstName = rvm.FirstName,
                     LastName = rvm.LastName,
-                    Birthdate = rvm.Birthdate
+                    Birthdate = rvm.Birthdate,
+                    RegisteredDate = DateTime.Now
                 };
 
-                //it breaks here, 500, but we didn't write this. it's part of the hidden identity thing
                 var result = await _userManager.CreateAsync(user, rvm.Password);
 
                 if (result.Succeeded)
@@ -43,6 +43,8 @@ namespace XLJLeCommerce.Controllers
                         ClaimValueTypes.DateTime);
 
                     Claim emailClaim = new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.Email);
+
+                    Claim registerDateClaim = new Claim("RegisteredDate", $"{ user.RegisteredDate }");
 
                     List<Claim> claims = new List<Claim> { fullNameClaim, birthdayClaim, emailClaim };
 
