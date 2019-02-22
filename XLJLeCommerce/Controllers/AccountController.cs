@@ -79,7 +79,7 @@ namespace XLJLeCommerce.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Product");
                 }
             }
 
