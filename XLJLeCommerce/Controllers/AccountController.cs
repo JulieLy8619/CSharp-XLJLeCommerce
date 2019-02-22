@@ -45,5 +45,28 @@ namespace XLJLeCommerce.Controllers
             return View(rvm);
 
         }
+
+        [HttpGet]
+        public IActionResult Login() => View();
+
+        [HttpPost]
+
+        public async Task<IActionResult> Login(LoginViewModel lvm) //this should un-red after I make the login view model
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, false, false);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+
+            return View(lvm);
+        }
+
     }
 }
