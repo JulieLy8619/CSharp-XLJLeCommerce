@@ -13,5 +13,6 @@ namespace XLJLeCommerce.Models
         public decimal Price { get; set; }
         public string Description { get; set; }
         public string ImageURL { get; set; }
+        public bool VIPItem { get; set; }
     }
 }
