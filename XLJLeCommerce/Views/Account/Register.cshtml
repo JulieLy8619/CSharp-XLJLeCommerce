@@ -2,7 +2,7 @@
 
 <h1>Register</h1>
 <div id="RegForm">
-    <form method="post">
+    <form asp-controller="Account" asp-action="Register" method="post">
 
         <div asp-validation-summary="All"></div>
 
@@ -21,7 +21,7 @@
 
         <label asp-for="Birthdate">Enter your Birthday</label>
         <input asp-for="Birthdate" />
-        <span asp-validation-for="Birthday"></span>
+        <span asp-validation-for="Birthdate"></span>
 
         <label asp-for="Password">Enter a strong password</label>
         <input asp-for="Password" />

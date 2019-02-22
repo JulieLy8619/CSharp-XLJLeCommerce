@@ -31,6 +31,7 @@ namespace XLJLeCommerce.Controllers
                     Birthdate = rvm.Birthdate
                 };
 
+                //it breaks here, 500, but we didn't write this. it's part of the hidden identity thing
                 var result = await _userManager.CreateAsync(user, rvm.Password);
 
                 if (result.Succeeded)
