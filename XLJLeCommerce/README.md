@@ -9,4 +9,6 @@ Notes for citing:
 Images from Pixabay
 Used this for resizing images: https://www.photoresizer.com/
 
+needed to make a change for commit since it doesn't recog changes in user secret
+
 -->
