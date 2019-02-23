@@ -2,44 +2,40 @@
 @using XLJLeCommerce.Models
 @inject SignInManager<ApplicationUser> signInManager
 
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link href="~/StyleSheet.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Freckle+Face|Rock+Salt|Schoolbell" rel="stylesheet">
     <title>@ViewBag.Title</title>
+    <link href="~/StyleSheets/reset.css" rel="stylesheet" />
+    <link href="~/StyleSheets/StyleSheet.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Freckle+Face|Rock+Salt|Schoolbell" rel="stylesheet">
 </head>
-<body>
 
+<body>
+    <img class="topper"src="~/Assets/topper.jpg">
+
+    <h1>Mystical Pets</h1>
 
     <header>
-        <h1>Total Unicorn</h1>
-
-        <div class="nav">
+        <nav>
             <ul>
                 <li><a href="/"> Home</a></li>
                 @if (signInManager.IsSignedIn(User))
-                {<li> 
-                <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value</span>
-                </li>
+                {
+                    <li>
+                        <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value</span>
+                    </li>
                 }
                 else
                 {
-                <li>
-                    <a href="/Account/Login">Login</a>
-                </li>
-                <li>
-                    <a href="/Account/Register">register</a>
-                </li>
+                    <li><a href="/Account/Login">Login</a></li>
+                    <li><a href="/Account/Register">register</a></li>
                 }
             </ul>
-        </div>
+        </nav>
     </header>
-
-
 
     <div>
         @RenderBody()
