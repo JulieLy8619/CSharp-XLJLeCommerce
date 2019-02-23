@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace XLJLeCommerce.Controllers
 
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register() => View();
 
         [HttpPost]
