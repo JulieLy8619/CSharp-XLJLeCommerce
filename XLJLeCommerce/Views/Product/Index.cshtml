@@ -11,13 +11,15 @@
     {
         @if (item.VIPItem == false)
         {
-                <div class="tiles">
+            <div class="tiles">
+                <div class="image">
                     <img src="@item.ImageURL" alt="@item.Name" />
-                    <h4>@item.Name</h4>
-                    <p class="description">@item.Description</p>
-                    <p>@item.Price</p>
-                    <a asp-action="Details" asp-route-id="@item.ID">Details</a>
                 </div>
+                <h4>@item.Name</h4>
+                <p class="description">@item.Description</p>
+                <p>@item.Price</p>
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+            </div>
         }
     }
     </div>
