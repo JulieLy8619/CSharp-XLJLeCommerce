@@ -9,8 +9,8 @@ using XLJLeCommerce.Data;
 namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 {
     [DbContext(typeof(CreaturesDbcontext))]
-    [Migration("20190222200130_intial2")]
-    partial class intial2
+    [Migration("20190223085705_redo02221e")]
+    partial class redo02221e
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,6 +36,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 
                     b.Property<string>("Sku");
 
+                    b.Property<bool>("VIPItem");
+
                     b.HasKey("ID");
 
                     b.ToTable("Products");
@@ -48,7 +50,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ImageURL = "~/Unicorn.png",
                             Name = "Unicorn",
                             Price = 20m,
-                            Sku = "Unicorn1abc123"
+                            Sku = "Unicorn1abc123",
+                            VIPItem = true
                         },
                         new
                         {
@@ -57,7 +60,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ImageURL = "~/Dragon2.png",
                             Name = "Dragon",
                             Price = 25m,
-                            Sku = "Dragon1abc123"
+                            Sku = "Dragon1abc123",
+                            VIPItem = false
                         },
                         new
                         {
@@ -66,7 +70,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ImageURL = "~/Fairy2Cropped.jpg",
                             Name = "Fairy",
                             Price = 30m,
-                            Sku = "Fairy1abc123"
+                            Sku = "Fairy1abc123",
+                            VIPItem = false
                         },
                         new
                         {
@@ -75,7 +80,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ImageURL = "~/Griffin.png",
                             Name = "Griffin",
                             Price = 20m,
-                            Sku = "Griffin1abc123"
+                            Sku = "Griffin1abc123",
+                            VIPItem = false
                         },
                         new
                         {
@@ -84,7 +90,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ImageURL = "~/Hydra.png",
                             Name = "Hydra",
                             Price = 10m,
-                            Sku = "Hydra1abc123"
+                            Sku = "Hydra1abc123",
+                            VIPItem = false
                         },
                         new
                         {
@@ -93,7 +100,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ImageURL = "~/Narwhal.png",
                             Name = "NawWhal",
                             Price = 50m,
-                            Sku = "Narwhal1abc123"
+                            Sku = "Narwhal1abc123",
+                            VIPItem = false
                         },
                         new
                         {
@@ -102,7 +110,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ImageURL = "~/Troll.png",
                             Name = "Troll",
                             Price = 15m,
-                            Sku = "Troll1abc123"
+                            Sku = "Troll1abc123",
+                            VIPItem = false
                         },
                         new
                         {
@@ -111,7 +120,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ImageURL = "~/WereWolf.png",
                             Name = "Werewolf",
                             Price = 15m,
-                            Sku = "Werewolf1abc123"
+                            Sku = "Werewolf1abc123",
+                            VIPItem = true
                         },
                         new
                         {
@@ -120,7 +130,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ImageURL = "~/Minotaur.jpg",
                             Name = "Minotaur",
                             Price = 20m,
-                            Sku = "Minotaur1abc123"
+                            Sku = "Minotaur1abc123",
+                            VIPItem = false
                         },
                         new
                         {
@@ -129,7 +140,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ImageURL = "~/MermaidCropped.jpg",
                             Name = "Mermaid",
                             Price = 40m,
-                            Sku = "Mermaid1abc123"
+                            Sku = "Mermaid1abc123",
+                            VIPItem = true
                         });
                 });
 #pragma warning restore 612, 618

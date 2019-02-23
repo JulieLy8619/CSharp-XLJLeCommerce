@@ -4,11 +4,11 @@
 @{
     Layout = "_Layout";
 }
-<h1>All Products</h1>
+<h1>VIP Products</h1>
 <div class="parent">
     @foreach (var item in Model)
     {
-        @if (item.VIPItem == false)
+        @if (item.VIPItem == false || item.VIPItem == true)
         {
             <div class="container">
                 <img src="@item.ImageURL" alt="@item.Name" />
