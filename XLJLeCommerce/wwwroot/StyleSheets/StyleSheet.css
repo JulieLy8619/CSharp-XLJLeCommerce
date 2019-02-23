@@ -1,38 +1,113 @@
 ﻿body {
     background-color: beige;
     text-align: center;
+    /*background-image: url("/Assets/Backgrounds/morning-1503340_1920.jpg");
+    background-repeat: no-repeat;*/
+
 }
 
-h1 {
+h1 
+{
+    height: 75px;
+    width: 100%;
+    font-size: 3em;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+    margin-top: 70px;
+    vertical-align: middle;
+    color: black;
     font-family: 'Rock Salt', cursive;
     text-align: center;
 }
 
-.parent {
+h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    text-align: center;
+    font-family: 'Rock Salt', cursive;
+    text-align: center;
+}
+
+h4
+{
+    font-size: 1.5em;
+}
+
+/*.parent {
     display: table;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1em;
+}*/
+.container 
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-.container {
+.tiles 
+{
+    height: 350px;
+    width: 350px;
     display: table-cell;
     margin-bottom: 2em;
     border: 1px solid black;
     margin: 1em;
     padding: 1em;
     text-align: left;
-    display: inline-block;
-}
-img {
-    width: 20vw;
-    height: 30vh;
+    /*display: inline-block;*/
 }
 
-.topper
+.description 
 {
-    height: 250px;
+    height: 80px;
+    width: 90%;
+    overflow: scroll;
+}
+
+img 
+{
+    /*how do I center image in my tile*/
+    /*display:inline-block;*/
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    height: 55%;
+    width: 55%;
+}
+
+.topper {
+    height: 175px;
     width: 960px;
     margin-left: auto;
     margin-right: auto;
+    opacity: .6;
+}
+
+header nav ul 
+{
+    width: 960px;
+    list-style-type: none;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+header nav ul li 
+{
+    display: inline-block;
+    width: 140px;
+    height: 45px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: auto;
+    padding: 3px;
+
 }

@@ -24,15 +24,14 @@
                 <li><a href="/"> Home</a></li>
                 @if (signInManager.IsSignedIn(User))
                 {
-                    <li>
-                        <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value</span>
-                    </li>
+                    <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value</span>
                 }
                 else
                 {
                     <li><a href="/Account/Login">Login</a></li>
                     <li><a href="/Account/Register">register</a></li>
                 }
+                <li><a href="Product/Index">View Products</a></li>
             </ul>
         </nav>
     </header>
