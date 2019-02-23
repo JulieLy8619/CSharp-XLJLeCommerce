@@ -13,6 +13,7 @@ using XLJLeCommerce.Models.Interfaces;
 using XLJLeCommerce.Models.Services;
 using XLJLeCommerce.Models;
 using Microsoft.AspNetCore.Identity;
+using XLJLeCommerce.Models.Handler;
 
 namespace XLJLeCommerce
 {
@@ -45,7 +46,11 @@ namespace XLJLeCommerce
 
             //should it be this since we're using usersecrets
             //services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
-
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Over3minOnly", policy => policy.Requirements.Add(new MinRegisterTimeRequirement()));
+             
+            });
             services.AddScoped<Iproduct, IproductManagementService>();
         }
 
