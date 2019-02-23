@@ -9,6 +9,7 @@ using XLJLeCommerce.Models.Interfaces;
 
 namespace XLJLeCommerce.Controllers
 {
+    [Authorize(Policy = "Over3minOnly")]
     public class PolicyController : Controller
     {
         private readonly Iproduct _product;
