@@ -21,7 +21,7 @@ namespace XLJLeCommerce.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("VIPProd", "Policy");
         }
 
         [Authorize]
