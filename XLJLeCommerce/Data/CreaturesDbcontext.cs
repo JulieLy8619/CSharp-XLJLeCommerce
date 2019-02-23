@@ -33,7 +33,7 @@ namespace XLJLeCommerce.Data
                     Sku = "Dragon1abc123",
                     Price = 25,
                     Description = "The Dragon is a powerful magical lizard. About 30 times the size of a normal lizard and has special powers like breaths fire.",
-                    ImageURL = "~/Dragon2.png",
+                    ImageURL = "~/Assets/Dragon2.png",
                     VIPItem = false
                 },
                 new Product
@@ -53,7 +53,7 @@ namespace XLJLeCommerce.Data
                     Sku = "Griffin1abc123",
                     Price = 20,
                     Description = "The Griffin is a powerful magical creature. They are about the size of a grown elephant and has 3 times the strength of a whales bite.",
-                    ImageURL = "~/Griffin.png",
+                    ImageURL = "/Assets/Griffin.png",
                     VIPItem = false
                 },
                 new Product
