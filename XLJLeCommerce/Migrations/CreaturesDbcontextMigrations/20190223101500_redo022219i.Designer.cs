@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XLJLeCommerce.Data;
 
 namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 {
     [DbContext(typeof(CreaturesDbcontext))]
-    partial class CreaturesDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20190223101500_redo022219i")]
+    partial class redo022219i
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
