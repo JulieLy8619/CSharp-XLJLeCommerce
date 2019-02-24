@@ -19,25 +19,37 @@
     <h1>Mystical Pets</h1>
 
     <header>
+        @if (signInManager.IsSignedIn(User))
+        {
         <nav>
             <ul>
                 <li><a asp-controller="Home" asp-action="Index"> Home</a></li>
                 <li><a asp-controller="Product" asp-action="Index">View Products</a></li>
-                <li><a asp-controller="Account" asp-action="Login">Login</a></li>
-                <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-
+                <li><span>Welcome @User.Claims.First(c => c.Type == "FullName").Value</span></li>
+                <li>
+                    <form method="post" asp-controller="Account" asp-action="Logout">
+                        <input type="submit" value="Logout" />
+                    </form>
+                </li>
             </ul>
+            
         </nav>
-                @if (signInManager.IsSignedIn(User))
-                {
-                    <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value</span>
-                }
-                @*else
-                {
-                    <li><a asp-controller="Account" asp-action="Login">Login</a></li>
-                    <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-                }*@
-                <a asp-controller="Policy" asp-action="Index">Bonus Section if you're a long time member</a>
+        }
+        @*if (signInManager.IsSignedIn(User))
+        {
+            <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value</span>
+        }*@
+        else
+        { <nav>
+              <ul>
+                  <li><a asp-controller="Home" asp-action="Index"> Home</a></li>
+                  <li><a asp-controller="Product" asp-action="Index">View Products</a></li>
+                  <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                  <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+              </ul>
+</nav>
+        }
+        <a asp-controller="Policy" asp-action="Index">Bonus Section if you're a long time member</a>
     </header>
 
     <div>

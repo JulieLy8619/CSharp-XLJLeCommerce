@@ -92,6 +92,12 @@ namespace XLJLeCommerce.Controllers
             return View(lvm);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
 
     }
 }
