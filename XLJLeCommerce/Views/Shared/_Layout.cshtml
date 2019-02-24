@@ -25,6 +25,7 @@
                 <li><a asp-controller="Product" asp-action="Index">View Products</a></li>
                 <li><a asp-controller="Account" asp-action="Login">Login</a></li>
                 <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+
             </ul>
         </nav>
                 @if (signInManager.IsSignedIn(User))
@@ -36,6 +37,7 @@
                     <li><a asp-controller="Account" asp-action="Login">Login</a></li>
                     <li><a asp-controller="Account" asp-action="Register">Register</a></li>
                 }*@
+                <a asp-controller="Policy" asp-action="Index">Bonus Section if you're a long time member</a>
     </header>
 
     <div>
