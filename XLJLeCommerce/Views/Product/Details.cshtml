@@ -1,6 +1,10 @@
 ﻿@model XLJLeCommerce.Models.Product
 
-<h1>@Model.Name Details</h1>
+@{
+    Layout = "_Layout";
+}
+
+<h2>@Model.Name Details</h2>
 <div>
 
     <p>@Html.DisplayNameFor(model => model.Name)</p>
