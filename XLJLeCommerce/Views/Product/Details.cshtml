@@ -1,0 +1,23 @@
+﻿@model XLJLeCommerce.Models.Product
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>@Model.Name Details</h2>
+<div>
+
+    <p>@Html.DisplayNameFor(model => model.Name)</p>
+    <p>@Html.DisplayFor(model => model.Name)</p>
+
+    <p>@Html.DisplayNameFor(model => model.Description)</p>
+    <p>@Html.DisplayFor(model => model.Description)</p>
+
+    <p>@Html.DisplayNameFor(model => model.Price)</p>
+    <p>@Html.DisplayFor(model => model.Price)</p>
+
+    <p>@Html.DisplayNameFor(model => model.Sku)</p>
+    <p>@Html.DisplayFor(model => model.Sku)</p>
+
+    <a asp-action="Index">Back to all Creatures</a>
+</div>

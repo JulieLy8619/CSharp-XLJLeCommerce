@@ -1,0 +1,41 @@
+﻿@model XLJLeCommerce.Models.ViewModels.RegisterViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>Register</h2>
+<div id="RegForm">
+    <form method="post">
+
+        <div asp-validation-summary="All"></div>
+
+        <label asp-for="Email">Enter you email</label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+
+
+        <label asp-for="FirstName">Enter your First Name</label>
+        <input asp-for="FirstName" />
+        <span asp-validation-for="FirstName"></span>
+
+        <label asp-for="LastName">Enter your Last Name</label>
+        <input asp-for="LastName" />
+        <span asp-validation-for="LastName"></span>
+
+        <label asp-for="Birthdate">Enter your Birthday</label>
+        <input asp-for="Birthdate" />
+        <span asp-validation-for="Birthdate"></span>
+
+        <label asp-for="Password">Enter a strong password</label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+
+        <label asp-for="ConfirmPassword">Confirm your password</label>
+        <input asp-for="ConfirmPassword" />
+        <span asp-validation-for="ConfirmPassword"></span>
+
+        <button type="submit">Register</button>
+
+    </form>
+</div>

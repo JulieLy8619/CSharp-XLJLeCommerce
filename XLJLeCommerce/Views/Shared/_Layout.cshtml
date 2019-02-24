@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using XLJLeCommerce.Models
+@inject SignInManager<ApplicationUser> signInManager
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/StyleSheets/reset.css" rel="stylesheet" />
+    <link href="~/StyleSheets/StyleSheet.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Freckle+Face|Rock+Salt|Schoolbell" rel="stylesheet">
+</head>
+
+<body>
+    <img class="topper"src="~/Assets/topper.jpg">
+
+    <h1>Mystical Pets</h1>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index"> Home</a></li>
+                <li><a asp-controller="Product" asp-action="Index">View Products</a></li>
+                <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+
+            </ul>
+        </nav>
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value</span>
+                }
+                @*else
+                {
+                    <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                    <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                }*@
+                <a asp-controller="Policy" asp-action="Index">Bonus Section if you're a long time member</a>
+    </header>
+
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

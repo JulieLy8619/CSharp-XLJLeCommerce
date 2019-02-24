@@ -5,25 +5,74 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using XLJLeCommerce.Data;
+using XLJLeCommerce.Models.Interfaces;
+using XLJLeCommerce.Models.Services;
+using XLJLeCommerce.Models;
+using Microsoft.AspNetCore.Identity;
+using XLJLeCommerce.Models.Handler;
 
 namespace XLJLeCommerce
 {
     public class Startup
     {
+
+        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration)
+        {
+
+            var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+            builder.AddUserSecrets<Startup>();
+            Configuration = builder.Build();
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationDbcontext>()
+                    .AddDefaultTokenProviders();
+
+            services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+
+            services.AddDbContext<ApplicationDbcontext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
+
+            //should it be this since we're using usersecrets
+            //services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Over3minOnly", policy => policy.Requirements.Add(new MinRegisterTimeRequirement()));
+             
+            });
+            services.AddScoped<Iproduct, IproductManagementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles(); //so can use stylesheet
+            
+            app.UseMvc(route =>
+            {
+                route.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                    );
+            });
+
+           
 
             app.Run(async (context) =>
             {

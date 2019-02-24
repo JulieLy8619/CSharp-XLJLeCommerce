@@ -1,0 +1,21 @@
+﻿@model XLJLeCommerce.Models.ViewModels.LoginViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>Login</h2>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+    <span asp-validation-for="Password"></span>
+
+    <button type="submit">LOGIN</button>
+</form>

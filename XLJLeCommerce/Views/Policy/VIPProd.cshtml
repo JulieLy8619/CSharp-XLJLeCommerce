@@ -1,0 +1,25 @@
+﻿@model IEnumerable<XLJLeCommerce.Models.Product>
+
+@{
+    Layout = "_Layout";
+}
+
+@{
+    Layout = "_Layout";
+}
+<h2>VIP Products</h2>
+<div class="parent">
+    @foreach (var item in Model)
+    {
+        @if (item.VIPItem == false || item.VIPItem == true)
+        {
+            <div class="container">
+                <img src="@item.ImageURL" alt="@item.Name" />
+                <p>@item.Name</p>
+                <p>@item.Description</p>
+                <p>@item.Price</p>
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+            </div>
+        }
+    }
+</div>

@@ -1,0 +1,13 @@
+﻿body {
+    background-image: url(homebackground/home.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h1 {
+    text-align: center;
+    font-family:'Freckle+Face', cursive;
+}
+
+p{
+    text-align:center;
+}
