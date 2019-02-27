@@ -7,5 +7,10 @@ namespace XLJLeCommerce.Models.Interfaces
 {
     interface IShoppingCartItem
     {
+        Task Create(ShoppingCartItem shoppingCartItem);
+        Task<ShoppingCartItem> GetShoppingCartItem(int id);
+        Task<List<ShoppingCartItem>> GetAllShoppingCartItems();
+        Task UpdateShoppingCartItem(ShoppingCartItem shoppingCartItem);
+        Task DeleteShoppingCartItem(int id);
     }
 }
