@@ -23,7 +23,7 @@
 
     <form asp-controller="Cart" asp-action="Add" method="post">
         <label asp-for="@Cart.ProdQty">How many would you like to order</label>
-        <input name="ProdQty" placeholder="1"/>
+        <input type="number" name="ProdQty" placeholder="1" maxlength="1"/>
         <button type="submit">Add to Cart</button>
     </form>
 

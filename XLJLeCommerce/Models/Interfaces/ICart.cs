@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace XLJLeCommerce.Models.Interfaces
 {
-    public class ICart
+    interface ICart
     {
+        Task Create(Cart cart);
     }
 }
