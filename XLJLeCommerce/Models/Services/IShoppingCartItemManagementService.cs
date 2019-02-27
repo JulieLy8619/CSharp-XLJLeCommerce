@@ -2,20 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using XLJLeCommerce.Data;
 using XLJLeCommerce.Models.Interfaces;
 
 namespace XLJLeCommerce.Models.Services
 {
     public class IShoppingCartItemManagementService : IShoppingCartItem
     {
+        private CreaturesDbcontext _context { get; }
+
+        public IShoppingCartItemManagementService(CreaturesDbcontext context)
+        {
+            _context = context;
+        }
         /// <summary>
         /// creates an item to add to the shopping cart
         /// </summary>
         /// <param name="shoppingCartItem">takes in a showpping cart item</param>
         /// <returns>the completed service of adding it to the DB</returns>
-        public Task Create(ShoppingCartItem shoppingCartItem)
+        public async Task CreateShoppingCartItem(ShoppingCartItem shoppingCartItem)
         {
-            throw new NotImplementedException();
+            _context.ShoppingCartTable.Add(shoppingCartItem);
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
