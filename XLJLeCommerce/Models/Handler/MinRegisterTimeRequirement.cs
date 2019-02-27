@@ -9,8 +9,12 @@ namespace XLJLeCommerce.Models.Handler
 {
     public class MinRegisterTimeRequirement : AuthorizationHandler<MinRegisterTimeRequirement>,IAuthorizationRequirement
     {
-
-
+        /// <summary>
+        /// handles the requirement, in this case gives permission if a vip member
+        /// </summary>
+        /// <param name="context">the database</param>
+        /// <param name="requirement">the requirement for the policy</param>
+        /// <returns></returns>
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinRegisterTimeRequirement requirement)
         {
 
@@ -22,10 +26,7 @@ namespace XLJLeCommerce.Models.Handler
                 context.Succeed(requirement);
 
             }
-
             return Task.CompletedTask;
-
-
         }
     }
 }
