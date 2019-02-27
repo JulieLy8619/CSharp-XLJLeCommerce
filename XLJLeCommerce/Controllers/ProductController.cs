@@ -16,14 +16,21 @@ namespace XLJLeCommerce.Controllers
             _context = context;
         }
 
-        //display all products on page
+        /// <summary>
+        /// calls the index page for products
+        /// </summary>
+        /// <returns>the page with all products to view</returns>
         public async Task<IActionResult> Index(int id)
         {
             //should un red line after next pull because Xia did the table and services
             return View(await _context.GetAllProducts());
         }
 
-        //display details for just one
+        /// <summary>
+        /// calls the details page
+        /// </summary>
+        /// <param name="id">id of the specific product</param>
+        /// <returns>the page of the product</returns>
         public async Task<IActionResult> Details(int id)
         {
             var prod = await _context.GetProduct(id);
