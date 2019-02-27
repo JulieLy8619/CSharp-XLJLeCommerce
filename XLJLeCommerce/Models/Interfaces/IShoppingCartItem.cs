@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace XLJLeCommerce.Models.Interfaces
 {
-    interface IShoppingCartItem
+    public interface IShoppingCartItem
     {
         Task CreateShoppingCartItem(ShoppingCartItem shoppingCartItem);
         Task<ShoppingCartItem> GetShoppingCartItem(int id);
