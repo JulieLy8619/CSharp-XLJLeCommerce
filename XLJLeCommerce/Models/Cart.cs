@@ -9,8 +9,5 @@ namespace XLJLeCommerce.Models
     {
         public int ID { get; set; }
         public int UserID { get; set; }
-        public int ProdID { get; set; }
-        public int ProdQty { get; set; }
-        public decimal TotalPrice { get; set; }
     }
 }
