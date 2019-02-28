@@ -10,8 +10,8 @@ using XLJLeCommerce.Data;
 namespace XLJLeCommerce.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20190228030429_022719rebuilddb4")]
-    partial class _022719rebuilddb4
+    [Migration("20190228063031_intial4")]
+    partial class intial4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
