@@ -54,10 +54,17 @@ namespace XLJLeCommerce
 
 
             services.AddAuthentication()
-     .AddMicrosoftAccount(microsoftOptions => {
-         microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
-         microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
-     });
+             .AddMicrosoftAccount(microsoftOptions =>
+             {
+                 microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
+                 microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
+             })
+            .AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            });
+
             services.AddScoped<Iproduct, IproductManagementService>();
             services.AddScoped<ICart, ICartManagementService>();
             services.AddScoped<IShoppingCartItem, IShoppingCartItemManagementService>();

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using XLJLeCommerce.Models;
+using XLJLeCommerce.Models.Interfaces;
 using XLJLeCommerce.Models.ViewModels;
 
 namespace XLJLeCommerce.Controllers
@@ -15,11 +16,13 @@ namespace XLJLeCommerce.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private readonly ICart _cart;
 
-        public AccountController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager, ICart cart)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _cart = cart;
         }
 
         /// <summary>
@@ -57,6 +60,7 @@ namespace XLJLeCommerce.Controllers
                 {
                     Cart cart = new Cart();
                     cart.UserID = user.Id;
+                    await _cart.Create(cart);
 
                     Claim fullNameClaim = new Claim("FullName", $"{user.FirstName} {user.LastName}");
 

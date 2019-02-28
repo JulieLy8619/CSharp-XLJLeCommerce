@@ -19,12 +19,13 @@ namespace XLJLeCommerce.Controllers
         private UserManager<ApplicationUser> _userManager;
         private CreaturesDbcontext _context { get; set; }
 
-        public ProductController(Iproduct product, ICart cart, IShoppingCartItem shoppingCartItem, CreaturesDbcontext context)
+        public ProductController(Iproduct product, ICart cart, IShoppingCartItem shoppingCartItem, CreaturesDbcontext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _cart = cart;
             _product = product;
             _shoppingCartItem = shoppingCartItem;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace XLJLeCommerce.Controllers
 
                 //set item to cart
                 newCartItem.CartID = cartid.ID;
-                newCartItem.ProdID = prod.ID;
+                newCartItem.ProductID = prod.ID;
                 newCartItem.ProdQty = 1; //we chose to default add one at cart entry and then then can update quantity on cart summary page later
                 await _shoppingCartItem.CreateShoppingCartItem(newCartItem);
                 return View(); //we probably actually will want to go to cart home page after we create that.
