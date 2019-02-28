@@ -39,19 +39,15 @@ namespace XLJLeCommerce
                     .AddEntityFrameworkStores<ApplicationDbcontext>()
                     .AddDefaultTokenProviders();
 
-            services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             services.AddDbContext<ApplicationDbcontext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
 
-            //should it be this since we're using usersecrets
-            //services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Over3minOnly", policy => policy.Requirements.Add(new MinRegisterTimeRequirement()));
-             
             });
-
 
             services.AddAuthentication()
              .AddMicrosoftAccount(microsoftOptions =>
