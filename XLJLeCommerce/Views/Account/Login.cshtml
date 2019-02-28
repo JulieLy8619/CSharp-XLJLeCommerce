@@ -1,5 +1,8 @@
 ﻿@model XLJLeCommerce.Models.ViewModels.LoginViewModel
+@using Microsoft.AspNetCore.Identity;
+@using XLJLeCommerce.Models;
 
+@inject SignInManager<ApplicationUser> SignInManager
 @{
     Layout = "_Layout";
 }
@@ -19,3 +22,21 @@
 
     <button type="submit">LOGIN</button>
 </form>
+
+
+@{
+    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+    if (loginProviders.Count > 0)
+    {
+        <h1> LOGIN PROVIDERS!!!</h1>
+
+        <form asp-action="ExternalLogin" method="post">
+            @foreach (var provider in loginProviders)
+            {
+                <button type="submit" name="provider" value="@provider.Name" title="Log in using @provider.DisplayName"> @provider.Name</button>
+            }
+        </form>
+
+    }
+}
