@@ -10,8 +10,8 @@ using XLJLeCommerce.Data;
 namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 {
     [DbContext(typeof(CreaturesDbcontext))]
-    [Migration("20190228033946_0222719rebuilddb6")]
-    partial class _0222719rebuilddb6
+    [Migration("20190228063057_inital6")]
+    partial class inital6
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,7 +64,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ID = 1,
                             CartID = 0,
                             Description = "The Unicorn is like a horse but has a magical horn that makes it more and better than a standard horse.",
-                            ImageURL = "~/Unicorn.png",
+                            ImageURL = "/Assets/Unicorn.png",
                             Name = "Unicorn",
                             Price = 20m,
                             Sku = "Unicorn1abc123",
@@ -75,7 +75,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ID = 2,
                             CartID = 0,
                             Description = "The Dragon is a powerful magical lizard. About 30 times the size of a normal lizard and has special powers like breaths fire.",
-                            ImageURL = "~/Assets/Dragon2.png",
+                            ImageURL = "/Assets/Dragon2.png",
                             Name = "Dragon",
                             Price = 25m,
                             Sku = "Dragon1abc123",
@@ -86,7 +86,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ID = 3,
                             CartID = 0,
                             Description = "The Fairy is a tiny magical being. They are about the size of an adult hand, faster than light, and have special fairy dust.",
-                            ImageURL = "~/Fairy2Cropped.jpg",
+                            ImageURL = "/Assets/Fairy2Cropped.jpg",
                             Name = "Fairy",
                             Price = 30m,
                             Sku = "Fairy1abc123",
@@ -108,7 +108,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ID = 5,
                             CartID = 0,
                             Description = "The Hydra is a tiny but powerful animal, yet as gentle as a dmesticated puppy. They are about the size of two adult hands.",
-                            ImageURL = "~/Hydra.png",
+                            ImageURL = "/Assets/Hydra.png",
                             Name = "Hydra",
                             Price = 10m,
                             Sku = "Hydra1abc123",
@@ -119,7 +119,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ID = 6,
                             CartID = 0,
                             Description = "The Narwhal is a mystical sea creature who is related to the Unicorn family. They power comes from their horn like the Unicorn, however they are limited to only surviving in water. However, one of their magical powers is changing size to fit whatever water space size.",
-                            ImageURL = "~/Narwhal.png",
+                            ImageURL = "/Assets/Narwhal.png",
                             Name = "NawWhal",
                             Price = 50m,
                             Sku = "Narwhal1abc123",
@@ -130,7 +130,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ID = 7,
                             CartID = 0,
                             Description = "The Troll is a misunderstood being. They often have a facade of ignorance, however they are genius, like Einstein IQ level",
-                            ImageURL = "~/Troll.png",
+                            ImageURL = "/Assets/Troll.png",
                             Name = "Troll",
                             Price = 15m,
                             Sku = "Troll1abc123",
@@ -141,7 +141,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ID = 8,
                             CartID = 0,
                             Description = "The Werewolf is a decieving beast because they are human by day, and wolf by night. Becautious as it is unknown but they are the pranksters of the animal world.",
-                            ImageURL = "~/WereWolf.png",
+                            ImageURL = "/Assets/WereWolf.png",
                             Name = "Werewolf",
                             Price = 15m,
                             Sku = "Werewolf1abc123",
@@ -152,7 +152,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ID = 9,
                             CartID = 0,
                             Description = "The Minotaur is a half human half horse. They are the size of a dwarfed giant with a slightly larger horse. Their powers include mind reading and surviving on nothing for a year. They live for several hundreds of years.",
-                            ImageURL = "~/Minotaur.jpg",
+                            ImageURL = "/Assets/Minotaur.jpg",
                             Name = "Minotaur",
                             Price = 20m,
                             Sku = "Minotaur1abc123",
@@ -163,7 +163,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             ID = 10,
                             CartID = 0,
                             Description = "The Mermaid is half human and half fish. Their magic comes from their scales, which allows them to, but not limited to, create an illusion for how others view them.",
-                            ImageURL = "~/MermaidCropped.jpg",
+                            ImageURL = "/Assets/MermaidCropped.jpg",
                             Name = "Mermaid",
                             Price = 40m,
                             Sku = "Mermaid1abc123",
