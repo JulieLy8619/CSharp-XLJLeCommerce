@@ -194,7 +194,17 @@ namespace XLJLeCommerce.Controllers
                 {
 
                     Claim fullNameClaim = new Claim("FullName", $"{user.FirstName} {user.LastName}");
-                    await _userManager.AddClaimAsync(user, fullNameClaim);
+
+                    Claim birthdayClaim = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthdate.Year, user.Birthdate.Month, user.Birthdate.Day).ToString("u"),
+                        ClaimValueTypes.DateTime);
+
+                    Claim emailClaim = new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.Email);
+
+                    Claim registerDateClaim = new Claim("RegisteredDate", $"{ user.RegisteredDate }");
+
+                    List<Claim> claims = new List<Claim> { fullNameClaim, birthdayClaim, emailClaim, registerDateClaim };
+
+                    await _userManager.AddClaimsAsync(user, claims);
 
                     result = await _userManager.AddLoginAsync(user, info);
 
