@@ -24,7 +24,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.HasKey("ID");
 
@@ -52,8 +52,6 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                     b.Property<bool>("VIPItem");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CartID");
 
                     b.ToTable("Products");
 
@@ -189,18 +187,10 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                     b.ToTable("ShoppingCartTable");
                 });
 
-            modelBuilder.Entity("XLJLeCommerce.Models.Product", b =>
-                {
-                    b.HasOne("XLJLeCommerce.Models.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("XLJLeCommerce.Models.ShoppingCartItem", b =>
                 {
                     b.HasOne("XLJLeCommerce.Models.Cart", "Cart")
-                        .WithMany()
+                        .WithMany("CartItems")
                         .HasForeignKey("CartID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

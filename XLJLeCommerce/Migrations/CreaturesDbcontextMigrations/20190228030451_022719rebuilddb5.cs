@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 {
-    public partial class initia2 : Migration
+    public partial class _022719rebuilddb5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserID = table.Column<int>(nullable: false)
+                    UserID = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -37,12 +37,6 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Products_Carts_CartID",
-                        column: x => x.CartID,
-                        principalTable: "Carts",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,11 +76,6 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                     { 9, 0, "The Minotaur is a half human half horse. They are the size of a dwarfed giant with a slightly larger horse. Their powers include mind reading and surviving on nothing for a year. They live for several hundreds of years.", "~/Minotaur.jpg", "Minotaur", 20m, "Minotaur1abc123", false },
                     { 10, 0, "The Mermaid is half human and half fish. Their magic comes from their scales, which allows them to, but not limited to, create an illusion for how others view them.", "~/MermaidCropped.jpg", "Mermaid", 40m, "Mermaid1abc123", true }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_CartID",
-                table: "Products",
-                column: "CartID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCartTable_CartID",

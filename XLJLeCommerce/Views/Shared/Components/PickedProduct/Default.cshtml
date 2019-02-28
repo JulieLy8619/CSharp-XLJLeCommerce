@@ -1,11 +1,11 @@
-﻿@model List<XLJLeCommerce.Models.Product>
+﻿@model List<XLJLeCommerce.Models.ShoppingCartItem>
 
 
-<div style="background-color: green">
+<div>
     <h1>You picked these items</h1>
     @foreach (var item in Model)
     {
-        <h3>@item.Name @item.ImageURL</h3>
-        <p>@item.Description</p>
+        <h3>This is the Shopping cart View Component thing</h3>
+        <p>@item.ProdID @item.ProdQty</p>
     }
 </div>

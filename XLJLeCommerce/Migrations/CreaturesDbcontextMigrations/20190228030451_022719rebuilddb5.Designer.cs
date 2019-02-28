@@ -9,8 +9,8 @@ using XLJLeCommerce.Data;
 namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 {
     [DbContext(typeof(CreaturesDbcontext))]
-    [Migration("20190228022447_initia2")]
-    partial class initia2
+    [Migration("20190228030451_022719rebuilddb5")]
+    partial class _022719rebuilddb5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,7 +26,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.HasKey("ID");
 
@@ -54,8 +54,6 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                     b.Property<bool>("VIPItem");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CartID");
 
                     b.ToTable("Products");
 
@@ -191,18 +189,10 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                     b.ToTable("ShoppingCartTable");
                 });
 
-            modelBuilder.Entity("XLJLeCommerce.Models.Product", b =>
-                {
-                    b.HasOne("XLJLeCommerce.Models.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("XLJLeCommerce.Models.ShoppingCartItem", b =>
                 {
                     b.HasOne("XLJLeCommerce.Models.Cart", "Cart")
-                        .WithMany()
+                        .WithMany("CartItems")
                         .HasForeignKey("CartID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

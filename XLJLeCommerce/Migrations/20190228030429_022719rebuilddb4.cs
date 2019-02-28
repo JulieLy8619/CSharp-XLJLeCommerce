@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace XLJLeCommerce.Migrations
 {
-    public partial class inital1 : Migration
+    public partial class _022719rebuilddb4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

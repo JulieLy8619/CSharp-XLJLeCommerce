@@ -8,6 +8,7 @@ namespace XLJLeCommerce.Models
     public class Cart
     {
         public int ID { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
+        public List<ShoppingCartItem> CartItems {get;set;}
     }
 }
