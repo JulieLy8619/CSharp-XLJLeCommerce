@@ -54,19 +54,17 @@ namespace XLJLeCommerce
 
 
             services.AddAuthentication()
-             .AddMicrosoftAccount(microsoftOptions => 
+             .AddMicrosoftAccount(microsoftOptions =>
              {
                  microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
                  microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
-             });
-
-            //is this going to overwrite MS?
-            //"The AddAuthentication(Action<AuthenticationOptions>) overload allows configuring authentication options, which can be used to set up default authentication schemes for different purposes. Subsequent calls to AddAuthentication override previously configured AuthenticationOptions properties."
-            services.AddAuthentication().AddFacebook(facebookOptions =>
+             })
+            .AddFacebook(facebookOptions =>
             {
                 facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
+
             services.AddScoped<Iproduct, IproductManagementService>();
             services.AddScoped<ICart, ICartManagementService>();
             services.AddScoped<IShoppingCartItem, IShoppingCartItemManagementService>();
