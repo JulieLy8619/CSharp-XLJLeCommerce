@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace XLJLeCommerce.Migrations
+namespace XLJLeCommerce.Migrations.ApplicationDbcontextMigrations
 {
-    public partial class intial4 : Migration
+    public partial class _022819rebuild9 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

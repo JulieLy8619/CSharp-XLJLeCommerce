@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XLJLeCommerce.Data;
 
-namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
+namespace XLJLeCommerce.Migrations
 {
     [DbContext(typeof(CreaturesDbcontext))]
-    [Migration("20190228193148_022819rebuild7")]
-    partial class _022819rebuild7
+    [Migration("20190228201421_022819rebuild8")]
+    partial class _022819rebuild8
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

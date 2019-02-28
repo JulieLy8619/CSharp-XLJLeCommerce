@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,12 +38,17 @@ namespace XLJLeCommerce.Models.Services
         }
 
         /// <summary>
-        /// gets all shopping cart items
+        /// gets all the shopping cart items from one cart
         /// </summary>
-        /// <returns>a list of the shopping cart items</returns>
-        public Task<List<ShoppingCartItem>> GetAllShoppingCartItems()
+        /// <param name="id">which cart</param>
+        /// <returns>the items in specific cart</returns>
+        public async Task<List<ShoppingCartItem>> GetAllShoppingCartItems(int id)
         {
-            throw new NotImplementedException();
+            var cartItems = from ci in _context.ShoppingCartTable
+                            .Where(i => i.CartID == id)
+                            select ci;
+
+            return await cartItems.ToListAsync();
         }
 
         /// <summary>

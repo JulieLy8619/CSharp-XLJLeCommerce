@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +14,39 @@ namespace XLJLeCommerce.Controllers
     public class CartController : Controller
     {
         private readonly ICart _cart;
+        private readonly IShoppingCartItem _shoppingCartItem;
+        private UserManager<ApplicationUser> _userManager;
         private CreaturesDbcontext _context { get; set; }
 
-        public CartController(ICart cart, CreaturesDbcontext context)
+        public CartController(ICart cart, IShoppingCartItem shoppingCartItem, UserManager<ApplicationUser> userManager, CreaturesDbcontext context)
         {
             _context = context;
             _cart = cart;
+            _userManager = userManager;
+            _shoppingCartItem = shoppingCartItem;
+        }
+
+        public async Task<IActionResult> Index()
+
+        {
+            //find userID
+            string userEmail = User.Identity.Name;
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            if (user != null)
+            {
+                string userID = user.Id;
+                //int userIDNum = Convert.ToInt32(userID);
+
+                //so can find their carts
+                var cartid = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userID);
+                return View(await _shoppingCartItem.GetAllShoppingCartItems(cartid));
+            }
+            else //user not in DB
+            {
+                //should we redirect to log in or register?
+                return RedirectToAction("Register", "Account");
+            }
+
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XLJLeCommerce.Data;
 
-namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
+namespace XLJLeCommerce.Migrations
 {
     [DbContext(typeof(CreaturesDbcontext))]
     partial class CreaturesDbcontextModelSnapshot : ModelSnapshot
