@@ -30,15 +30,17 @@ namespace XLJLeCommerce.Controllers
         /// </summary>
         /// <returns>page</returns>
         public async Task<IActionResult> Index()
+
         {
             return View(await _product.GetAllProducts());
         }
 
         /// <summary>
-        /// gets the details of a specific product
+        /// calls the details page
         /// </summary>
-        /// <param name="id">id of specific product</param>
-        /// <returns>details page</returns>
+        /// <param name="id">id of the specific product</param>
+        /// <returns>the page of the product</returns>
+
         public async Task<IActionResult> Details(int id)
         {
             var prod = await _product.GetProduct(id);

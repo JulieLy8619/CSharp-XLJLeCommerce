@@ -22,11 +22,19 @@ namespace XLJLeCommerce.Controllers
             _signInManager = signInManager;
         }
 
-
+        /// <summary>
+        /// calls the register method to get the page
+        /// </summary>
+        /// <returns>the register view page</returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register() => View();
 
+        /// <summary>
+        /// calls the post register method to create the registration
+        /// </summary>
+        /// <param name="rvm">the information from/about the user</param>
+        /// <returns>the view after it has completed</returns>
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel rvm) 
         {
@@ -70,11 +78,19 @@ namespace XLJLeCommerce.Controllers
 
         }
 
+        /// <summary>
+        /// gets the login page to send to screen
+        /// </summary>
+        /// <returns>page view</returns>
         [HttpGet]
         public IActionResult Login() => View();
 
+        /// <summary>
+        /// takes information from page to login a user
+        /// </summary>
+        /// <param name="lvm">log in user information</param>
+        /// <returns>the page</returns>
         [HttpPost]
-
         public async Task<IActionResult> Login(LoginViewModel lvm) 
         {
             if (ModelState.IsValid)

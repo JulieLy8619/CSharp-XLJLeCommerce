@@ -19,11 +19,20 @@ namespace XLJLeCommerce.Controllers
         {
             _product = product;
         }
+
+        /// <summary>
+        /// calls the index page for vip users
+        /// </summary>
+        /// <returns>the page</returns>
         public IActionResult Index()
         {
             return RedirectToAction("VIPProd", "Policy");
         }
 
+        /// <summary>
+        /// gets the vip page for vip users
+        /// </summary>
+        /// <returns>the page</returns>
         [Authorize]
         public async Task<IActionResult> VIPProd()
         {
