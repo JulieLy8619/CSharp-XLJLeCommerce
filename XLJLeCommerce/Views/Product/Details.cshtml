@@ -21,7 +21,7 @@
     <p>@Html.DisplayNameFor(model => model.Sku)</p>
     <p>@Html.DisplayFor(model => model.Sku)</p>
 
-    <form asp-controller="Product" asp-action="AddToCart" method="post">
+    <form asp-controller="Product" asp-action="AddToCart" asp-route-id="@Model.ID" method="post">
         <button type="submit">Add to Cart</button>
     </form>
 
