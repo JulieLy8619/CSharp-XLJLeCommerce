@@ -63,7 +63,7 @@ namespace XLJLeCommerce.Controllers
         public async Task<IActionResult> AddToCart(int id)
         {
             //check if have shopping cart, if not then add cart
-
+            //added cart at registration
 
 
             var prod = await _product.GetProduct(id);
@@ -86,11 +86,12 @@ namespace XLJLeCommerce.Controllers
                 newCartItem.ProductID = prod.ID;
                 newCartItem.ProdQty = 1; //we chose to default add one at cart entry and then then can update quantity on cart summary page later
                 await _shoppingCartItem.CreateShoppingCartItem(newCartItem);
-                return View(); //we probably actually will want to go to cart home page after we create that.
+                return RedirectToAction("Index", "Cart"); //we probably actually will want to go to cart home page after we create that.
             }
             else //user not in DB
             {
-                return View();
+                //should we redirect to log in or register?
+                return RedirectToAction("Register", "Account");
             }
         }
     }
