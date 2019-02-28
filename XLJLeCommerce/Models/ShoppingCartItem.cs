@@ -9,7 +9,7 @@ namespace XLJLeCommerce.Models
     {
         public int ID { get; set; }
         public int CartID { get; set; }
-        public int ProdID { get; set; }
+        public int ProductID { get; set; }
         public int ProdQty { get; set; }
 
         //navigation
