@@ -15,7 +15,5 @@ namespace XLJLeCommerce.Models
         public string Description { get; set; }
         public string ImageURL { get; set; }
         public bool VIPItem { get; set; }
-
-        public Cart Cart { get; set; }
     }
 }
