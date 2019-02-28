@@ -50,10 +50,14 @@ namespace XLJLeCommerce.Controllers
                     RegisteredDate = DateTime.Now
                 };
 
+
                 var result = await _userManager.CreateAsync(user, rvm.Password);
 
                 if (result.Succeeded)
                 {
+                    Cart cart = new Cart();
+                    cart.UserID = user.Id;
+
                     Claim fullNameClaim = new Claim("FullName", $"{user.FirstName} {user.LastName}");
 
                     Claim birthdayClaim = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthdate.Year, user.Birthdate.Month, user.Birthdate.Day).ToString("u"),

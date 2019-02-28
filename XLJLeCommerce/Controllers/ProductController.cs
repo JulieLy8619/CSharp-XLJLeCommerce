@@ -16,7 +16,7 @@ namespace XLJLeCommerce.Controllers
         private readonly Iproduct _product;
         private readonly ICart _cart;
         private readonly IShoppingCartItem _shoppingCartItem;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private UserManager<ApplicationUser> _userManager;
         private CreaturesDbcontext _context { get; set; }
 
         public ProductController(Iproduct product, ICart cart, IShoppingCartItem shoppingCartItem, CreaturesDbcontext context)
@@ -71,19 +71,26 @@ namespace XLJLeCommerce.Controllers
             //find userID
             string userEmail = User.Identity.Name;
             var user = await _userManager.FindByEmailAsync(userEmail);
-            string userID = user.Id;
-            //int userIDNum = Convert.ToInt32(userID);
+            if (user != null)
+            {
+                string userID = user.Id;
+                //int userIDNum = Convert.ToInt32(userID);
 
-            //so can find their carts
-            var cartid = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userID);
-            //int cartidNum = Convert.ToInt32(cartid);
+                //so can find their carts
+                var cartid = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userID);
+                //int cartidNum = Convert.ToInt32(cartid);
 
-            //set item to cart
-            newCartItem.CartID = cartid.ID;
-            newCartItem.ProdID = prod.ID;
-            newCartItem.ProdQty = 1; //we chose to default add one at cart entry and then then can update quantity on cart summary page later
-            await _shoppingCartItem.CreateShoppingCartItem(newCartItem);
-            return View(); //we probably actually will want to go to cart home page after we create that.
+                //set item to cart
+                newCartItem.CartID = cartid.ID;
+                newCartItem.ProdID = prod.ID;
+                newCartItem.ProdQty = 1; //we chose to default add one at cart entry and then then can update quantity on cart summary page later
+                await _shoppingCartItem.CreateShoppingCartItem(newCartItem);
+                return View(); //we probably actually will want to go to cart home page after we create that.
+            }
+            else //user not in DB
+            {
+                return View();
+            }
         }
     }
 }
