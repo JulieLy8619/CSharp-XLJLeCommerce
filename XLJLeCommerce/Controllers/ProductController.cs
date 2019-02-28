@@ -14,13 +14,15 @@ namespace XLJLeCommerce.Controllers
     {
         private readonly Iproduct _product;
         private readonly ICart _cart;
+        private readonly IShoppingCartItem _shoppingCartItem;
         private CreaturesDbcontext _context;
 
-        public ProductController(Iproduct product, ICart cart, CreaturesDbcontext context)
+        public ProductController(Iproduct product, ICart cart, IShoppingCartItem shoppingCartItem, CreaturesDbcontext context)
         {
             _context = context;
             _cart = cart;
             _product = product;
+            _shoppingCartItem = shoppingCartItem;
         }
 
         /// <summary>
@@ -48,15 +50,22 @@ namespace XLJLeCommerce.Controllers
 
         //we won't have a delete product because a user can't delete any
 
-        [HttpPost]
-        public async Task<IActionResult> AddtoCart([Bind("ID, Name, Sku, Price, Description, ImageURL, VIPItem")] Product product)
+        /// <summary>
+        /// adds a shopping cart item to the cart
+        /// </summary>
+        /// <param name="id">id of which product one wants to add</param>
+        /// <returns>page after task completed</returns>
+        public async Task<IActionResult> AddToCart(int id)
         {
-            product.CartID = await _context.Carts.Where(p => p.ProdID == product.ID)
-                                                .Select(c => c.ID)
-                                                .FirstOrDefaultAsync();
-            await _product.Create(product);
-            return RedirectToAction("Index", "Cart");
+            //check if have shopping cart, if not then add cart
 
+            var prod = await _product.GetProduct(id);
+            ShoppingCartItem newCartItem = new ShoppingCartItem();
+            newCartItem.CartID = 0; //have to figure out how to tell which shopping cart
+            newCartItem.ProdID = prod.ID;
+            newCartItem.ProdQty = 1; //we chose to default add one at cart entry and then then can update quantity on cart summary page later
+            await _shoppingCartItem.CreateShoppingCartItem(newCartItem);
+            return View(); //we probably actually will want to go to cart home page after we create that.
         }
     }
 }
