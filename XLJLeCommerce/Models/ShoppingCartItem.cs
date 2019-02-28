@@ -14,5 +14,6 @@ namespace XLJLeCommerce.Models
 
         //navigation
         public Cart Cart { get; set; }
+        public Product Product { get; set; }
     }
 }
