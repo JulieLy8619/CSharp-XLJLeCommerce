@@ -34,7 +34,10 @@
         <form asp-action="ExternalLogin" method="post">
             @foreach (var provider in loginProviders)
             {
-                <button type="submit" name="provider" value="@provider.Name" title="Log in using @provider.DisplayName"> @provider.Name</button>
+                
+                <button style="width:40px;height:40px;margin-left:auto;margin-right:auto;"type="submit" name="provider" value="@provider.Name" title="Log in using @provider.DisplayName">
+                   <img style="width:120%;height:80%" src="~/Assets/microsoft.png" alt="" />
+                </button>
             }
         </form>
 
