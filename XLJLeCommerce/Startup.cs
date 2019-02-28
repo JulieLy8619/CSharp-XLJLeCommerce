@@ -51,6 +51,13 @@ namespace XLJLeCommerce
                 options.AddPolicy("Over3minOnly", policy => policy.Requirements.Add(new MinRegisterTimeRequirement()));
              
             });
+
+
+            services.AddAuthentication()
+     .AddMicrosoftAccount(microsoftOptions => {
+         microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
+         microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
+     });
             services.AddScoped<Iproduct, IproductManagementService>();
             services.AddScoped<ICart, ICartManagementService>();
             services.AddScoped<IShoppingCartItem, IShoppingCartItemManagementService>();
