@@ -1,0 +1,11 @@
+﻿@model List<XLJLeCommerce.Models.Product>
+
+
+<div style="background-color: green">
+    <h1>You picked these items</h1>
+    @foreach (var item in Model)
+    {
+        <h3>@item.Name @item.ImageURL</h3>
+        <p>@item.Description</p>
+    }
+</div>
