@@ -7,7 +7,7 @@ using XLJLeCommerce.Data;
 
 namespace XLJLeCommerce.Models.Components
 {
-    public class PickedProduct
+    public class PickedProduct:ViewComponent
     {
         private CreaturesDbcontext _context;
 

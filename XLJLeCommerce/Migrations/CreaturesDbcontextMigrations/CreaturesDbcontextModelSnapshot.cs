@@ -24,12 +24,6 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ProdID");
-
-                    b.Property<int>("ProdQty");
-
-                    b.Property<decimal>("TotalPrice");
-
                     b.Property<int>("UserID");
 
                     b.HasKey("ID");
@@ -42,6 +36,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CartID");
 
                     b.Property<string>("Description");
 
@@ -57,12 +53,15 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CartID");
+
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
                             ID = 1,
+                            CartID = 0,
                             Description = "The Unicorn is like a horse but has a magical horn that makes it more and better than a standard horse.",
                             ImageURL = "~/Unicorn.png",
                             Name = "Unicorn",
@@ -73,6 +72,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         new
                         {
                             ID = 2,
+                            CartID = 0,
                             Description = "The Dragon is a powerful magical lizard. About 30 times the size of a normal lizard and has special powers like breaths fire.",
                             ImageURL = "~/Assets/Dragon2.png",
                             Name = "Dragon",
@@ -83,6 +83,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         new
                         {
                             ID = 3,
+                            CartID = 0,
                             Description = "The Fairy is a tiny magical being. They are about the size of an adult hand, faster than light, and have special fairy dust.",
                             ImageURL = "~/Fairy2Cropped.jpg",
                             Name = "Fairy",
@@ -93,6 +94,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         new
                         {
                             ID = 4,
+                            CartID = 0,
                             Description = "The Griffin is a powerful magical creature. They are about the size of a grown elephant and has 3 times the strength of a whales bite.",
                             ImageURL = "/Assets/Griffin.png",
                             Name = "Griffin",
@@ -103,6 +105,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         new
                         {
                             ID = 5,
+                            CartID = 0,
                             Description = "The Hydra is a tiny but powerful animal, yet as gentle as a dmesticated puppy. They are about the size of two adult hands.",
                             ImageURL = "~/Hydra.png",
                             Name = "Hydra",
@@ -113,6 +116,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         new
                         {
                             ID = 6,
+                            CartID = 0,
                             Description = "The Narwhal is a mystical sea creature who is related to the Unicorn family. They power comes from their horn like the Unicorn, however they are limited to only surviving in water. However, one of their magical powers is changing size to fit whatever water space size.",
                             ImageURL = "~/Narwhal.png",
                             Name = "NawWhal",
@@ -123,6 +127,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         new
                         {
                             ID = 7,
+                            CartID = 0,
                             Description = "The Troll is a misunderstood being. They often have a facade of ignorance, however they are genius, like Einstein IQ level",
                             ImageURL = "~/Troll.png",
                             Name = "Troll",
@@ -133,6 +138,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         new
                         {
                             ID = 8,
+                            CartID = 0,
                             Description = "The Werewolf is a decieving beast because they are human by day, and wolf by night. Becautious as it is unknown but they are the pranksters of the animal world.",
                             ImageURL = "~/WereWolf.png",
                             Name = "Werewolf",
@@ -143,6 +149,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         new
                         {
                             ID = 9,
+                            CartID = 0,
                             Description = "The Minotaur is a half human half horse. They are the size of a dwarfed giant with a slightly larger horse. Their powers include mind reading and surviving on nothing for a year. They live for several hundreds of years.",
                             ImageURL = "~/Minotaur.jpg",
                             Name = "Minotaur",
@@ -153,6 +160,7 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         new
                         {
                             ID = 10,
+                            CartID = 0,
                             Description = "The Mermaid is half human and half fish. Their magic comes from their scales, which allows them to, but not limited to, create an illusion for how others view them.",
                             ImageURL = "~/MermaidCropped.jpg",
                             Name = "Mermaid",
@@ -160,6 +168,41 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                             Sku = "Mermaid1abc123",
                             VIPItem = true
                         });
+                });
+
+            modelBuilder.Entity("XLJLeCommerce.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CartID");
+
+                    b.Property<int>("ProdID");
+
+                    b.Property<int>("ProdQty");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CartID");
+
+                    b.ToTable("ShoppingCartTable");
+                });
+
+            modelBuilder.Entity("XLJLeCommerce.Models.Product", b =>
+                {
+                    b.HasOne("XLJLeCommerce.Models.Cart", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("XLJLeCommerce.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("XLJLeCommerce.Models.Cart", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
