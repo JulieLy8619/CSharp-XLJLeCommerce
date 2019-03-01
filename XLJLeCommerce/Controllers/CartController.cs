@@ -38,8 +38,9 @@ namespace XLJLeCommerce.Controllers
                 //int userIDNum = Convert.ToInt32(userID);
 
                 //so can find their carts
-                var cartid = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userID);
-                return View(await _shoppingCartItem.GetAllShoppingCartItems(cartid));
+                var carts = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userID);
+
+                return View(await _shoppingCartItem.GetAllShoppingCartItems(carts.ID));
             }
             else //user not in DB
             {
