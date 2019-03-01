@@ -48,6 +48,14 @@ namespace XLJLeCommerce.Models.Services
                             .Where(i => i.CartID == id)
                             select ci;
 
+            foreach (ShoppingCartItem sci in cartItems)
+            {
+                var prods = from p in _context.Products
+                           where p.ID == sci.ProductID
+                           select p;
+                sci.Prod = await prods.ToListAsync();
+            }
+
             return await cartItems.ToListAsync();
         }
 
