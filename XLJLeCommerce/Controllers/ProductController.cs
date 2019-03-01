@@ -68,7 +68,7 @@ namespace XLJLeCommerce.Controllers
 
             var prod = await _product.GetProduct(id);
             ShoppingCartItem newCartItem = new ShoppingCartItem();
-            
+
             //find userID
             string userEmail = User.Identity.Name;
             var user = await _userManager.FindByEmailAsync(userEmail);

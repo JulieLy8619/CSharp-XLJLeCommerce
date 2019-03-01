@@ -42,11 +42,19 @@ namespace XLJLeCommerce.Models.Services
         /// </summary>
         /// <param name="id">which cart</param>
         /// <returns>the items in specific cart</returns>
-        public async Task<List<ShoppingCartItem>> GetAllShoppingCartItems(int id)
+        public async Task<IEnumerable<ShoppingCartItem>> GetAllShoppingCartItems(int id)
         {
             var cartItems = from ci in _context.ShoppingCartTable
                             .Where(i => i.CartID == id)
                             select ci;
+
+            foreach (ShoppingCartItem sci in cartItems)
+            {
+                var prods = from p in _context.Products
+                           where p.ID == sci.ProductID
+                           select p;
+                sci.Prod = await prods.ToListAsync();
+            }
 
             return await cartItems.ToListAsync();
         }
