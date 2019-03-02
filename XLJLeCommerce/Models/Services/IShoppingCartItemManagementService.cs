@@ -32,9 +32,11 @@ namespace XLJLeCommerce.Models.Services
         /// </summary>
         /// <param name="id">which item to delete</param>
         /// <returns>the task it was complete and delete from database</returns>
-        public Task DeleteShoppingCartItem(int id)
+        public async Task DeleteShoppingCartItem(int id)
         {
-            throw new NotImplementedException();
+            ShoppingCartItem scItem = _context.ShoppingCartTable.FirstOrDefault(sci => sci.ID == id);
+            _context.ShoppingCartTable.Remove(scItem);
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -64,9 +66,9 @@ namespace XLJLeCommerce.Models.Services
         /// </summary>
         /// <param name="id">which item</param>
         /// <returns>the item</returns>
-        public Task<ShoppingCartItem> GetShoppingCartItem(int id)
+        public async Task<ShoppingCartItem> GetShoppingCartItem(int id)
         {
-            throw new NotImplementedException();
+            return await _context.ShoppingCartTable.FirstOrDefaultAsync(sci => sci.ID == id);
         }
 
         /// <summary>
