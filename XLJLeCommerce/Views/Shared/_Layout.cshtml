@@ -25,6 +25,7 @@
             <ul>
                 <li><a asp-controller="Home" asp-action="Index"> Home</a></li>
                 <li><a asp-controller="Product" asp-action="Index">View Products</a></li>
+                <li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
                 <li><span>Welcome @User.Claims.First(c => c.Type == "FullName").Value</span></li>
                 <li>
                     <form method="post" asp-controller="Account" asp-action="Logout">
@@ -44,6 +45,7 @@
               <ul>
                   <li><a asp-controller="Home" asp-action="Index"> Home</a></li>
                   <li><a asp-controller="Product" asp-action="Index">View Products</a></li>
+                  <li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
                   <li><a asp-controller="Account" asp-action="Login">Login</a></li>
                   <li><a asp-controller="Account" asp-action="Register">Register</a></li>
               </ul>

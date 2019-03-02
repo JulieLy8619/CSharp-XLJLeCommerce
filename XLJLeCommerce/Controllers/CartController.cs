@@ -30,17 +30,19 @@ namespace XLJLeCommerce.Controllers
 
         {
             //find userID
-            string userEmail = User.Identity.Name;
-            var user = await _userManager.FindByEmailAsync(userEmail);
-            if (user != null)
+            if (User.Identity.Name != null)
             {
-                string userID = user.Id;
-                //int userIDNum = Convert.ToInt32(userID);
+                string userEmail = User.Identity.Name;
+                var user = await _userManager.FindByEmailAsync(userEmail);
+               
+                    string userID = user.Id;
+                    //int userIDNum = Convert.ToInt32(userID);
 
-                //so can find their carts
-                var carts = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userID);
+                    //so can find their carts
+                    var carts = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userID);
 
-                return View(await _shoppingCartItem.GetAllShoppingCartItems(carts.ID));
+                    return View(await _shoppingCartItem.GetAllShoppingCartItems(carts.ID));
+                
             }
             else //user not in DB
             {
