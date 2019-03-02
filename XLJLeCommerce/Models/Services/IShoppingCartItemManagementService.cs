@@ -66,9 +66,9 @@ namespace XLJLeCommerce.Models.Services
         /// </summary>
         /// <param name="id">which item</param>
         /// <returns>the item</returns>
-        public Task<ShoppingCartItem> GetShoppingCartItem(int id)
+        public async Task<ShoppingCartItem> GetShoppingCartItem(int id)
         {
-            throw new NotImplementedException();
+            return await _context.ShoppingCartTable.FirstOrDefaultAsync(sci => sci.ID == id);
         }
 
         /// <summary>
