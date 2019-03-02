@@ -52,24 +52,11 @@ namespace XLJLeCommerce.Controllers
 
         }
 
-        //I don't think we need this, I don't think we used/called it
         /// <summary>
-        /// adds a cart
+        /// gets page for editing
         /// </summary>
-        /// <param name="cart">the cart</param>
+        /// <param name="id">which shoping cart item</param>
         /// <returns>page</returns>
-        //[HttpPost]
-        //public async Task<IActionResult> AddCart([Bind("UserID, ProdID, ProdQty, TotalPrice")] Cart cart)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        await _cart.Create(cart);
-        //        return RedirectToPage("Details", "Product"); //022719JL- this may change where it redirects to after all, prolly page that displays all items in cart
-        //    }
-        //    return View(cart);
-
-        //}
-
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -81,12 +68,12 @@ namespace XLJLeCommerce.Controllers
             return View(scItem);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> EditItem(int id, [Bind("ID, CartID ProductID, ProdQty")] ShoppingCartItem cartItem)
-        //{
-        //    await _shoppingCartItem.UpdateShoppingCartItem(cartItem);
-        //    return RedirectToAction(nameof(Index));
-        //}
+        /// <summary>
+        /// updates the qty for an item in the shoping cart
+        /// </summary>
+        /// <param name="id">id of the item</param>
+        /// <param name="cartItem">shoppingcart object</param>
+        /// <returns>to the page after it does the update</returns>
         [HttpPost]
         public async Task<IActionResult> EditItem(int id, [Bind("ID, CartID ProductID, ProdQty")] ShoppingCartItem cartItem)
         {
@@ -94,5 +81,17 @@ namespace XLJLeCommerce.Controllers
             await _shoppingCartItem.UpdateShoppingCartItem(id,qty);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteItem(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            await _shoppingCartItem.DeleteShoppingCartItem((int)id);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
