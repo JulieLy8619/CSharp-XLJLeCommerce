@@ -74,9 +74,10 @@ namespace XLJLeCommerce.Models.Services
         /// </summary>
         /// <param name="shoppingCartItem">the shoping cart item</param>
         /// <returns>the compelted task that it updated the database</returns>
-        public Task UpdateShoppingCartItem(ShoppingCartItem shoppingCartItem)
+        public async Task UpdateShoppingCartItem(ShoppingCartItem shoppingCartItem)
         {
-            throw new NotImplementedException();
+            _context.ShoppingCartTable.Update(shoppingCartItem);
+            await _context.SaveChangesAsync();
         }
     }
 }
