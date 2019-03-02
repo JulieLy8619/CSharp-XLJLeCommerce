@@ -30,12 +30,12 @@
                 @item.Prod.FirstOrDefault().Price
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProdQty)
+                @item.ProdQty
             </td>
             <td>
-                @*doesn't exist yet <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |*@
+                <a asp-controller="Cart" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-controller="Product" asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                @*doesn't exist yet<a asp-action="Delete" asp-route-id="@item.ID">Delete</a>*@
+                <a asp-controller="Cart" asp-action="DeleteItem" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
         }

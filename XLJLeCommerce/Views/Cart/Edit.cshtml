@@ -1,0 +1,23 @@
+﻿@model XLJLeCommerce.Models.ShoppingCartItem
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>Edit the Quantity</h2>
+
+<form asp-action="EditItem">
+    <div>
+        <input type="hidden" asp-for="ID" />
+        <input type="hidden" asp-for="@Model.CartID" />
+        <div>
+            @Html.DisplayNameFor(model => model.Prod.FirstOrDefault().Name)
+            @Html.DisplayNameFor(model => model.Prod.FirstOrDefault().Price)
+        </div>
+        <div>
+            <label asp-for="@Model.ProdQty" class="control-label"></label>
+            <input asp-for="@Model.ProdQty" class="form-control" />
+        </div>
+        <input type="submit" value="Save" />
+    </div>
+</form>

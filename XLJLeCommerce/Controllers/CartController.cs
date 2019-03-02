@@ -52,21 +52,47 @@ namespace XLJLeCommerce.Controllers
 
         }
 
+        //I don't think we need this, I don't think we used/called it
         /// <summary>
         /// adds a cart
         /// </summary>
         /// <param name="cart">the cart</param>
         /// <returns>page</returns>
-        [HttpPost]
-        public async Task<IActionResult> AddCart([Bind("UserID, ProdID, ProdQty, TotalPrice")] Cart cart)
-        {
-            if (ModelState.IsValid)
-            {
-                await _cart.Create(cart);
-                return RedirectToPage("Details", "Product"); //022719JL- this may change where it redirects to after all, prolly page that displays all items in cart
-            }
-            return View(cart);
+        //[HttpPost]
+        //public async Task<IActionResult> AddCart([Bind("UserID, ProdID, ProdQty, TotalPrice")] Cart cart)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        await _cart.Create(cart);
+        //        return RedirectToPage("Details", "Product"); //022719JL- this may change where it redirects to after all, prolly page that displays all items in cart
+        //    }
+        //    return View(cart);
 
+        //}
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var scItem = await _shoppingCartItem.GetShoppingCartItem(id);
+            if (scItem == null)
+            {
+                return NotFound();
+            }
+            return View(scItem);
+        }
+
+        //[HttpPost]
+        //public async Task<IActionResult> EditItem(int id, [Bind("ID, CartID ProductID, ProdQty")] ShoppingCartItem cartItem)
+        //{
+        //    await _shoppingCartItem.UpdateShoppingCartItem(cartItem);
+        //    return RedirectToAction(nameof(Index));
+        //}
+        [HttpPost]
+        public async Task<IActionResult> EditItem(int id, [Bind("ID, CartID ProductID, ProdQty")] ShoppingCartItem cartItem)
+        {
+            int qty = cartItem.ProdQty;
+            await _shoppingCartItem.UpdateShoppingCartItem(id,qty);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
