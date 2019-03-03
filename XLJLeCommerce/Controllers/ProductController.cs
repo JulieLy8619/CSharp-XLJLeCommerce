@@ -17,11 +17,9 @@ namespace XLJLeCommerce.Controllers
         private readonly ICart _cart;
         private readonly IShoppingCartItem _shoppingCartItem;
         private UserManager<ApplicationUser> _userManager;
-        private CreaturesDbcontext _context { get; set; }
 
-        public ProductController(Iproduct product, ICart cart, IShoppingCartItem shoppingCartItem, CreaturesDbcontext context, UserManager<ApplicationUser> userManager)
+        public ProductController(Iproduct product, ICart cart, IShoppingCartItem shoppingCartItem, UserManager<ApplicationUser> userManager)
         {
-            _context = context;
             _cart = cart;
             _product = product;
             _shoppingCartItem = shoppingCartItem;
@@ -63,7 +61,7 @@ namespace XLJLeCommerce.Controllers
         public async Task<IActionResult> AddToCart(int id)
         {
             //check if have shopping cart, if not then add cart
-            //added cart at registration
+            //added cart at registration and we said only one cart to user
 
 
             var prod = await _product.GetProduct(id);
@@ -78,11 +76,10 @@ namespace XLJLeCommerce.Controllers
                 //int userIDNum = Convert.ToInt32(userID);
 
                 //so can find their carts
-                var cartid = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userID);
-                //int cartidNum = Convert.ToInt32(cartid);
+                Cart cartObj = await _cart.GetCart(userID);
 
                 //set item to cart
-                newCartItem.CartID = cartid.ID;
+                newCartItem.CartID = cartObj.ID;
                 newCartItem.ProductID = prod.ID;
                 newCartItem.ProdQty = 1; //we chose to default add one at cart entry and then then can update quantity on cart summary page later
                 await _shoppingCartItem.CreateShoppingCartItem(newCartItem);
