@@ -9,5 +9,6 @@ namespace XLJLeCommerce.Models
     {
         public int ID { get; set; }
         public string UserID { get; set; }
+        public List<OrderedItems> OrderedItems { get; set; }
     }
 }
