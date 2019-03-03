@@ -21,7 +21,7 @@ namespace XLJLeCommerce.Models.Handler
             {
                 DateTime dateOfRegister = Convert.ToDateTime(context.User.FindFirst(u => u.Type == "RegisteredDate").Value);
 
-                int Day = DateTime.Today.Day - dateOfRegister.Day;
+                int Day = DateTime.Today.DayOfYear - dateOfRegister.DayOfYear;
                 if (Day >= 1)
                 {
                     context.Succeed(requirement);
