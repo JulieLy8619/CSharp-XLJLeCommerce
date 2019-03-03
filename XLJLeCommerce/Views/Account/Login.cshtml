@@ -25,20 +25,22 @@
 
 
 @{
-    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToArray();
 
-    if (loginProviders.Count > 0)
+    if (loginProviders.Length > 0)
     {
         <h1> LOGIN PROVIDERS!!!</h1>
 
         <form asp-action="ExternalLogin" method="post">
-            @foreach (var provider in loginProviders)
-            {
-                
-                <button style="width:40px;height:40px;margin-left:auto;margin-right:auto;"type="submit" name="provider" value="@provider.Name" title="Log in using @provider.DisplayName">
-                   <img style="width:120%;height:80%" src="~/Assets/microsoft.png" alt="" />
-                </button>
-            }
+
+
+            <button style="width:40px;height:40px;" type="submit" name="provider" value="@loginProviders[0].Name" title="Log in using @loginProviders[0].DisplayName">
+                <img style="width:120%;height:80%" src="~/Assets/microsoft.png" alt="" />
+            </button>
+            <button style="width:40px;height:40px;" type="submit" name="provider" value="@loginProviders[1].Name" title="Log in using @loginProviders[1].DisplayName">
+                <img style="width:120%;height:80%" src="~/Assets/fb.png" alt="" />
+            </button>
+
         </form>
 
     }
