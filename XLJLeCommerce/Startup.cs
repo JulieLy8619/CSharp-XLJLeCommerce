@@ -14,6 +14,7 @@ using XLJLeCommerce.Models.Services;
 using XLJLeCommerce.Models;
 using Microsoft.AspNetCore.Identity;
 using XLJLeCommerce.Models.Handler;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace XLJLeCommerce
 {
@@ -39,7 +40,7 @@ namespace XLJLeCommerce
                     .AddEntityFrameworkStores<ApplicationDbcontext>()
                     .AddDefaultTokenProviders();
 
-            services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+            services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStringsDefaultConnection"]));
 
             services.AddDbContext<ApplicationDbcontext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
@@ -60,7 +61,7 @@ namespace XLJLeCommerce
                 facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
-
+            services.AddScoped<IEmailSender, EmailSender>();
             services.AddScoped<Iproduct, IproductManagementService>();
             services.AddScoped<ICart, ICartManagementService>();
             services.AddScoped<IShoppingCartItem, IShoppingCartItemManagementService>();

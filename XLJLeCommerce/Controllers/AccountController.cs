@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,14 @@ namespace XLJLeCommerce.Controllers
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private readonly ICart _cart;
-
-        public AccountController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager, ICart cart)
+        private IEmailSender _emailSender;
+        public AccountController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager, ICart cart,IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _cart = cart;
+            _emailSender = emailSender;
+
         }
 
         /// <summary>
@@ -165,7 +168,10 @@ namespace XLJLeCommerce.Controllers
                 return RedirectToAction("Index", "Product");
             }
 
-            return View("ExternalLogin");
+            var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+
+
+            return View("ExternalLogin", new ExternalLoginViewModel { Email = email });
 
         }
 
