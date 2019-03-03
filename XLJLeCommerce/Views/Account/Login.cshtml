@@ -29,10 +29,8 @@
 
     if (loginProviders.Length > 0)
     {
-        <h1> LOGIN PROVIDERS!!!</h1>
 
         <form asp-action="ExternalLogin" method="post">
-
 
             <button style="width:40px;height:40px;" type="submit" name="provider" value="@loginProviders[0].Name" title="Log in using @loginProviders[0].DisplayName">
                 <img style="width:120%;height:80%" src="~/Assets/microsoft.png" alt="" />
