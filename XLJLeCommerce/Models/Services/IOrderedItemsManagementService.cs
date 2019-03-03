@@ -46,6 +46,7 @@ namespace XLJLeCommerce.Models.Services
                                 where s.ID == ois.ShoppingCartItemID
                                 select s;
                     ois.SCItems = await sci.ToListAsync();
+
                 }
 
             return await ordItems.ToListAsync();

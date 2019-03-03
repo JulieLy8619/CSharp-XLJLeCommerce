@@ -41,7 +41,6 @@ namespace XLJLeCommerce.Controllers
         {
             return RedirectToAction("VIPProd", "Policy");
 
-
         }
 
 

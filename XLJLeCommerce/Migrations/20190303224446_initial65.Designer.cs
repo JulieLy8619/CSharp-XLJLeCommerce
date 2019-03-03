@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XLJLeCommerce.Data;
 
 namespace XLJLeCommerce.Migrations
 {
     [DbContext(typeof(CreaturesDbcontext))]
-    partial class CreaturesDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20190303224446_initial65")]
+    partial class initial65
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,8 +40,6 @@ namespace XLJLeCommerce.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Totalprice");
-
                     b.Property<string>("UserID");
 
                     b.HasKey("ID");
@@ -58,6 +58,8 @@ namespace XLJLeCommerce.Migrations
                     b.Property<int>("OrderID");
 
                     b.Property<int>("ShoppingCartItemID");
+
+                    b.Property<decimal>("TotalPrice");
 
                     b.HasKey("ID");
 
@@ -212,6 +214,8 @@ namespace XLJLeCommerce.Migrations
                     b.Property<int>("ProdQty");
 
                     b.Property<int>("ProductID");
+
+                    b.Property<decimal>("TotalPrice");
 
                     b.HasKey("ID");
 
