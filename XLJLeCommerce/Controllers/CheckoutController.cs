@@ -49,17 +49,25 @@ namespace XLJLeCommerce.Controllers
             Cart cartObj = await _cart.GetCart(userID);
                 //get all the items in the cart
             IEnumerable<ShoppingCartItem> cartitems = await _shoppingCartItem.GetAllShoppingCartItems(cartObj.ID);
-                //convert it to orderitem
+            decimal totalprice = 0m;
+            //convert it to orderitem
             foreach (var item in cartitems)
             {
                 OrderedItems tempOrdItem = new OrderedItems();
                 tempOrdItem.OrderID = ord.ID;
                 tempOrdItem.ShoppingCartItemID = item.ID;
+
                 await _ordereditems.CreateOrderedItem(tempOrdItem);
                 //then delete it from shopping cart or wait to do this when we pay
+                totalprice += (item.ProdQty * item.Product.Price);
             }
-
-            return View();
+            ord.Totalprice = totalprice;
+            return View(await _ordereditems.GetAllOrderedItems(ord.ID));
         }
+
+
+
+
+       
     }
 }

@@ -56,7 +56,10 @@ namespace XLJLeCommerce.Models.Services
                            where p.ID == sci.ProductID
                            select p;
                 sci.Prod = await prods.ToListAsync();
+               
             }
+
+
 
             return await cartItems.ToListAsync();
         }
