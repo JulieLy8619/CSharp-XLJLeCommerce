@@ -7,9 +7,9 @@ using XLJLeCommerce.Models;
 
 namespace XLJLeCommerce.Data
 {
-    public class CreaturesDbcontext: DbContext
+    public class CreaturesDbcontext : DbContext
     {
-        public CreaturesDbcontext(DbContextOptions<CreaturesDbcontext> options) : base(options){
+        public CreaturesDbcontext(DbContextOptions<CreaturesDbcontext> options) : base(options) {
 
         }
 
@@ -121,8 +121,10 @@ namespace XLJLeCommerce.Data
 
 
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<Product>  Products { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartTable { get; set; }
+        public DbSet<Order> OrderTable { get; set; }
+        public DbSet<OrderedItems> OrderedItemsTable{ get; set; }
 
     }
 }
