@@ -14,10 +14,8 @@ namespace XLJLeCommerce.Models
         //naviagtion
         public Order Order { get; set; }
         public Cart Cart { get; set; }
-        public ICollection<ShoppingCartItem> ShoppingCartItems { get; set; }
+        public ICollection<ShoppingCartItem> SCItems { get; set; }
         public ShoppingCartItem ShoppingCartItem { get; set; }
-        public ICollection<Product> Prod { get; set; }
-        public Product Product { get; set; }
 
     }
 }

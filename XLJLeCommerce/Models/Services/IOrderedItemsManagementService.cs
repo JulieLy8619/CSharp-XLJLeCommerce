@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,9 +22,10 @@ namespace XLJLeCommerce.Models.Services
         /// </summary>
         /// <param name="orderedItems">the ordered item</param>
         /// <returns>the completed task after adding to the DB</returns>
-        public Task CreateOrderedItem(OrderedItems orderedItems)
+        public async Task CreateOrderedItem(OrderedItems orderedItems)
         {
-            throw new NotImplementedException();
+            _context.OrderedItemsTable.Add(orderedItems);
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -31,9 +33,22 @@ namespace XLJLeCommerce.Models.Services
         /// </summary>
         /// <param name="id">id for which order</param>
         /// <returns>ordered items in the order</returns>
-        public Task<IEnumerable<OrderedItems>> GetAllOrderedItems(int id)
-        {
-            throw new NotImplementedException();
+            public async Task<IEnumerable<OrderedItems>> GetAllOrderedItems(int id)
+            {
+                //gets the ordered items for the partic order
+                var ordItems = from oi in _context.OrderedItemsTable
+                            .Where(i => i.OrderID == id)
+                                select oi;
+                //gets the shopping cart items for this partic order
+                foreach (OrderedItems ois in ordItems)
+                {
+                    var sci = from s in _context.ShoppingCartTable
+                                where s.ID == ois.ShoppingCartItemID
+                                select s;
+                    ois.SCItems = await sci.ToListAsync();
+                }
+
+            return await ordItems.ToListAsync();
         }
     }
 }
