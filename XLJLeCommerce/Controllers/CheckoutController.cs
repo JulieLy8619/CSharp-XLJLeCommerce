@@ -31,6 +31,7 @@ namespace XLJLeCommerce.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Receipt()
         {
             //get user ID
