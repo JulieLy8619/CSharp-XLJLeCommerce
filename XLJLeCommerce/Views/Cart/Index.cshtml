@@ -24,7 +24,7 @@
         {
         <tr>
             <td>
-                @item.Prod.FirstOrDefault().Name
+                @item.Product.Name
             </td>
             <td>
                 @item.Prod.FirstOrDefault().Price
@@ -34,7 +34,7 @@
             </td>
             <td>
                 <a asp-controller="Cart" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.ID">Details</a> |
                 <a asp-controller="Cart" asp-action="DeleteItem" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
