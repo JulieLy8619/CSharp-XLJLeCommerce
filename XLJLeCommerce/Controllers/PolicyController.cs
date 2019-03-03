@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using XLJLeCommerce.Data;
+using XLJLeCommerce.Models;
 using XLJLeCommerce.Models.Interfaces;
 
 namespace XLJLeCommerce.Controllers
@@ -14,10 +16,12 @@ namespace XLJLeCommerce.Controllers
     {
         private readonly Iproduct _product;
         private CreaturesDbcontext _context { get; set; }
-
-        public PolicyController(Iproduct product)
+        private UserManager<ApplicationUser> _userManager;
+       
+        public PolicyController(Iproduct product, UserManager<ApplicationUser> userManager)
         {
             _product = product;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -26,7 +30,10 @@ namespace XLJLeCommerce.Controllers
         /// <returns>the page</returns>
         public IActionResult Index()
         {
-            return RedirectToAction("VIPProd", "Policy");
+            
+                return RedirectToAction("VIPProd", "Policy");
+           
+          
         }
 
         /// <summary>
