@@ -33,7 +33,7 @@ namespace XLJLeCommerce.Models.Services
         /// </summary>
         /// <param name="id">id for which order</param>
         /// <returns>ordered items in the order</returns>
-            public async Task<IEnumerable<OrderedItems>> GetAllOrderedItems(int id)
+            public async Task<List<OrderedItems>> GetAllOrderedItems(int id)
             {
                 //gets the ordered items for the partic order
                 var ordItems = from oi in _context.OrderedItemsTable

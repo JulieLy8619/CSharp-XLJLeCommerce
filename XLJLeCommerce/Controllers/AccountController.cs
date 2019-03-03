@@ -80,12 +80,12 @@ namespace XLJLeCommerce.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-
-                    //send user email after successfully registered with us
+                    //030319jl: do we need this code, I don't see "ouruser" used elsewhere on this page)
                     var ouruser = await _userManager.FindByEmailAsync(rvm.Email);
                     string id = ouruser.Id;
 
-                    await _emailSender.SendEmailAsync(rvm.Email, "Successfully registered with us!", "<p>Thank you for Registration</p>");
+                    //send user email after successfully registered with us
+                    await _emailSender.SendEmailAsync(rvm.Email, "Successfully registered with us!", "<p>Thank you for registering</p>");
                     return RedirectToAction("Index", "Home");
 
                 }
