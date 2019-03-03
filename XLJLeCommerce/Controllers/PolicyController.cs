@@ -36,6 +36,7 @@ namespace XLJLeCommerce.Controllers
 
         }
 
+        //i don't think we need this
         [Authorize]
         public IActionResult Vip()
         {

@@ -13,13 +13,13 @@ using XLJLeCommerce.Models.ViewModels;
 
 namespace XLJLeCommerce.Controllers
 {
-    public class AccountController: Controller
+    public class AccountController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private readonly ICart _cart;
         private IEmailSender _emailSender;
-        public AccountController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager, ICart cart,IEmailSender emailSender)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ICart cart, IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -42,7 +42,7 @@ namespace XLJLeCommerce.Controllers
         /// <param name="rvm">the information from/about the user</param>
         /// <returns>the view after it has completed</returns>
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel rvm) 
+        public async Task<IActionResult> Register(RegisterViewModel rvm)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace XLJLeCommerce.Controllers
                     var ouruser = await _userManager.FindByEmailAsync(rvm.Email);
                     string id = ouruser.Id;
 
-                    await _emailSender.SendEmailAsync(rvm.Email, "Successfully registered with us!","<p>Thank you for Registration</p>");
+                    await _emailSender.SendEmailAsync(rvm.Email, "Successfully registered with us!", "<p>Thank you for Registration</p>");
                     return RedirectToAction("Index", "Home");
 
                 }
@@ -109,7 +109,7 @@ namespace XLJLeCommerce.Controllers
         /// <param name="lvm">log in user information</param>
         /// <returns>the page</returns>
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel lvm) 
+        public async Task<IActionResult> Login(LoginViewModel lvm)
         {
             if (ModelState.IsValid)
             {
@@ -140,7 +140,7 @@ namespace XLJLeCommerce.Controllers
         {
             // Setting where we need to be redirected to once we have established our OAUTH
             var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account");
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);     
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return Challenge(properties, provider);
         }
         /// <summary>
@@ -151,14 +151,14 @@ namespace XLJLeCommerce.Controllers
         [HttpGet]
         public async Task<IActionResult> ExternalLoginCallback(string error = null)
         {
-           
+
             if (error != null)
             {
-           
+
                 TempData["Error"] = "Error with Provider";
                 return RedirectToAction("Login");
             }
-            
+
             var info = await _signInManager.GetExternalLoginInfoAsync();
 
             // If the web app does not support the provider, make them login with a different technique.
@@ -166,10 +166,10 @@ namespace XLJLeCommerce.Controllers
             {
                 return RedirectToAction(nameof(Login));
             }
-            
+
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
 
-        
+
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Product");
@@ -224,7 +224,7 @@ namespace XLJLeCommerce.Controllers
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                     
+
                         return RedirectToAction("Index", "Product");
 
                     }
@@ -235,5 +235,9 @@ namespace XLJLeCommerce.Controllers
             return View(elvm);
         }
 
+        public IActionResult AccessDenied()
+        {
+            return RedirectToAction("Index", "Policy");
+        }
     }
 }
