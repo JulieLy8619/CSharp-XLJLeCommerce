@@ -36,7 +36,6 @@
     <header>
         <img class="topper" src="~/Assets/topper.jpg">
         <h1>Mystical Pets</h1>
-        <a asp-controller="Policy" asp-action="Vip">Bonus Section if you're a long time member</a>
     </header>
     <nav>
         <ul>
@@ -44,7 +43,7 @@
             <li><a asp-controller="Product" asp-action="Index">Products</a></li>
             <li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
             @*add IF vip member then can see button*@
-            <li><a asp-controller="Policy" asp-action="Index">VIP</a></li>
+            <li><a asp-controller="Policy" asp-action="VIPProd">VIP</a></li>
         </ul>
     </nav>
 
