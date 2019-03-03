@@ -40,7 +40,7 @@ namespace XLJLeCommerce
                     .AddEntityFrameworkStores<ApplicationDbcontext>()
                     .AddDefaultTokenProviders();
 
-            services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStringsDefaultConnection"]));
+            services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
             services.AddDbContext<ApplicationDbcontext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));

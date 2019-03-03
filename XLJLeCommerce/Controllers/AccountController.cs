@@ -79,6 +79,13 @@ namespace XLJLeCommerce.Controllers
                     await _userManager.AddClaimsAsync(user, claims);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
+
+
+                    //send user email after successfully registered with us
+                    var ouruser = await _userManager.FindByEmailAsync(rvm.Email);
+                    string id = ouruser.Id;
+
+                    await _emailSender.SendEmailAsync(rvm.Email, "Successfully registered with us!","<p>Thank you for Registration</p>");
                     return RedirectToAction("Index", "Home");
 
                 }
@@ -217,7 +224,7 @@ namespace XLJLeCommerce.Controllers
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-
+                     
                         return RedirectToAction("Index", "Product");
 
                     }
