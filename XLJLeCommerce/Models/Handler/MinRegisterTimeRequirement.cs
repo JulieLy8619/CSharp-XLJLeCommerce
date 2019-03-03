@@ -15,18 +15,22 @@ namespace XLJLeCommerce.Models.Handler
         /// <param name="context">the database</param>
         /// <param name="requirement">the requirement for the policy</param>
         /// <returns></returns>
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinRegisterTimeRequirement requirement)
+        protected override  Task HandleRequirementAsync(AuthorizationHandlerContext context, MinRegisterTimeRequirement requirement)
         {
-
-            DateTime dateOfRegister = Convert.ToDateTime(context.User.FindFirst(u=>u.Type== "RegisteredDate").Value);
-
-            int Day = DateTime.Today.Day- dateOfRegister.Day;
-            if (Day >= 1)
+            if (context.User.FindFirst(u => u.Type == "RegisteredDate") != null)
             {
-                context.Succeed(requirement);
+                DateTime dateOfRegister = Convert.ToDateTime(context.User.FindFirst(u => u.Type == "RegisteredDate").Value);
 
+                int Day = DateTime.Today.Day - dateOfRegister.Day;
+                if (Day >= 1)
+                {
+                    context.Succeed(requirement);
+
+                }
             }
-            return Task.CompletedTask;
+                return Task.CompletedTask;
+            
+           
         }
     }
 }
