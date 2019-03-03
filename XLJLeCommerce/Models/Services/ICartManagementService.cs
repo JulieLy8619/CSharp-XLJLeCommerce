@@ -30,5 +30,12 @@ namespace XLJLeCommerce.Models.Services
             }
             await _context.SaveChangesAsync();
         }
+
+        public async Task<Cart> GetCart(string userid)
+        {
+            var carts = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userid);
+
+            return carts;
+        }
     }
 }

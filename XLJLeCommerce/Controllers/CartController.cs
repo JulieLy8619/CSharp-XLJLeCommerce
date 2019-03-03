@@ -16,11 +16,9 @@ namespace XLJLeCommerce.Controllers
         private readonly ICart _cart;
         private readonly IShoppingCartItem _shoppingCartItem;
         private UserManager<ApplicationUser> _userManager;
-        private CreaturesDbcontext _context { get; set; }
 
-        public CartController(ICart cart, IShoppingCartItem shoppingCartItem, UserManager<ApplicationUser> userManager, CreaturesDbcontext context)
+        public CartController(ICart cart, IShoppingCartItem shoppingCartItem, UserManager<ApplicationUser> userManager)
         {
-            _context = context;
             _cart = cart;
             _userManager = userManager;
             _shoppingCartItem = shoppingCartItem;
@@ -36,12 +34,11 @@ namespace XLJLeCommerce.Controllers
                 var user = await _userManager.FindByEmailAsync(userEmail);
                
                     string userID = user.Id;
-                    //int userIDNum = Convert.ToInt32(userID);
 
-                    //so can find their carts
-                    var carts = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userID);
+                //so can find their carts
+                Cart cartObj = await _cart.GetCart(userID);
 
-                    return View(await _shoppingCartItem.GetAllShoppingCartItems(carts.ID));
+                return View(await _shoppingCartItem.GetAllShoppingCartItems(cartObj.ID));
                 
             }
             else //user not in DB

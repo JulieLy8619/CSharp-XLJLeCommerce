@@ -15,7 +15,6 @@ namespace XLJLeCommerce.Controllers
     public class PolicyController : Controller
     {
         private readonly Iproduct _product;
-        private CreaturesDbcontext _context { get; set; }
         private UserManager<ApplicationUser> _userManager;
        
         public PolicyController(Iproduct product, UserManager<ApplicationUser> userManager)

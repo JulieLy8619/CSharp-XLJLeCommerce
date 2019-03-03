@@ -66,6 +66,8 @@ namespace XLJLeCommerce
             services.AddScoped<Iproduct, IproductManagementService>();
             services.AddScoped<ICart, ICartManagementService>();
             services.AddScoped<IShoppingCartItem, IShoppingCartItemManagementService>();
+            services.AddScoped<IOrder, IOrderManagementService>();
+            services.AddScoped<IOrderedItems, IOrderedItemsManagementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
