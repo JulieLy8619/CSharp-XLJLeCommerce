@@ -202,7 +202,8 @@ namespace XLJLeCommerce.Controllers
                     UserName = elvm.Email,
                     Email = elvm.Email,
                     FirstName = elvm.FirstName,
-                    LastName = elvm.LastName
+                    LastName = elvm.LastName,
+                    RegisteredDate = DateTime.Now
                 };
 
                 var result = await _userManager.CreateAsync(user);
