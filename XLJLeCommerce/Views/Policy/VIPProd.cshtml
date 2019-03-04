@@ -1,7 +1,15 @@
 ﻿@model IEnumerable<XLJLeCommerce.Models.Product>
+@using Microsoft.AspNetCore.Identity
+@using XLJLeCommerce.Models
+@inject SignInManager<ApplicationUser> signInManager
 
 @{
     Layout = "_Layout";
+}
+
+@if (signInManager.IsSignedIn(User))
+{
+    @await Component.InvokeAsync("PickedProduct")
 }
 
 
@@ -9,14 +17,14 @@
 <div class="parent">
     @foreach (var item in Model)
     {
-       
-            <div class="container">
-                <img src="@item.ImageURL" alt="@item.Name" />
-                <p>@item.Name</p>
-                <p>@item.Description</p>
-                <p>@item.Price</p>
-                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.ID">Details</a> |
-            </div>
-        
+
+        <div class="container">
+            <img src="@item.ImageURL" alt="@item.Name" />
+            <p>@item.Name</p>
+            <p>@item.Description</p>
+            <p>@item.Price</p>
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+        </div>
+
     }
 </div>
