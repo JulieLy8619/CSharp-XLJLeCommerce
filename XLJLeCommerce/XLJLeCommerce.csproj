@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.2.0" />
+    <PackageReference Include="Sendgrid" Version="9.10.0" />
   </ItemGroup>
 
   <ItemGroup>

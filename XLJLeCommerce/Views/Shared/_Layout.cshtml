@@ -14,34 +14,45 @@
 </head>
 
 <body>
-    <img class="topper"src="~/Assets/topper.jpg">
-
-    <h1>Mystical Pets</h1>
-
-    <header>
-        <nav>
-            <ul>
-                <li><a asp-controller="Home" asp-action="Index"> Home</a></li>
-                <li><a asp-controller="Product" asp-action="Index">View Products</a></li>
-                <li><a asp-controller="Account" asp-action="Login">Login</a></li>
-                <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-
-            </ul>
-        </nav>
-                @if (signInManager.IsSignedIn(User))
-                {
-                    <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value</span>
-                }
-                @*else
-                {
+    <nav class="topNav">
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index"> <img class="logoButton" src="~/Assets/Logo a.JPG" /></a>
+            @if (signInManager.IsSignedIn(User))
+            {
+                    <li>Welcome @User.Claims.First(c => c.Type == "FullName").Value</li>
+                    <li>
+                        <form method="post" asp-controller="Account" asp-action="Logout">
+                            <input type="submit" value="Logout" />
+                        </form>
+                    </li>
+            }
+            else
+            {
                     <li><a asp-controller="Account" asp-action="Login">Login</a></li>
                     <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-                }*@
-                <a asp-controller="Policy" asp-action="Index">Bonus Section if you're a long time member</a>
-    </header>
+            }
+        </ul>
+    </nav>
 
-    <div>
+    <header>
+        <img class="topper" src="~/Assets/topper.jpg">
+        <h1>Mystical Pets</h1>
+    </header>
+    <nav>
+        <ul class="mainNav">
+            <li><a asp-controller="Product" asp-action="Index">Products</a></li>
+            <li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
+            <li><a asp-controller="Policy" asp-action="VIPProd">VIP</a></li>
+        </ul>
+    </nav>
+
+    <main>
         @RenderBody()
-    </div>
+    </main>
 </body>
+
 </html>
+<hr>
+<img class="bottomImg"src="~/Assets/footer.jpg" />
+<hr>
+<footer><img class="copywrite" src="~/Assets/copyright-1345865_640.png"/> March 2019</footer>

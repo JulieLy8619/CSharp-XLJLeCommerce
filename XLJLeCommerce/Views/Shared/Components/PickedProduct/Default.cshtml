@@ -1,0 +1,21 @@
+﻿@model List<XLJLeCommerce.Models.ShoppingCartItem>
+
+    <div style="border: ridge 7px #525050;">
+        <h5>You picked these items</h5>
+        @foreach (var item in Model)
+
+        {<div style="border: solid 1px #525050;">
+                <p>Name:@item.Product.Name</p>
+
+                <img style="width:40px;height:40px;" src="@item.Product.ImageURL" alt="@item.Product.Name" />
+
+                <ul>
+                    <li>Price: @item.Product.Price</li>
+                    <li>Quantity: @item.ProdQty</li>
+                </ul>
+            </div>
+
+        }
+    </div>
+
+

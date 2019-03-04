@@ -14,6 +14,7 @@ using XLJLeCommerce.Models.Services;
 using XLJLeCommerce.Models;
 using Microsoft.AspNetCore.Identity;
 using XLJLeCommerce.Models.Handler;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace XLJLeCommerce
 {
@@ -39,19 +40,34 @@ namespace XLJLeCommerce
                     .AddEntityFrameworkStores<ApplicationDbcontext>()
                     .AddDefaultTokenProviders();
 
+
             services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             services.AddDbContext<ApplicationDbcontext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
 
-            //should it be this since we're using usersecrets
-            //services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:IdentityDefaultConnection"]));
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Over3minOnly", policy => policy.Requirements.Add(new MinRegisterTimeRequirement()));
-             
             });
+
+            services.AddAuthentication()
+             .AddMicrosoftAccount(microsoftOptions =>
+             {
+                 microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
+                 microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
+             })
+            .AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            });
+            services.AddScoped<IEmailSender, EmailSender>();
             services.AddScoped<Iproduct, IproductManagementService>();
+            services.AddScoped<ICart, ICartManagementService>();
+            services.AddScoped<IShoppingCartItem, IShoppingCartItemManagementService>();
+            services.AddScoped<IOrder, IOrderManagementService>();
+            services.AddScoped<IOrderedItems, IOrderedItemsManagementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<XLJLeCommerce.Models.ShoppingCartItem>
+@{
+    Layout = "_Layout";
+}
+
+<h2>Shopping Cart</h2>
+<table>
+    <thead>
+        <tr>
+            <th>
+                Product
+            </th>
+            <th>
+                Unit Price
+            </th>
+
+            <th>
+                Ordered Quantity 
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.Product.Name
+            </td>
+            <td>
+                @item.Prod.FirstOrDefault().Price
+            </td>
+            <td>
+                @item.ProdQty
+            </td>
+            <td>
+                <a asp-controller="Cart" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.ID">Details</a> |
+                <a asp-controller="Cart" asp-action="DeleteItem" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<form asp-controller="Checkout" asp-action="Receipt">
+    <button type="submit">Checkout</button>
+</form>

@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XLJLeCommerce.Data;
 
-namespace XLJLeCommerce.Migrations
+namespace XLJLeCommerce.Migrations.ApplicationDbcontextMigrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20190223085644_redo022219d")]
-    partial class redo022219d
+    [Migration("20190301042249_022819rebuild10")]
+    partial class _022819rebuild10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

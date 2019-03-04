@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
+namespace XLJLeCommerce.Migrations.ApplicationDbcontextMigrations
 {
-    public partial class redo022219i : Migration
+    public partial class _030319rbuild10 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
