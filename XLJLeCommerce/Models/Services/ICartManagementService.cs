@@ -11,7 +11,10 @@ namespace XLJLeCommerce.Models.Services
     public class ICartManagementService : ICart
     {
         private CreaturesDbcontext _context { get; }
-
+        /// <summary>
+        /// ICartManagementService Constructor by taking in the CreaturesDbcontext
+        /// </summary>
+        /// <param name="context"></param>
         public ICartManagementService(CreaturesDbcontext context)
         {
             _context = context;
@@ -30,7 +33,11 @@ namespace XLJLeCommerce.Models.Services
             }
             await _context.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// get one cart by taking in the userID since each user has one Cart.
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
         public async Task<Cart> GetCart(string userid)
         {
             var carts = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userid);
