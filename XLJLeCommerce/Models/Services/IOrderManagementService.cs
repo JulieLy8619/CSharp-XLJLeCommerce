@@ -11,7 +11,10 @@ namespace XLJLeCommerce.Models.Services
     public class IOrderManagementService : IOrder
     {
         private CreaturesDbcontext _context { get; }
-
+        /// <summary>
+        /// IOrderManagementService constructor by bringing in the creaturesDbcontext
+        /// </summary>
+        /// <param name="context"></param>
         public IOrderManagementService(CreaturesDbcontext context)
         {
             _context = context;

@@ -13,7 +13,10 @@ namespace XLJLeCommerce.Models.Services
 
 
         private CreaturesDbcontext _context { get; }
-
+        /// <summary>
+        /// IproductManagementService constructor bring in the creaturesDbcontext
+        /// </summary>
+        /// <param name="context"></param>
         public IproductManagementService(CreaturesDbcontext context)
         {
             _context = context;
@@ -70,7 +73,11 @@ namespace XLJLeCommerce.Models.Services
             }
             await _context.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// delete the specific product by the product id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task DeleteProduct(int id)
         {
             Product product = await _context.Products.FindAsync(id);

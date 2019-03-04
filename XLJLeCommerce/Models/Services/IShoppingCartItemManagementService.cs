@@ -11,7 +11,10 @@ namespace XLJLeCommerce.Models.Services
     public class IShoppingCartItemManagementService : IShoppingCartItem
     {
         private CreaturesDbcontext _context { get; }
-
+        /// <summary>
+        /// constructor for Ishoppingcartitemmanagementservice and bring in the creaturesDbcontext
+        /// </summary>
+        /// <param name="context"></param>
         public IShoppingCartItemManagementService(CreaturesDbcontext context)
         {
             _context = context;
