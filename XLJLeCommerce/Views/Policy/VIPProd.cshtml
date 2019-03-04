@@ -14,7 +14,7 @@
 
 
 <h2>VIP Products</h2>
-<div class="parent">
+@*<div class="parent">
     @foreach (var item in Model)
     {
 
@@ -23,8 +23,23 @@
             <p>@item.Name</p>
             <p>@item.Description</p>
             <p>@item.Price</p>
-            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.ID">Details</a> 
         </div>
 
+    }
+</div>*@
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="tiles">
+            <div class="image">
+                <img src="@item.ImageURL" alt="@item.Name" />
+            </div>
+            <h4>@item.Name</h4>
+            @*<p class="description">@item.Description</p>*@
+            <p>@item.Price</p>
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.ID">Details</a>
+        </div>
     }
 </div>
