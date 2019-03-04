@@ -1,6 +1,7 @@
 #Project Name: Mystical pets
 
-Deployed site: https://xljlecommercedotnet401.azurewebsites.net/
+Deployed site: https://xljlecommercedotnetv2.azurewebsites.net/
+
 
 ##Description
 
