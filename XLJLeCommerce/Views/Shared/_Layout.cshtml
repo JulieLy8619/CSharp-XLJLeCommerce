@@ -14,32 +14,32 @@
 </head>
 
 <body>
-    <nav>
-        @if (signInManager.IsSignedIn(User))
-        {
-            <ul>
-                <li><span>Welcome @User.Claims.First(c => c.Type == "FullName").Value</span></li>
-                <li>
-                    <form method="post" asp-controller="Account" asp-action="Logout">
-                        <input type="submit" value="Logout" />
-                    </form>
-            </ul>
-        }
-        else
-        { 
-            <ul>
-                <li><a asp-controller="Account" asp-action="Login">Login</a></li>
-                <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-            </ul>
-        }
+    <nav class="topNav">
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index"> <img class="logoButton" src="~/Assets/Logo a.JPG" /></a>
+            @if (signInManager.IsSignedIn(User))
+            {
+                    <li>Welcome @User.Claims.First(c => c.Type == "FullName").Value</li>
+                    <li>
+                        <form method="post" asp-controller="Account" asp-action="Logout">
+                            <input type="submit" value="Logout" />
+                        </form>
+                    </li>
+            }
+            else
+            {
+                    <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                    <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+            }
+        </ul>
     </nav>
+
     <header>
         <img class="topper" src="~/Assets/topper.jpg">
         <h1>Mystical Pets</h1>
     </header>
     <nav>
-        <ul>
-            <li class="logoButtonLi"><a asp-controller="Home" asp-action="Index"> <img class="logoButton" src="~/Assets/Logo a.JPG"/></a></liclass="logoButton">
+        <ul class="mainNav">
             <li><a asp-controller="Product" asp-action="Index">Products</a></li>
             <li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
             <li><a asp-controller="Policy" asp-action="VIPProd">VIP</a></li>

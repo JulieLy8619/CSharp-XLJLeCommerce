@@ -7,6 +7,26 @@
         text-align: center;
     }
 
+    .topNav ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        /*width: 70%;*/
+        height: 40px;
+        list-style-type: none;
+        margin: auto;
+    }
+
+    .logoButton {
+        top: 0px;
+        margin-top: 0px;
+        top: 0px;
+        left: 0px;
+        /*position: absolute;*/
+        height: 30px;
+        width: 100px;
+    }
+
     body 
     {
         background-color: beige;
@@ -89,7 +109,8 @@
         opacity: .6;
     }
 
-    nav ul {
+    .mainNav 
+    {
         list-style-type: none;
         margin: auto;
         display: flex;
@@ -117,22 +138,20 @@
         font-weight: bold;
         margin: auto;
         padding: 3px;
+        padding-top: 10px;
         background-color: antiquewhite;
     }
     nav ul li a 
     {
+        width: 140px;
+        height: 30px;
         text-decoration: none;
     }
 
-    .logoButton
-    {
-        height: 30px;
-        width: 100px;
-    }
 
-    .logoButtonLi
-    {
-        padding-top: 0px;
+
+    #hero {
+        width: 90%;
     }
 
     form {
