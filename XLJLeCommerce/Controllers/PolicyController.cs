@@ -27,23 +27,11 @@ namespace XLJLeCommerce.Controllers
         /// calls the index page for vip users
         /// </summary>
         /// <returns>the page</returns>
-      
         [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
-                
-
         }
-
-        //i don't think we need this
-        //[Authorize]
-        //public IActionResult Vip()
-        //{
-        //    return RedirectToAction("VIPProd", "Policy");
-
-        //}
-
 
         /// <summary>
         /// gets the vip page for vip users
@@ -53,7 +41,6 @@ namespace XLJLeCommerce.Controllers
         public async Task<IActionResult> VIPProd()
         {
             return View(await _product.GetAllProducts());         
-
         }
     
     }

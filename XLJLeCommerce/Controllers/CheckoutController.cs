@@ -29,11 +29,19 @@ namespace XLJLeCommerce.Controllers
             _emailSender = emailSender;
         }
 
+        /// <summary>
+        /// calls the main default page
+        /// </summary>
+        /// <returns>the page</returns>
         public IActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// does the check out (like make a receipt page, send a receipt email)
+        /// </summary>
+        /// <returns>a page after it's done</returns>
         [HttpPost]
         public async Task<IActionResult> Receipt()
         {
@@ -67,7 +75,6 @@ namespace XLJLeCommerce.Controllers
 
             ord.Totalprice = totalprice;
             
-
             List<OrderedItems> ordedItems = await _ordereditems.GetAllOrderedItems(ord.ID);
             string emailMessage = ReceiptEmailBuilder(ord, ordedItems).ToString() ;
             await _emailSender.SendEmailAsync(userEmail, "Receipt for Mystical Creatures", emailMessage);
@@ -75,13 +82,12 @@ namespace XLJLeCommerce.Controllers
 
         }
 
-
-
-
-
-       
-
-
+        /// <summary>
+        /// helper function to build the message for receipt
+        /// </summary>
+        /// <param name="order">the order</param>
+        /// <param name="ordItems">all the items in the order</param>
+        /// <returns>the message to put in the email</returns>
         public string ReceiptEmailBuilder(Order order, List<OrderedItems> ordItems)
         {
             string returnMessage = $"Confirmation number {order.ID}{order.UserID} <br /> You ordered: <br />";
@@ -102,9 +108,6 @@ namespace XLJLeCommerce.Controllers
                 returnMessage = returnMessage + $"{qtyString} {nameString} at {priceString} <br />";
             }
             returnMessage = returnMessage + $" totals: <br /> {total} <br /> Please consider this your receipt. Thank you for your purchase. <br /> Sincerely, <br /> The Mystical Creatures Team";
-
-            
-            //returnMessage = string.Join(" ", ordedItems);
 
             return returnMessage;
         }

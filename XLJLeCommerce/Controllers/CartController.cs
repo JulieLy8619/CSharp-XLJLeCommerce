@@ -24,6 +24,10 @@ namespace XLJLeCommerce.Controllers
             _shoppingCartItem = shoppingCartItem;
         }
 
+        /// <summary>
+        /// default page for shopping cart, shows all items to page
+        /// </summary>
+        /// <returns>page to see all items</returns>
         public async Task<IActionResult> Index()
 
         {
@@ -78,6 +82,11 @@ namespace XLJLeCommerce.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// deletes a shoping cart item
+        /// </summary>
+        /// <param name="id">which item to delete</param>
+        /// <returns>the page</returns>
         [HttpGet]
         public async Task<IActionResult> DeleteItem(int? id)
         {
