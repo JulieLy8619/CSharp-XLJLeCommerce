@@ -80,20 +80,12 @@ namespace XLJLeCommerce.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    //030319jl: do we need this code, I don't see "ouruser" used elsewhere on this page)
-                    var ouruser = await _userManager.FindByEmailAsync(rvm.Email);
-                    string id = ouruser.Id;
-
                     //send user email after successfully registered with us
                     await _emailSender.SendEmailAsync(rvm.Email, "Successfully registered with us!", "<p>Thank you for registering</p>");
                     return RedirectToAction("Index", "Home");
-
                 }
-
             }
-
             return View(rvm);
-
         }
 
         /// <summary>
@@ -139,10 +131,10 @@ namespace XLJLeCommerce.Controllers
 
 
         /// <summary>
-        /// 
+        /// asking external service for access
         /// </summary>
-        /// <param name="provider"></param>
-        /// <returns></returns>
+        /// <param name="provider">which 3rd party api, like FB or Microsoft</param>
+        /// <returns>The answer from the provider</returns>
         [HttpPost]
         public IActionResult ExternalLogin(string provider)
         {
@@ -154,8 +146,8 @@ namespace XLJLeCommerce.Controllers
         /// <summary>
         /// use external log in 
         /// </summary>
-        /// <param name="error"></param>
-        /// <returns></returns>
+        /// <param name="error">set error because method requires</param>
+        /// <returns>page</returns>
         [HttpGet]
         public async Task<IActionResult> ExternalLoginCallback(string error = null)
         {
@@ -190,7 +182,11 @@ namespace XLJLeCommerce.Controllers
 
         }
 
-
+        /// <summary>
+        /// verification log in worked then what happens, our case add a new user
+        /// </summary>
+        /// <param name="elvm">user information</param>
+        /// <returns>the page</returns>
         public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginViewModel elvm)
         {
             if (ModelState.IsValid)
@@ -246,6 +242,10 @@ namespace XLJLeCommerce.Controllers
             return View(elvm);
         }
 
+        /// <summary>
+        /// redirects pages when one doesn't have access to VIP area
+        /// </summary>
+        /// <returns>page </returns>
         public IActionResult AccessDenied()
         {
             return RedirectToAction("Index", "Policy");

@@ -83,11 +83,10 @@ namespace XLJLeCommerce.Controllers
                 newCartItem.ProductID = prod.ID;
                 newCartItem.ProdQty = 1; //we chose to default add one at cart entry and then then can update quantity on cart summary page later
                 await _shoppingCartItem.CreateShoppingCartItem(newCartItem);
-                return RedirectToAction("Index", "Cart"); //we probably actually will want to go to cart home page after we create that.
+                return RedirectToAction("Index", "Cart"); 
             }
             else //user not in DB
             {
-                //should we redirect to log in or register?
                 return RedirectToAction("Register", "Account");
             }
         }

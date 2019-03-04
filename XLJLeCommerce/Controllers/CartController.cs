@@ -43,7 +43,6 @@ namespace XLJLeCommerce.Controllers
             }
             else //user not in DB
             {
-                //should we redirect to log in or register?
                 return RedirectToAction("Register", "Account");
             }
 
