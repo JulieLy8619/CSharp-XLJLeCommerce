@@ -126,6 +126,10 @@ namespace XLJLeCommerce.Controllers
             return View(lvm);
         }
 
+        /// <summary>
+        /// logs out a user
+        /// </summary>
+        /// <returns>to home page after completed task</returns>
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -134,7 +138,11 @@ namespace XLJLeCommerce.Controllers
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult ExternalLogin(string provider)
         {
@@ -205,6 +213,9 @@ namespace XLJLeCommerce.Controllers
 
                 if (result.Succeeded)
                 {
+                    Cart cart = new Cart();
+                    cart.UserID = user.Id;
+                    await _cart.Create(cart);
 
                     Claim fullNameClaim = new Claim("FullName", $"{user.FirstName} {user.LastName}");
 
