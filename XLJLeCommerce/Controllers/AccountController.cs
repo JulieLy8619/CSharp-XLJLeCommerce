@@ -81,6 +81,16 @@ namespace XLJLeCommerce.Controllers
 
                     await _userManager.AddClaimsAsync(user, claims);
 
+                    if (user.Email == "amanda@codefellows.com" || user.Email == "nguyenv2@outlook.com" || user.Email == "just4youspam@yahoo.com" || user.Email == "xia.liu2@outlook.com")
+                    {
+                        await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
+                        await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
+                    }
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     //send user email after successfully registered with us
