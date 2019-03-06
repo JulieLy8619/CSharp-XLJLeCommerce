@@ -20,6 +20,7 @@
             @if (signInManager.IsSignedIn(User))
             {
                     <li>Welcome @User.Claims.First(c => c.Type == "FullName").Value</li>
+                    <li><a asp-controller="Order" asp-action="Index">Order History</a></li>
                     <li>
                         <form method="post" asp-controller="Account" asp-action="Logout">
                             <input type="submit" value="Logout" />

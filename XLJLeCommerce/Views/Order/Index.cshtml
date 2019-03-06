@@ -1,1 +1,12 @@
-﻿
+﻿@model IEnumerable<XLJLeCommerce.Models.Order>
+@{
+    Layout = "_Layout";
+}
+Order History
+
+@foreach (var item in Model)
+{<ul>
+        <li> @item.ID</li>
+        <li> @item.Totalprice</li>
+    </ul>
+}
