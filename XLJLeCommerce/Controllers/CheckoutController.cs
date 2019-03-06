@@ -123,7 +123,7 @@ namespace XLJLeCommerce.Controllers
         }
 
         [HttpPost]
-        public IActionResult ContinuePayment(PaymentViewModel pvm)
+        public async Task<IActionResult> Payment(PaymentViewModel pvm)
         {
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.MerchantAuthentication = new merchantAuthenticationType()
@@ -147,13 +147,35 @@ namespace XLJLeCommerce.Controllers
                 zip = pvm.ZipCode
             };
 
-       
+            string userEmail = User.Identity.Name;
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            string userID = user.Id;
+            Order ord = new Order();
+            ord.UserID = userID;
+            await _order.CreateOrder(ord);
+            Cart cartObj = await _cart.GetCart(userID);
+            //get all the items in the cart
+            IEnumerable<ShoppingCartItem> cartitems = await _shoppingCartItem.GetAllShoppingCartItems(cartObj.ID);
+            decimal totalprice = 0m;
+            //convert it to orderitem
+            foreach (var item in cartitems)
+            {
+                OrderedItems tempOrdItem = new OrderedItems();
+                tempOrdItem.OrderID = ord.ID;
+                tempOrdItem.ShoppingCartItemID = item.ID;
+
+                await _ordereditems.CreateOrderedItem(tempOrdItem);
+                //then delete it from shopping cart or wait to do this when we pay
+                totalprice += (item.ProdQty * item.Product.Price);
+            }
+
+            ord.Totalprice = totalprice;
             paymentType paymentType = new paymentType { Item = creditCard };
 
             transactionRequestType transactionRequest = new transactionRequestType
             {
                 transactionType = transactionTypeEnum.authCaptureTransaction.ToString(),
-                amount=100m,
+                amount=ord.Totalprice,
                 payment = paymentType,
                 billTo = billingAddress,
             };
@@ -192,9 +214,34 @@ namespace XLJLeCommerce.Controllers
 
 
         [HttpGet]
-        public IActionResult Receipt()
+        public async Task<IActionResult> Receipt()
         {
-            return View();
+            string userEmail = User.Identity.Name;
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            string userID = user.Id;
+            Order ord = new Order();
+            ord.UserID = userID;
+            await _order.CreateOrder(ord);
+            Cart cartObj = await _cart.GetCart(userID);
+            //get all the items in the cart
+            IEnumerable<ShoppingCartItem> cartitems = await _shoppingCartItem.GetAllShoppingCartItems(cartObj.ID);
+            decimal totalprice = 0m;
+            //convert it to orderitem
+            foreach (var item in cartitems)
+            {
+                OrderedItems tempOrdItem = new OrderedItems();
+                tempOrdItem.OrderID = ord.ID;
+                tempOrdItem.ShoppingCartItemID = item.ID;
+
+                await _ordereditems.CreateOrderedItem(tempOrdItem);
+                //then delete it from shopping cart or wait to do this when we pay
+                totalprice += (item.ProdQty * item.Product.Price);
+                await _shoppingCartItem.DeleteShoppingCartItem(item.ID);
+            }
+
+            ord.Totalprice = totalprice;
+           
+            return View(ord);
 
         }
 
