@@ -44,7 +44,7 @@ namespace XLJLeCommerce_unittesting
                 testCart3.ID = 1;
                 testCart3.UserID = "aUserID";
 
-                ICartManagementService cartService = new ICartManagementService(context);
+                CartManagementService cartService = new CartManagementService(context);
 
                 await cartService.Create(testCart3);
 
@@ -67,7 +67,7 @@ namespace XLJLeCommerce_unittesting
                 testCart4.ID = 1;
                 testCart4.UserID = "aUserID";
 
-                ICartManagementService cartService = new ICartManagementService(context);
+                CartManagementService cartService = new CartManagementService(context);
 
                 await cartService.Create(testCart4);
 

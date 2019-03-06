@@ -8,14 +8,14 @@ using XLJLeCommerce.Models.Interfaces;
 
 namespace XLJLeCommerce.Models.Services
 {
-    public class IOrderManagementService : IOrder
+    public class OrderManagementService : IOrder
     {
         private CreaturesDbcontext _context { get; }
         /// <summary>
-        /// IOrderManagementService constructor by bringing in the creaturesDbcontext
+        /// OrderManagementService constructor by bringing in the creaturesDbcontext
         /// </summary>
         /// <param name="context"></param>
-        public IOrderManagementService(CreaturesDbcontext context)
+        public OrderManagementService(CreaturesDbcontext context)
         {
             _context = context;
         }

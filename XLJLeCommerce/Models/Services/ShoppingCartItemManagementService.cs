@@ -8,14 +8,14 @@ using XLJLeCommerce.Models.Interfaces;
 
 namespace XLJLeCommerce.Models.Services
 {
-    public class IShoppingCartItemManagementService : IShoppingCartItem
+    public class ShoppingCartItemManagementService : IShoppingCartItem
     {
         private CreaturesDbcontext _context { get; }
         /// <summary>
-        /// constructor for Ishoppingcartitemmanagementservice and bring in the creaturesDbcontext
+        /// constructor for shoppingcartitemmanagementservice and bring in the creaturesDbcontext
         /// </summary>
         /// <param name="context"></param>
-        public IShoppingCartItemManagementService(CreaturesDbcontext context)
+        public ShoppingCartItemManagementService(CreaturesDbcontext context)
         {
             _context = context;
         }

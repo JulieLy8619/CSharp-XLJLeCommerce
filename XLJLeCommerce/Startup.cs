@@ -41,7 +41,7 @@ namespace XLJLeCommerce
                     .AddDefaultTokenProviders();
 
 
-            services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<CreaturesDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             services.AddDbContext<ApplicationDbcontext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityDefaultConnection")));
@@ -63,11 +63,11 @@ namespace XLJLeCommerce
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
             services.AddScoped<IEmailSender, EmailSender>();
-            services.AddScoped<Iproduct, IproductManagementService>();
-            services.AddScoped<ICart, ICartManagementService>();
-            services.AddScoped<IShoppingCartItem, IShoppingCartItemManagementService>();
-            services.AddScoped<IOrder, IOrderManagementService>();
-            services.AddScoped<IOrderedItems, IOrderedItemsManagementService>();
+            services.AddScoped<Iproduct, ProductManagementService>();
+            services.AddScoped<ICart, CartManagementService>();
+            services.AddScoped<IShoppingCartItem, ShoppingCartItemManagementService>();
+            services.AddScoped<IOrder, OrderManagementService>();
+            services.AddScoped<IOrderedItems, OrderedItemsManagementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

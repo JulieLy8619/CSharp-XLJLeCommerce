@@ -60,7 +60,7 @@ namespace XLJLeCommerce_unittesting
                 testOrder5.UserID = "aUserID";
                 testOrder5.Totalprice = 30;
 
-                IOrderManagementService orderService = new IOrderManagementService(context);
+                OrderManagementService orderService = new OrderManagementService(context);
 
                 await orderService.CreateOrder(testOrder5);
 
@@ -84,7 +84,7 @@ namespace XLJLeCommerce_unittesting
                 testOrder6.UserID = "aUserID";
                 testOrder6.Totalprice = 300;
 
-                IOrderManagementService orderService = new IOrderManagementService(context);
+                OrderManagementService orderService = new OrderManagementService(context);
 
                 await orderService.CreateOrder(testOrder6);
 

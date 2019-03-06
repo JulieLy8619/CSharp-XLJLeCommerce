@@ -58,7 +58,7 @@ namespace XLJLeCommerce_unittesting
                 testOrderedItem5.OrderID = 1;
                 testOrderedItem5.ShoppingCartItemID = 1;
 
-                IOrderedItemsManagementService orderedItemsService = new IOrderedItemsManagementService(context);
+                OrderedItemsManagementService orderedItemsService = new OrderedItemsManagementService(context);
 
                 await orderedItemsService.CreateOrderedItem(testOrderedItem5);
 
@@ -87,7 +87,7 @@ namespace XLJLeCommerce_unittesting
                 testOrderedItem7.OrderID = 1;
                 testOrderedItem7.ShoppingCartItemID = 5;
 
-                IOrderedItemsManagementService orderedItemsService = new IOrderedItemsManagementService(context);
+                OrderedItemsManagementService orderedItemsService = new OrderedItemsManagementService(context);
 
                 await orderedItemsService.CreateOrderedItem(testOrderedItem6);
                 await orderedItemsService.CreateOrderedItem(testOrderedItem7);
