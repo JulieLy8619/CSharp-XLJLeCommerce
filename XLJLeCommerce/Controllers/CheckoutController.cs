@@ -57,7 +57,7 @@ namespace XLJLeCommerce.Controllers
             //create order
             Order ord = new Order();
             ord.UserID = userID;
-            await _order.CreateOrder(ord);
+           
 
             //move all shopping items in cart to order items
                 //find their carts
@@ -78,7 +78,7 @@ namespace XLJLeCommerce.Controllers
             }
 
             ord.Totalprice = totalprice;
-            
+            await _order.CreateOrder(ord);
             List<OrderedItems> ordedItems = await _ordereditems.GetAllOrderedItems(ord.ID);
             string emailMessage = ReceiptEmailBuilder(ord, ordedItems).ToString() ;
             await _emailSender.SendEmailAsync(userEmail, "Receipt for Mystical Creatures", emailMessage);
@@ -170,6 +170,7 @@ namespace XLJLeCommerce.Controllers
             }
 
             ord.Totalprice = totalprice;
+         
             paymentType paymentType = new paymentType { Item = creditCard };
 
             transactionRequestType transactionRequest = new transactionRequestType
