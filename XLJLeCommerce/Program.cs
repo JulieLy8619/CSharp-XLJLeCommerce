@@ -20,18 +20,9 @@ namespace XLJLeCommerce
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                try
-                {
-                    RoleInitializer.SeedData(services);
-                }
-                catch (Exception)
-                {
-
-                }
+                RoleInitializer.SeedData(services);
             }
             host.Run();
-
-
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
