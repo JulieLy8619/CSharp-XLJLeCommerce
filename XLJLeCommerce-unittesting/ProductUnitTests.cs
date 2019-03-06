@@ -1,75 +1,11 @@
-using System;
+﻿using System;
 using XLJLeCommerce.Models;
 using Xunit;
 
 namespace XLJLeCommerce_unittesting
 {
-    public class UnitTest1
+    public class ProductUnitTests
     {
-        //application user Model ====================
-        //getter first name
-        [Fact]
-        public void TestGetFirstName()
-        {
-            ApplicationUser testAppUser1 = new ApplicationUser();
-            testAppUser1.FirstName = "aFirstName";
-            Assert.Equal("aFirstName", testAppUser1.FirstName);
-        }
-
-        //setter first name
-        [Fact]
-        public void TestSetFirstName()
-        {
-            ApplicationUser testAppUser2 = new ApplicationUser();
-            testAppUser2.FirstName = "aFirstName";
-            testAppUser2.FirstName = "NewFirstName";
-            Assert.Equal("NewFirstName", testAppUser2.FirstName);
-        }
-
-        //getter last name
-        [Fact]
-        public void TestGetLastName()
-        {
-            ApplicationUser testAppUser3 = new ApplicationUser();
-            testAppUser3.LastName = "aLastName";
-            Assert.Equal("aLastName", testAppUser3.LastName);
-        }
-
-        //setter last name
-        [Fact]
-        public void TestSetLastName()
-        {
-            ApplicationUser testAppUser4 = new ApplicationUser();
-            testAppUser4.LastName = "aLastName";
-            testAppUser4.LastName = "NewLastName";
-            Assert.Equal("NewLastName", testAppUser4.LastName);
-        }
-
-        //getter birthdate
-        [Fact]
-        public void TestGetBirthdate()
-        {
-            ApplicationUser testAppUser5 = new ApplicationUser();
-            DateTime value = new DateTime(2019, 2, 21);
-            testAppUser5.Birthdate = value;
-            Assert.Equal(value, testAppUser5.Birthdate);
-        }
-
-        //setter birthdate
-        [Fact]
-        public void TestSetBirthdate()
-        {
-            ApplicationUser testAppUser6 = new ApplicationUser();
-            DateTime value1 = new DateTime(2019, 2, 21);
-            DateTime value2 = new DateTime(2019, 2, 23);
-            testAppUser6.Birthdate = value1;
-            testAppUser6.Birthdate = value2;
-
-            Assert.Equal(value2, testAppUser6.Birthdate);
-        }
-
-        //will need getter and setter for registereddate
-
         //product model ========================
         //getter name
         [Fact]
@@ -165,7 +101,5 @@ namespace XLJLeCommerce_unittesting
             testProd10.ImageURL = "aNewImageURL";
             Assert.Equal("aNewImageURL", testProd10.ImageURL);
         }
-
-
     }
 }
