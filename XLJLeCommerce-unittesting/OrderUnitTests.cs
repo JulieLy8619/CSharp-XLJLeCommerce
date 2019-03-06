@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using XLJLeCommerce.Data;
 using XLJLeCommerce.Models;
+using XLJLeCommerce.Models.Services;
 using Xunit;
 
 namespace XLJLeCommerce_unittesting
@@ -41,5 +45,53 @@ namespace XLJLeCommerce_unittesting
         }
 
         //Do I need to test the List "public List<OrderedItems> OrderedItems { get; set; }"
+
+        //create order
+        [Fact]
+        public async void TestCreateOrder()
+        {
+            DbContextOptions<CreaturesDbcontext> options = new DbContextOptionsBuilder<CreaturesDbcontext>().UseInMemoryDatabase("CreateOrder").Options;
+
+            using (CreaturesDbcontext context = new CreaturesDbcontext(options))
+            {
+
+                Order testOrder5 = new Order();
+                testOrder5.ID = 1;
+                testOrder5.UserID = "aUserID";
+                testOrder5.Totalprice = 30;
+
+                IOrderManagementService orderService = new IOrderManagementService(context);
+
+                await orderService.CreateOrder(testOrder5);
+
+                var order1Answer = context.OrderTable.FirstOrDefault(c => c.ID == testOrder5.ID);
+
+                Assert.Equal(testOrder5, order1Answer);
+            }
+        }
+
+        //get order
+        [Fact]
+        public async void TestGetOrder()
+        {
+            DbContextOptions<CreaturesDbcontext> options = new DbContextOptionsBuilder<CreaturesDbcontext>().UseInMemoryDatabase("GetOrder").Options;
+
+            using (CreaturesDbcontext context = new CreaturesDbcontext(options))
+            {
+
+                Order testOrder6 = new Order();
+                testOrder6.ID = 1;
+                testOrder6.UserID = "aUserID";
+                testOrder6.Totalprice = 300;
+
+                IOrderManagementService orderService = new IOrderManagementService(context);
+
+                await orderService.CreateOrder(testOrder6);
+
+                var order2Answer = await orderService.GetOrder("aUserID");
+
+                Assert.Equal(testOrder6, order2Answer);
+            }
+        }
     }
 }
