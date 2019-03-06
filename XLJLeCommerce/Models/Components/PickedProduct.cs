@@ -34,8 +34,10 @@ namespace XLJLeCommerce.Models.Components
 
                 string userID = user.Id;
                 var cart = _context.Carts.FirstOrDefault(i => i.UserID == userID);
+                              
                 var pro = await _shoppingCartItem.GetAllShoppingCartItems(cart.ID);
                 return View(pro);
+                
             }
             else {
                 return View();

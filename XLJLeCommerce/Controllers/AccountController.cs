@@ -73,7 +73,7 @@ namespace XLJLeCommerce.Controllers
 
                     Claim emailClaim = new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.Email);
 
-                    Claim addressClaim = new Claim(ClaimTypes.StreetAddress,user.Address);
+                    Claim addressClaim = new Claim(ClaimTypes.StreetAddress,$"{ user.Address }");
 
                     Claim registerDateClaim = new Claim("RegisteredDate", $"{ user.RegisteredDate }");
 

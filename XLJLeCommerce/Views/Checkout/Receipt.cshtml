@@ -1,5 +1,23 @@
-﻿@{
+﻿@model XLJLeCommerce.Models.Order
+
+
+@{
     Layout = "_Layout";
 }
 
 Here is your Order Receipt!
+
+    <ul>
+        <li>OrderID:@Model.ID</li>
+        <li>@foreach(var item in Model.OrderedItems)
+        {      
+           <ul>
+         <li> @item.ShoppingCartItem.Product.Name</li>
+         <li>  @item.ShoppingCartItem.Product.Sku</li>
+          </ul>
+        }
+        </li>
+        <li>Total price: @Model.Totalprice</li>
+
+    </ul>
+
