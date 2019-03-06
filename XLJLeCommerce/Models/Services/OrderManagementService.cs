@@ -34,12 +34,15 @@ namespace XLJLeCommerce.Models.Services
             await _context.SaveChangesAsync();
         }
 
-
-        public async Task<Order> GetOrder(string userid)
+        public async Task<List<Order>> GetOrder(string userid)
         {
-            var order = await _context.OrderTable.FirstOrDefaultAsync(i => i.UserID == userid);
+            var orders = from ci in _context.OrderTable
+                              .Where(i => i.UserID == userid)
+                         select ci;
 
-            return order;
+
+            return await orders.ToListAsync();
         }
+
     }
 }

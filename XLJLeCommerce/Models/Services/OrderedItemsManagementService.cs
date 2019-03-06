@@ -27,8 +27,9 @@ namespace XLJLeCommerce.Models.Services
         /// <returns>the completed task after adding to the DB</returns>
         public async Task CreateOrderedItem(OrderedItems orderedItems)
         {
-            _context.OrderedItemsTable.Add(orderedItems);
-            await _context.SaveChangesAsync();
+                 _context.OrderedItemsTable.Add(orderedItems);
+                await _context.SaveChangesAsync();      
+           
         }
 
         /// <summary>
