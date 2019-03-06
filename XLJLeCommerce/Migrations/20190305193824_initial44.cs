@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace XLJLeCommerce.Migrations.ApplicationDbcontextMigrations
+namespace XLJLeCommerce.Migrations
 {
-    public partial class _022819rebuild9 : Migration
+    public partial class initial44 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -43,6 +43,7 @@ namespace XLJLeCommerce.Migrations.ApplicationDbcontextMigrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
                     Birthdate = table.Column<DateTime>(nullable: false),
                     RegisteredDate = table.Column<DateTime>(nullable: false)
                 },

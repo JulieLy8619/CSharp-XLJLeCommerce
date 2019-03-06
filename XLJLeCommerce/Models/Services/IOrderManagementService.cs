@@ -33,5 +33,13 @@ namespace XLJLeCommerce.Models.Services
             }
             await _context.SaveChangesAsync();
         }
+
+
+        public async Task<Order> GetOrder(string userid)
+        {
+            var order = await _context.OrderTable.FirstOrDefaultAsync(i => i.UserID == userid);
+
+            return order;
+        }
     }
 }

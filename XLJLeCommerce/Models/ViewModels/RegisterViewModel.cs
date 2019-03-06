@@ -24,6 +24,9 @@ namespace XLJLeCommerce.Models.ViewModels
         public string Email { get; set; }
 
         [Required]
+        public string Address{ get; set; }
+
+        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

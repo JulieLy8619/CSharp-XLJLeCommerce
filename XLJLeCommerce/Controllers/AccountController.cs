@@ -53,6 +53,7 @@ namespace XLJLeCommerce.Controllers
                     FirstName = rvm.FirstName,
                     LastName = rvm.LastName,
                     Birthdate = rvm.Birthdate,
+                    Address = rvm.Address,
                     RegisteredDate = DateTime.Now
                 };
 
@@ -72,9 +73,11 @@ namespace XLJLeCommerce.Controllers
 
                     Claim emailClaim = new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.Email);
 
+                    Claim addressClaim = new Claim(ClaimTypes.StreetAddress,user.Address);
+
                     Claim registerDateClaim = new Claim("RegisteredDate", $"{ user.RegisteredDate }");
 
-                    List<Claim> claims = new List<Claim> { fullNameClaim, birthdayClaim, emailClaim, registerDateClaim };
+                    List<Claim> claims = new List<Claim> { fullNameClaim, birthdayClaim, emailClaim,addressClaim, registerDateClaim };
 
                     await _userManager.AddClaimsAsync(user, claims);
 
@@ -203,6 +206,7 @@ namespace XLJLeCommerce.Controllers
                     Email = elvm.Email,
                     FirstName = elvm.FirstName,
                     LastName = elvm.LastName,
+                    Address=elvm.Address,
                     RegisteredDate = DateTime.Now
                 };
 
@@ -221,9 +225,10 @@ namespace XLJLeCommerce.Controllers
 
                     Claim emailClaim = new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.Email);
 
+                    Claim addressClaim = new Claim(ClaimTypes.StreetAddress, user.Address);
                     Claim registerDateClaim = new Claim("RegisteredDate", $"{ user.RegisteredDate }");
 
-                    List<Claim> claims = new List<Claim> { fullNameClaim, birthdayClaim, emailClaim, registerDateClaim };
+                    List<Claim> claims = new List<Claim> { fullNameClaim, birthdayClaim, emailClaim, addressClaim, registerDateClaim };
 
                     await _userManager.AddClaimsAsync(user, claims);
 

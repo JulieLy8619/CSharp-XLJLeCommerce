@@ -1,0 +1,41 @@
+﻿@model XLJLeCommerce.Models.ViewModels.PaymentViewModel
+@{
+    Layout = "_Layout";
+}
+
+start payment here
+<form method="post" asp-controller="Checkout" asp-action="ContinuePayment">
+    <label asp-for="FirstName">Enter your First Name</label>
+    <input asp-for="FirstName" />
+    <span asp-validation-for="FirstName"></span>
+
+    <label asp-for="LastName">Enter your Last Name</label>
+    <input asp-for="LastName" />
+    <span asp-validation-for="LastName"></span>
+
+    <select asp-for="CardNumber">
+        <option value="4111111111111111">4111111111111111</option>
+        <option value="370000000000002">370000000000002 </option>
+        <option value="5424000000000015">5424000000000015 </option>
+        <option value="6011000000000012">6011000000000012 </option>
+        <option value="	4007000000027">	4007000000027 </option>
+    </select>
+
+    <label asp-for="Cvv">Enter Card Cvv</label>
+    <input asp-for="Cvv" />
+    <span asp-validation-for="Cvv"></span>
+
+    <label asp-for="ExpDate">4 digits Expiration Date (month/year)</label>
+    <input asp-for="ExpDate" />
+    <span asp-validation-for="ExpDate"></span>
+
+    <label asp-for="Address">Enter your Address</label>
+    <input asp-for="Address" />
+    <span asp-validation-for="Address"></span>
+
+    <label asp-for="ZipCode">Enter your Zip Code</label>
+    <input asp-for="ZipCode" />
+    <span asp-validation-for="ZipCode"></span>
+
+    <button type="submit">Continue Payment</button>
+</form>

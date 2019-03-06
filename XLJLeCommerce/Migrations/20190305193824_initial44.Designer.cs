@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XLJLeCommerce.Data;
 
-namespace XLJLeCommerce.Migrations.ApplicationDbcontextMigrations
+namespace XLJLeCommerce.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20190303235621_030319rbuild10")]
-    partial class _030319rbuild10
+    [Migration("20190305193824_initial44")]
+    partial class initial44
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -137,6 +137,8 @@ namespace XLJLeCommerce.Migrations.ApplicationDbcontextMigrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("Address");
 
                     b.Property<DateTime>("Birthdate");
 
