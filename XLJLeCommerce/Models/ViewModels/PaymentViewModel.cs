@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace XLJLeCommerce.Models.ViewModels
 {
-    public class ExternalLoginViewModel
+    public class PaymentViewModel      
     {
-        [EmailAddress]
         [Required]
-        public string Email { get; set; }
+        public string CardNumber { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -19,6 +18,16 @@ namespace XLJLeCommerce.Models.ViewModels
         public string LastName { get; set; }
 
         [Required]
+        public string Cvv { get; set; }
+
+        [Required]
+        public string ExpDate { get; set; }
+
+        [Required]
+        public string ZipCode { get; set; }
+
+        [Required]
         public string Address { get; set; }
+
     }
 }

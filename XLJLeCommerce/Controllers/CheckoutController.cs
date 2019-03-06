@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthorizeNet.Api.Contracts.V1;
+using AuthorizeNet.Api.Controllers;
+using AuthorizeNet.Api.Controllers.Bases;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using XLJLeCommerce.Models;
 using XLJLeCommerce.Models.Interfaces;
+using XLJLeCommerce.Models.ViewModels;
 
 namespace XLJLeCommerce.Controllers
 {
@@ -43,7 +47,7 @@ namespace XLJLeCommerce.Controllers
         /// </summary>
         /// <returns>a page after it's done</returns>
         [HttpPost]
-        public async Task<IActionResult> Receipt()
+        public async Task<IActionResult> Review()
         {
             //get user ID
             string userEmail = User.Identity.Name;
@@ -110,6 +114,88 @@ namespace XLJLeCommerce.Controllers
             returnMessage = returnMessage + $" totals: <br /> {total} <br /> Please consider this your receipt. Thank you for your purchase. <br /> Sincerely, <br /> The Mystical Creatures Team";
 
             return returnMessage;
+        }
+
+        [HttpGet]
+        public IActionResult Payment()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ContinuePayment(PaymentViewModel pvm)
+        {
+            ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
+            ApiOperationBase<ANetApiRequest, ANetApiResponse>.MerchantAuthentication = new merchantAuthenticationType()
+            {
+                name = "62k7pMQ3",
+                ItemElementName = ItemChoiceType.transactionKey,
+                Item = "946enQkPzJw59v2Z"
+            };
+
+            var creditCard = new creditCardType
+            {
+                cardNumber = pvm.CardNumber,
+                expirationDate = pvm.ExpDate
+            };
+
+         
+            customerAddressType billingAddress = new customerAddressType()
+            {   firstName=pvm.FirstName,
+                lastName = pvm.LastName,
+                address = pvm.Address,
+                zip = pvm.ZipCode
+            };
+
+       
+            paymentType paymentType = new paymentType { Item = creditCard };
+
+            transactionRequestType transactionRequest = new transactionRequestType
+            {
+                transactionType = transactionTypeEnum.authCaptureTransaction.ToString(),
+                amount=100m,
+                payment = paymentType,
+                billTo = billingAddress,
+            };
+
+            createTransactionRequest request = new createTransactionRequest
+            {
+                transactionRequest = transactionRequest
+            };
+
+            // make a call out to AUth.NET with the requset we just created
+            var controller = new createTransactionController(request);
+            // execute the call
+            controller.Execute();
+
+            // this is the reseponse from the call we made above. 
+            var response = controller.GetApiResponse();
+
+            if (response != null)
+            {
+                if (response.messages.resultCode == messageTypeEnum.Ok)
+                {
+                    if (response.transactionResponse != null)
+                    {
+                        return RedirectToAction("Receipt", "Checkout");
+                    }
+                }
+                else
+                {
+                    return View();
+                }
+            }
+
+            return View();
+
+        }
+
+
+        [HttpGet]
+        public IActionResult Receipt()
+        {
+            return View();
+
         }
 
     }

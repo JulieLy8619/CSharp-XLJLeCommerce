@@ -13,6 +13,6 @@ namespace XLJLeCommerce.Models.Interfaces
         //will we want to be able to update orders??? I vote no
         //we shouldn't delete orders
 
-
+        Task<Order> GetOrder(string id);
     }
 }
