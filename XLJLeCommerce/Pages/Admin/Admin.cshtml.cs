@@ -27,12 +27,16 @@ namespace XLJLeCommerce.Pages.Admin
             _ordereditems = ordereditems;
             _AuthorizationService = authorizationService;
         }
+        [FromRoute]
+        public int? ID { get; set; }
 
-        public Order Order { get; set; }
+        [BindProperty]
+        public List<Order> Order { get; set; }
 
+        //[Authorize]
         public async Task OnGet()
         {
-            //Order = await _order.GetLastTenOrder();
+            Order = await _order.GetLastTenOrder(); 
         }
        
     }

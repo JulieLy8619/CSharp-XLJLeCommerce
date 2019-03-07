@@ -19,37 +19,37 @@
 <body>
     @foreach (var order in lastTenOrders)
     {
-    <div>
-        <p>@order.ID</p>
-        @foreach (var item in order.OrderedItems)
-        {
         <div>
-            <p>@item.ShoppingCartItem.Product.Name</p>
-            <p>@item.ShoppingCartItem.ProdQty</p>
+            <p>@order.ID</p>
+            @foreach (var item in order.OrderedItems)
+            {
+                <div>
+                    <p>@item.ShoppingCartItem.Product.Name</p>
+                    <p>@item.ShoppingCartItem.ProdQty</p>
+                </div>
+            }
         </div>
-        }
-    </div>
     }
 </body>
 
 
 @*don't know what I am doing on this page yet*@
-@{ 
+@{
     var prods = await ProductManagementService.GetAllProducts();
 }
 
 
-    @foreach (var p in prods)
-    {
-<div>
-    <h3>@p.Name</h3>
-    <p>@p.Sku</p>
-    <img src="@p.ImageURL" alt="" />
-    <p>@p.Price</p>
-    <a asp-page="Productdetail" asp-route-id="@p.ID">
-        <p>View Details</p>
-    </a>
-</div>
-    }
+@foreach (var p in prods)
+{
+    <div>
+        <h3>@p.Name</h3>
+        <p>@p.Sku</p>
+        <img src="@p.ImageURL" alt="" />
+        <p>@p.Price</p>
+        <a asp-page="Productdetail" asp-route-id="@p.ID">
+            <p>View Details</p>
+        </a>
+    </div>
+}
 
 
