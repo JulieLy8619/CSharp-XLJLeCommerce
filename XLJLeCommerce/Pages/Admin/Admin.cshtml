@@ -21,11 +21,11 @@
     @foreach (var order in lastTenOrders)
     {
         <div>
-            <p>@order.ID: @order.Totalprice</p>
+            <p>Order #@order.ID: Total: @order.Totalprice</p>
             @foreach (var item in order.OrderedItems)
             {
                 <div>
-                    <p>@item.ShoppingCartItem.ProdQty: @item.ShoppingCartItem.Product.Name</p>
+                    <p>@item.ProdQty: @item.Product.Name</p>
                 </div>
             }
         </div>

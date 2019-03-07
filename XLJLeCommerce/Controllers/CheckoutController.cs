@@ -109,11 +109,11 @@ namespace XLJLeCommerce.Controllers
 
             foreach (OrderedItems item in ordItems)
             {
-                string nameString = item.ShoppingCartItem.Product.Name;
-                string priceString = item.ShoppingCartItem.Product.Price.ToString();
-                decimal priceDeci = item.ShoppingCartItem.Product.Price;
-                string qtyString = item.ShoppingCartItem.ProdQty.ToString();
-                int qtyInt = item.ShoppingCartItem.ProdQty;
+                string nameString = item.Product.Name;
+                string priceString = item.Product.Price.ToString();
+                decimal priceDeci = item.Product.Price;
+                string qtyString = item.ProdQty.ToString();
+                int qtyInt = item.ProdQty;
                 total = total + (Convert.ToInt32(priceDeci) * qtyInt);
                 returnMessage = returnMessage + $"{qtyString} {nameString} at {priceString} <br />";
             }

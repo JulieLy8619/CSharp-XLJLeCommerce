@@ -8,10 +8,10 @@
 @foreach (var item in Model)
 {
 <ul>
-    <li>Name:@item.ShoppingCartItem.Product.Name</li>
-   <li> <img src="@item.ShoppingCartItem.Product.ImageURL" /></li>
-    <li>Price: @item.ShoppingCartItem.Product.Price</li>
-    <li>Quantity: @item.ShoppingCartItem.ProdQty</li>
+    <li>Name:@item.Product.Name</li>
+   <li> <img src="@item.Product.ImageURL" /></li>
+    <li>Price: @item.Product.Price</li>
+    <li>Quantity: @item.ProdQty</li>
 </ul>
 
 }
