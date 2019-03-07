@@ -1,0 +1,40 @@
+﻿@page "{id?}"
+@model XLJLeCommerce.Pages.Admin.ManageModel
+@{
+    ViewData["Title"] = "Manage";
+}
+@{
+    Layout = "_Layout";
+}
+
+<P>Manage your product</P>
+<div >
+    <div >
+        <form method="post" enctype="multipart/form-data">
+            @*<div class="des">
+                <label asp-for="Image"></label>
+                <input asp-for="Image" type="file" />
+            </div>*@
+            <div class="des">
+                <label asp-for="Product.Name" class="lcass"></label>
+                <input asp-for="Product.Name" />
+            </div>
+            <div class="des">
+                <label asp-for="Product.ImageURL" class="lcass"></label>
+                <input asp-for="Product.ImageURL" />
+            </div>
+            <div class="des">
+                <label asp-for="Product.Price" class="lcass"></label>
+                <input asp-for="Product.Price" />
+            </div>
+            <div class="des">
+                <label asp-for="Product.Sku" class="lcass"></label>
+                <textarea rows="5" asp-for="Product.Sku"></textarea>
+            </div>
+            <button type="submit">SAVE</button>
+            <button type="submit" asp-page-handler="Delete">DELETE</button>
+
+
+        </form>
+    </div>
+</div>
