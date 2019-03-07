@@ -21,7 +21,10 @@ namespace XLJLeCommerce.Pages.Admin
         public int ID { get; set; }
 
         public Product Product { get; set; }
-
+        /// <summary>
+        /// get that specific product by ID
+        /// </summary>
+        /// <returns></returns>
         public async Task OnGet()
         {
 

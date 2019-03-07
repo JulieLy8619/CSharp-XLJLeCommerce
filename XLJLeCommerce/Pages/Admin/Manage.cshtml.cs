@@ -24,7 +24,10 @@ namespace XLJLeCommerce.Pages.Admin
             _product= product;
 
         }
-
+        /// <summary>
+        /// get the product with the ID, if not exsits create a new one
+        /// </summary>
+        /// <returns></returns>
         public async Task OnGet()
         {
 
@@ -33,7 +36,10 @@ namespace XLJLeCommerce.Pages.Admin
         }
 
 
-
+        /// <summary>
+        /// update the product
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPost()
         {
             
@@ -50,7 +56,10 @@ namespace XLJLeCommerce.Pages.Admin
 
             return RedirectToPage("Admin", new { id = pro.ID });
         }
-
+        /// <summary>
+        /// delete the product
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostDelete()
         {
             await _product.DeleteProduct(ID.Value);

@@ -19,6 +19,13 @@ namespace XLJLeCommerce.Controllers
         private SignInManager<ApplicationUser> _signInManager;
         private readonly ICart _cart;
         private IEmailSender _emailSender;
+        /// <summary>
+        /// Accountcontroller constructor
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="signInManager"></param>
+        /// <param name="cart"></param>
+        /// <param name="emailSender"></param>
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ICart cart, IEmailSender emailSender)
         {
             _userManager = userManager;

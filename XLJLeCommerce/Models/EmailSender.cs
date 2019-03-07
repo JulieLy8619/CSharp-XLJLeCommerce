@@ -18,7 +18,13 @@ namespace XLJLeCommerce.Models
             _configuration = configuration;
 
         }
-      
+      /// <summary>
+      /// bring in the email(user's emailaddress, and subject of the email we will send to user, and message
+      /// </summary>
+      /// <param name="email"></param>
+      /// <param name="subject"></param>
+      /// <param name="htmlMessage"></param>
+      /// <returns></returns>
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             SendGridClient client = new SendGridClient(_configuration["Sendgrid_Api_Key"]);

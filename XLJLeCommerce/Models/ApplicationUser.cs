@@ -14,7 +14,9 @@ namespace XLJLeCommerce.Models
         public DateTime Birthdate { get; set; }
         public DateTime RegisteredDate { get; set; }
     }
-
+    /// <summary>
+    /// define two roles here
+    /// </summary>
     public static class ApplicationRoles
     {
         public const string Admin = "Admin";

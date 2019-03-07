@@ -121,13 +121,20 @@ namespace XLJLeCommerce.Controllers
 
             return returnMessage;
         }
-
+        /// <summary>
+        /// just view the payment page by using httpget
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Payment()
         {
             return View();
         }
-
+        /// <summary>
+        /// bring in the paymentviewmodle and get payment information from the modle
+        /// </summary>
+        /// <param name="pvm"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Payment(PaymentViewModel pvm)
         {
@@ -218,7 +225,10 @@ namespace XLJLeCommerce.Controllers
             return View();
 
         }
-
+        /// <summary>
+        /// will view the receipt page after payment
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Receipt()
         {
