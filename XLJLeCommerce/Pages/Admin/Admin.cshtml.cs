@@ -32,7 +32,7 @@ namespace XLJLeCommerce.Pages.Admin
 
         public async Task OnGet()
         {
-            Order = await _order.GetAllOrder();
+            //Order = await _order.GetLastTenOrder();
         }
        
     }
