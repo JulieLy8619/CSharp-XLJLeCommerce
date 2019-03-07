@@ -122,6 +122,12 @@ namespace XLJLeCommerce.Controllers
 
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByEmailAsync(lvm.Email);
+                    var roles = await _userManager.GetRolesAsync(user);
+                    if (roles.Contains(ApplicationRoles.Admin))
+                    {
+                        return RedirectToAction("Admin", "Admin");
+                    }
                     return RedirectToAction("Index", "Product");
                 }
             }
