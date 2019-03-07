@@ -11,5 +11,19 @@
 }
 
 <h2>Administrator Dashboard</h2>
+<body>
+    @foreach (var order in lastTenOrders)
+    {
+    <div>
+        <p>@order.ID</p>
+        @foreach (var item in order.OrderedItems)
+        {
+        <div>
+            <p>@item.ShoppingCartItem.Product.Name</p>
+            <p>@item.ShoppingCartItem.ProdQty</p>
+        </div>
+        }
+    </div>
+    }
+</body>
 
-@*don't know what I am doing on this page yet*@

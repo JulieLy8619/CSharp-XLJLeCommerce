@@ -90,7 +90,7 @@ namespace XLJLeCommerce_unittesting
 
                 var order2Answer = await orderService.GetOrder("aUserID");
 
-                Assert.Equal(testOrder6, order2Answer);
+                Assert.Equal(testOrder6, order2Answer[0]);
             }
         }
     }
