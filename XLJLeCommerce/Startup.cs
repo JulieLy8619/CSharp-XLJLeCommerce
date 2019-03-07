@@ -50,6 +50,7 @@ namespace XLJLeCommerce
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Over3minOnly", policy => policy.Requirements.Add(new MinRegisterTimeRequirement()));
+                options.AddPolicy("IsAdmin", policy => policy.Requirements.Add(new UserIsAdminHandler()));
             });
 
             services.AddAuthentication()

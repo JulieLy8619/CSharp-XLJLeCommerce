@@ -13,6 +13,7 @@ using XLJLeCommerce.Models.Interfaces;
 
 namespace XLJLeCommerce.Pages.Admin
 {
+    [Authorize(Policy = "IsAdmin")]
     public class AdminModel : PageModel
     {
         //I think I am getting ahead of myself than this user story
@@ -29,8 +30,11 @@ namespace XLJLeCommerce.Pages.Admin
         //    _ordereditems = ordereditems;
         //    _AuthorizationService = authorizationService;
         //}
+
+        public Order Order { get; set; }
         public void OnGet()
         {
+
         }
        
     }
