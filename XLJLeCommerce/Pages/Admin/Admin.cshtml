@@ -1,7 +1,13 @@
 ﻿@page
-@model XLJLeCommerce.Pages.Admin.AdminModel
+@using XLJLeCommerce.Models.Interfaces
+@inject IOrder OrderInjection
+
 @{
     Layout = "_Layout";
+}
+
+@{
+    var lastTenOrders = await OrderInjection.GetLastTenOrder();
 }
 
 <h2>Administrator Dashboard</h2>
