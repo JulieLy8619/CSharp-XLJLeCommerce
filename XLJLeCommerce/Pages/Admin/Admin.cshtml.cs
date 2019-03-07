@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace XLJLeCommerce.Pages.Admin
 {
+    [AllowAnonymous]
     public class AdminModel : PageModel
     {
         public void OnGet()
         {
         }
+       
     }
 }
