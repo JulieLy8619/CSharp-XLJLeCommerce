@@ -16,16 +16,16 @@
 
 <h2>Administrator Dashboard</h2>
 
+<h3>Last 10 Orders from the site</h3>
 <body>
     @foreach (var order in lastTenOrders)
     {
         <div>
-            <p>@order.ID</p>
+            <p>@order.ID: @order.Totalprice</p>
             @foreach (var item in order.OrderedItems)
             {
                 <div>
-                    <p>@item.ShoppingCartItem.Product.Name</p>
-                    <p>@item.ShoppingCartItem.ProdQty</p>
+                    <p>@item.ShoppingCartItem.ProdQty: @item.ShoppingCartItem.Product.Name</p>
                 </div>
             }
         </div>
@@ -33,7 +33,7 @@
 </body>
 
 
-@*don't know what I am doing on this page yet*@
+<h3>All items in inventory</h3>
 @{
     var prods = await ProductManagementService.GetAllProducts();
 }
