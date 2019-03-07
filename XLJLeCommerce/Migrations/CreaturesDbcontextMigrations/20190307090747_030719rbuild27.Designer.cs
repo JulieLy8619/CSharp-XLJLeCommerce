@@ -10,8 +10,8 @@ using XLJLeCommerce.Data;
 namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 {
     [DbContext(typeof(CreaturesDbcontext))]
-    [Migration("20190306182132_initia2")]
-    partial class initia2
+    [Migration("20190307090747_030719rbuild27")]
+    partial class _030719rbuild27
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,13 +59,19 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 
                     b.Property<int>("OrderID");
 
-                    b.Property<int>("ShoppingCartItemID");
+                    b.Property<int>("ProdQty");
+
+                    b.Property<int>("ProductID");
+
+                    b.Property<int?>("ShoppingCartItemID");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CartID");
 
                     b.HasIndex("OrderID");
+
+                    b.HasIndex("ProductID");
 
                     b.HasIndex("ShoppingCartItemID");
 
@@ -84,6 +90,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int?>("OrderedItemsID");
+
                     b.Property<decimal>("Price");
 
                     b.Property<int?>("ShoppingCartItemID");
@@ -93,6 +101,8 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                     b.Property<bool>("VIPItem");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("OrderedItemsID");
 
                     b.HasIndex("ShoppingCartItemID");
 
@@ -237,14 +247,22 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("XLJLeCommerce.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("XLJLeCommerce.Models.ShoppingCartItem", "ShoppingCartItem")
                         .WithMany()
-                        .HasForeignKey("ShoppingCartItemID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ShoppingCartItemID");
                 });
 
             modelBuilder.Entity("XLJLeCommerce.Models.Product", b =>
                 {
+                    b.HasOne("XLJLeCommerce.Models.OrderedItems")
+                        .WithMany("Prod")
+                        .HasForeignKey("OrderedItemsID");
+
                     b.HasOne("XLJLeCommerce.Models.ShoppingCartItem")
                         .WithMany("Prod")
                         .HasForeignKey("ShoppingCartItemID");

@@ -78,7 +78,10 @@ namespace XLJLeCommerce.Controllers
             {
                 OrderedItems tempOrdItem = new OrderedItems();
                 tempOrdItem.OrderID = ord.ID;
-                tempOrdItem.ShoppingCartItemID = item.ID;
+                //tempOrdItem.CartID = item.CartID;
+                tempOrdItem.ProductID = item.ProductID;
+                tempOrdItem.ProdQty = item.ProdQty;
+                //tempOrdItem.ShoppingCartItemID = item.ID;
                 await _ordereditems.CreateOrderedItem(tempOrdItem);
             }
 
@@ -106,11 +109,11 @@ namespace XLJLeCommerce.Controllers
 
             foreach (OrderedItems item in ordItems)
             {
-                string nameString = item.ShoppingCartItem.Product.Name;
-                string priceString = item.ShoppingCartItem.Product.Price.ToString();
-                decimal priceDeci = item.ShoppingCartItem.Product.Price;
-                string qtyString = item.ShoppingCartItem.ProdQty.ToString();
-                int qtyInt = item.ShoppingCartItem.ProdQty;
+                string nameString = item.Product.Name;
+                string priceString = item.Product.Price.ToString();
+                decimal priceDeci = item.Product.Price;
+                string qtyString = item.ProdQty.ToString();
+                int qtyInt = item.ProdQty;
                 total = total + (Convert.ToInt32(priceDeci) * qtyInt);
                 returnMessage = returnMessage + $"{qtyString} {nameString} at {priceString} <br />";
             }
@@ -164,7 +167,10 @@ namespace XLJLeCommerce.Controllers
             {
                 OrderedItems tempOrdItem = new OrderedItems();
                 tempOrdItem.OrderID = ord.ID;
-                tempOrdItem.ShoppingCartItemID = item.ID;
+                //tempOrdItem.CartID = item.CartID;
+                tempOrdItem.ProductID = item.ProductID;
+                tempOrdItem.ProdQty = item.ProdQty;
+                //tempOrdItem.ShoppingCartItemID = item.ID;
                 //then delete it from shopping cart or wait to do this when we pay
                 totalprice += (item.ProdQty * item.Product.Price);
             }
@@ -230,7 +236,7 @@ namespace XLJLeCommerce.Controllers
             {
                 OrderedItems tempOrdItem = new OrderedItems();
                 tempOrdItem.OrderID = ord.ID;
-                tempOrdItem.ShoppingCartItemID = item.ID;
+                //tempOrdItem.ShoppingCartItemID = item.ID;
                 totalprice += (item.ProdQty * item.Product.Price);
                 await _shoppingCartItem.DeleteShoppingCartItem(item.ID);
             }

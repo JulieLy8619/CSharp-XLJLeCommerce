@@ -2,8 +2,6 @@
 
 @using XLJLeCommerce.Models.Interfaces
 @inject IOrder OrderInjection
-
-@using XLJLeCommerce.Models.Interfaces
 @inject Iproduct ProductManagementService
 @*@model XLJLeCommerce.Pages.Admin.AdminModel*@
 
@@ -18,40 +16,40 @@
 
 <h2>Administrator Dashboard</h2>
 
+<h3>Last 10 Orders from the site</h3>
 <body>
     @foreach (var order in lastTenOrders)
     {
-    <div>
-        <p>@order.ID</p>
-        @foreach (var item in order.OrderedItems)
-        {
         <div>
-            <p>@item.ShoppingCartItem.Product.Name</p>
-            <p>@item.ShoppingCartItem.ProdQty</p>
+            <p>Order #@order.ID: Total: @order.Totalprice</p>
+            @foreach (var item in order.OrderedItems)
+            {
+                <div>
+                    <p>@item.ProdQty: @item.Product.Name</p>
+                </div>
+            }
         </div>
-        }
-    </div>
     }
 </body>
 
 
-@*don't know what I am doing on this page yet*@
-@{ 
+<h3>All items in inventory</h3>
+@{
     var prods = await ProductManagementService.GetAllProducts();
 }
 
 
-    @foreach (var p in prods)
-    {
-<div>
-    <h3>@p.Name</h3>
-    <p>@p.Sku</p>
-    <img src="@p.ImageURL" alt="" />
-    <p>@p.Price</p>
-    <a asp-page="Productdetail" asp-route-id="@p.ID">
-        <p>View Details</p>
-    </a>
-</div>
-    }
+@foreach (var p in prods)
+{
+    <div>
+        <h3>@p.Name</h3>
+        <p>@p.Sku</p>
+        <img src="@p.ImageURL" alt="" />
+        <p>@p.Price</p>
+        <a asp-page="Productdetail" asp-route-id="@p.ID">
+            <p>View Details</p>
+        </a>
+    </div>
+}
 
 

@@ -49,6 +49,41 @@ namespace XLJLeCommerce.Models.Services
             var orders = (from o in _context.OrderTable
                               orderby o.ID descending
                          select o).Take(10);
+
+            foreach (Order o in orders)
+            {
+                var ordItems = from oi in _context.OrderedItemsTable
+                            .Where(i => i.OrderID == o.ID)
+                               select oi;
+                o.OrderedItems = await ordItems.ToListAsync();
+
+                foreach (OrderedItems oi in ordItems)
+                {
+                    var prods = from p in _context.Products
+                                where p.ID == oi.ProductID
+                                select p;
+                    oi.Prod = await prods.ToListAsync();
+
+                }
+
+                //foreach (OrderedItems ois in ordItems)
+                //{
+                //    var sci = from s in _context.ShoppingCartTable
+                //              where s.ID == ois.ShoppingCartItemID
+                //              select s;
+                //    ois.SCItems = await sci.ToListAsync();
+
+                //    foreach (ShoppingCartItem si in sci)
+                //    {
+                //        var prods = from p in _context.Products
+                //                    where p.ID == si.ProductID
+                //                    select p;
+                //        si.Prod = await prods.ToListAsync();
+
+                //    }
+                //}
+            }
+
             return await orders.ToListAsync();
         }
 

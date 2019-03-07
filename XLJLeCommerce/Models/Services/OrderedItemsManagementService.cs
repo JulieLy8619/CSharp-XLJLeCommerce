@@ -44,14 +44,14 @@ namespace XLJLeCommerce.Models.Services
                             .Where(i => i.OrderID == id)
                                 select oi;
                 //gets the shopping cart items for this partic order
-                foreach (OrderedItems ois in ordItems)
-                {
-                    var sci = from s in _context.ShoppingCartTable
-                                where s.ID == ois.ShoppingCartItemID
-                                select s;
-                    ois.SCItems = await sci.ToListAsync();
+                //foreach (OrderedItems ois in ordItems)
+                //{
+                //    var sci = from s in _context.ShoppingCartTable
+                //                where s.ID == ois.ShoppingCartItemID
+                //                select s;
+                //    ois.SCItems = await sci.ToListAsync();
 
-                }
+                //}
 
             return await ordItems.ToListAsync();
         }
