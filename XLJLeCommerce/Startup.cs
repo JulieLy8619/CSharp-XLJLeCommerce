@@ -15,6 +15,7 @@ using XLJLeCommerce.Models;
 using Microsoft.AspNetCore.Identity;
 using XLJLeCommerce.Models.Handler;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace XLJLeCommerce
 {
@@ -49,6 +50,7 @@ namespace XLJLeCommerce
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Over3minOnly", policy => policy.Requirements.Add(new MinRegisterTimeRequirement()));
+                options.AddPolicy("IsAdmin", policy => policy.Requirements.Add(new UserIsAdminHandler()));
             });
 
             services.AddAuthentication()
@@ -68,6 +70,8 @@ namespace XLJLeCommerce
             services.AddScoped<IShoppingCartItem, ShoppingCartItemManagementService>();
             services.AddScoped<IOrder, OrderManagementService>();
             services.AddScoped<IOrderedItems, OrderedItemsManagementService>();
+            services.AddScoped<IAuthorizationHandler,
+                          UserIsAdminHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
