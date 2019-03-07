@@ -39,7 +39,7 @@ namespace XLJLeCommerce
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
-                    options.Conventions.AuthorizeFolder("/Admin");
+                    options.Conventions.AuthorizeFolder("/Admin", "IsAdmin");
                 });
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
