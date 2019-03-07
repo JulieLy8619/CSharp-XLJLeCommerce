@@ -10,6 +10,14 @@ namespace XLJLeCommerce.Pages.Admin
     [AllowAnonymous]
     public class AdminModel : PageModel
     {
+        private UserManager<ApplicationUser> _userManager;
+        private ApplicationDbcontext _context;
+
+        public OrderController(UserManager<ApplicationUser> userManager, ApplicationDbcontext context)
+        {
+            _userManager = userManager;
+            _context = context;
+        }
         public void OnGet()
         {
         }

@@ -15,6 +15,7 @@ using XLJLeCommerce.Models;
 using Microsoft.AspNetCore.Identity;
 using XLJLeCommerce.Models.Handler;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace XLJLeCommerce
 {
@@ -68,6 +69,8 @@ namespace XLJLeCommerce
             services.AddScoped<IShoppingCartItem, ShoppingCartItemManagementService>();
             services.AddScoped<IOrder, OrderManagementService>();
             services.AddScoped<IOrderedItems, OrderedItemsManagementService>();
+            services.AddScoped<IAuthorizationHandler,
+                          UserIsAdminHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
