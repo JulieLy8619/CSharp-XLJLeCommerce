@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 {
-    public partial class initia2 : Migration
+    public partial class _030719rbuild27 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,8 +41,10 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     OrderID = table.Column<int>(nullable: false),
-                    ShoppingCartItemID = table.Column<int>(nullable: false),
-                    CartID = table.Column<int>(nullable: true)
+                    ProductID = table.Column<int>(nullable: false),
+                    ProdQty = table.Column<int>(nullable: false),
+                    CartID = table.Column<int>(nullable: true),
+                    ShoppingCartItemID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,11 +103,18 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                     Description = table.Column<string>(nullable: true),
                     ImageURL = table.Column<string>(nullable: true),
                     VIPItem = table.Column<bool>(nullable: false),
+                    OrderedItemsID = table.Column<int>(nullable: true),
                     ShoppingCartItemID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Products_OrderedItemsTable_OrderedItemsID",
+                        column: x => x.OrderedItemsID,
+                        principalTable: "OrderedItemsTable",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Products_ShoppingCartTable_ShoppingCartItemID",
                         column: x => x.ShoppingCartItemID,
@@ -116,19 +125,19 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ID", "Description", "ImageURL", "Name", "Price", "ShoppingCartItemID", "Sku", "VIPItem" },
+                columns: new[] { "ID", "Description", "ImageURL", "Name", "OrderedItemsID", "Price", "ShoppingCartItemID", "Sku", "VIPItem" },
                 values: new object[,]
                 {
-                    { 1, "The Unicorn is like a horse but has a magical horn that makes it more and better than a standard horse.", "/Assets/Unicorn.png", "Unicorn", 20m, null, "Unicorn1abc123", true },
-                    { 2, "The Dragon is a powerful magical lizard. About 30 times the size of a normal lizard and has special powers like breaths fire.", "/Assets/Dragon2.png", "Dragon", 25m, null, "Dragon1abc123", false },
-                    { 3, "The Fairy is a tiny magical being. They are about the size of an adult hand, faster than light, and have special fairy dust.", "/Assets/Fairy2Cropped.jpg", "Fairy", 30m, null, "Fairy1abc123", false },
-                    { 4, "The Griffin is a powerful magical creature. They are about the size of a grown elephant and has 3 times the strength of a whales bite.", "/Assets/Griffin.png", "Griffin", 20m, null, "Griffin1abc123", false },
-                    { 5, "The Hydra is a tiny but powerful animal, yet as gentle as a dmesticated puppy. They are about the size of two adult hands.", "/Assets/Hydra.png", "Hydra", 10m, null, "Hydra1abc123", false },
-                    { 6, "The Narwhal is a mystical sea creature who is related to the Unicorn family. They power comes from their horn like the Unicorn, however they are limited to only surviving in water. However, one of their magical powers is changing size to fit whatever water space size.", "/Assets/Narwhal.png", "NawWhal", 50m, null, "Narwhal1abc123", false },
-                    { 7, "The Troll is a misunderstood being. They often have a facade of ignorance, however they are genius, like Einstein IQ level", "/Assets/Troll.png", "Troll", 15m, null, "Troll1abc123", false },
-                    { 8, "The Werewolf is a decieving beast because they are human by day, and wolf by night. Becautious as it is unknown but they are the pranksters of the animal world.", "/Assets/WereWolf.png", "Werewolf", 15m, null, "Werewolf1abc123", true },
-                    { 9, "The Minotaur is a half human half horse. They are the size of a dwarfed giant with a slightly larger horse. Their powers include mind reading and surviving on nothing for a year. They live for several hundreds of years.", "/Assets/Minotaur.jpg", "Minotaur", 20m, null, "Minotaur1abc123", false },
-                    { 10, "The Mermaid is half human and half fish. Their magic comes from their scales, which allows them to, but not limited to, create an illusion for how others view them.", "/Assets/MermaidCropped.jpg", "Mermaid", 40m, null, "Mermaid1abc123", true }
+                    { 1, "The Unicorn is like a horse but has a magical horn that makes it more and better than a standard horse.", "/Assets/Unicorn.png", "Unicorn", null, 20m, null, "Unicorn1abc123", true },
+                    { 2, "The Dragon is a powerful magical lizard. About 30 times the size of a normal lizard and has special powers like breaths fire.", "/Assets/Dragon2.png", "Dragon", null, 25m, null, "Dragon1abc123", false },
+                    { 3, "The Fairy is a tiny magical being. They are about the size of an adult hand, faster than light, and have special fairy dust.", "/Assets/Fairy2Cropped.jpg", "Fairy", null, 30m, null, "Fairy1abc123", false },
+                    { 4, "The Griffin is a powerful magical creature. They are about the size of a grown elephant and has 3 times the strength of a whales bite.", "/Assets/Griffin.png", "Griffin", null, 20m, null, "Griffin1abc123", false },
+                    { 5, "The Hydra is a tiny but powerful animal, yet as gentle as a dmesticated puppy. They are about the size of two adult hands.", "/Assets/Hydra.png", "Hydra", null, 10m, null, "Hydra1abc123", false },
+                    { 6, "The Narwhal is a mystical sea creature who is related to the Unicorn family. They power comes from their horn like the Unicorn, however they are limited to only surviving in water. However, one of their magical powers is changing size to fit whatever water space size.", "/Assets/Narwhal.png", "NawWhal", null, 50m, null, "Narwhal1abc123", false },
+                    { 7, "The Troll is a misunderstood being. They often have a facade of ignorance, however they are genius, like Einstein IQ level", "/Assets/Troll.png", "Troll", null, 15m, null, "Troll1abc123", false },
+                    { 8, "The Werewolf is a decieving beast because they are human by day, and wolf by night. Becautious as it is unknown but they are the pranksters of the animal world.", "/Assets/WereWolf.png", "Werewolf", null, 15m, null, "Werewolf1abc123", true },
+                    { 9, "The Minotaur is a half human half horse. They are the size of a dwarfed giant with a slightly larger horse. Their powers include mind reading and surviving on nothing for a year. They live for several hundreds of years.", "/Assets/Minotaur.jpg", "Minotaur", null, 20m, null, "Minotaur1abc123", false },
+                    { 10, "The Mermaid is half human and half fish. Their magic comes from their scales, which allows them to, but not limited to, create an illusion for how others view them.", "/Assets/MermaidCropped.jpg", "Mermaid", null, 40m, null, "Mermaid1abc123", true }
                 });
 
             migrationBuilder.CreateIndex(
@@ -142,9 +151,19 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                 column: "OrderID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderedItemsTable_ProductID",
+                table: "OrderedItemsTable",
+                column: "ProductID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderedItemsTable_ShoppingCartItemID",
                 table: "OrderedItemsTable",
                 column: "ShoppingCartItemID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_OrderedItemsID",
+                table: "Products",
+                column: "OrderedItemsID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_ShoppingCartItemID",
@@ -167,12 +186,20 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                 column: "ProductID");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_OrderedItemsTable_Products_ProductID",
+                table: "OrderedItemsTable",
+                column: "ProductID",
+                principalTable: "Products",
+                principalColumn: "ID",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_OrderedItemsTable_ShoppingCartTable_ShoppingCartItemID",
                 table: "OrderedItemsTable",
                 column: "ShoppingCartItemID",
                 principalTable: "ShoppingCartTable",
                 principalColumn: "ID",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ShoppingCartTable_Products_ProductID",
@@ -198,12 +225,16 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                 table: "OrderedItemsTable");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_OrderedItemsTable_ShoppingCartTable_ShoppingCartItemID",
+                name: "FK_OrderedItemsTable_Products_ProductID",
                 table: "OrderedItemsTable");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Products_ShoppingCartTable_ShoppingCartItemID",
-                table: "Products");
+                name: "FK_ShoppingCartTable_Products_ProductID",
+                table: "ShoppingCartTable");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_OrderedItemsTable_ShoppingCartTable_ShoppingCartItemID",
+                table: "OrderedItemsTable");
 
             migrationBuilder.DropTable(
                 name: "Carts");
@@ -212,13 +243,13 @@ namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
                 name: "OrderTable");
 
             migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
                 name: "ShoppingCartTable");
 
             migrationBuilder.DropTable(
                 name: "OrderedItemsTable");
-
-            migrationBuilder.DropTable(
-                name: "Products");
         }
     }
 }
