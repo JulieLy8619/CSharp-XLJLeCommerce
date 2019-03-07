@@ -14,5 +14,6 @@ namespace XLJLeCommerce.Models.Interfaces
         //we shouldn't delete orders
 
         Task<List<Order>> GetOrder(string id);
+        Task<List<Order>> GetLastTenOrder();
     }
 }

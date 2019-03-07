@@ -44,5 +44,13 @@ namespace XLJLeCommerce.Models.Services
             return await orders.ToListAsync();
         }
 
+        public async Task<List<Order>> GetLastTenOrder()
+        {
+            var orders = (from o in _context.OrderTable
+                              orderby o.ID descending
+                         select o).Take(10);
+            return await orders.ToListAsync();
+        }
+
     }
 }
