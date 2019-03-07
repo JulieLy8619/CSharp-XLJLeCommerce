@@ -16,7 +16,7 @@ namespace XLJLeCommerce.Models.Handler
                 return Task.CompletedTask;
             }
 
-            if (context.User.IsInRole("Administrator"))
+            if (context.User.IsInRole(ApplicationRoles.Admin))
             {
                 context.Succeed(requirement);
             }
