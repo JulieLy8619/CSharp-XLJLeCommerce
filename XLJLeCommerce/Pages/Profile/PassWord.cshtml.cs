@@ -39,5 +39,20 @@ namespace XLJLeCommerce.Pages.Profile
         {
             ApplicationUser = await _userManager.GetUserAsync(User);
         }
+
+        public async Task<IActionResult> OnPost()
+        {
+            //find the user
+            //find the user's password
+            //update it
+            //save it
+
+            //var user = await _userManager.GetUserAsync(User);
+            string newPW = Password;
+            string token = await _userManager.GeneratePasswordResetTokenAsync(ApplicationUser);
+
+            await _userManager.ResetPasswordAsync(ApplicationUser, token, newPW);
+            return RedirectToPage("/Profile/Index");
+        }
     }
 }
