@@ -16,7 +16,12 @@ namespace XLJLeCommerce.Controllers
         private readonly ICart _cart;
         private readonly IShoppingCartItem _shoppingCartItem;
         private UserManager<ApplicationUser> _userManager;
-
+        /// <summary>
+        /// cartcontroller constructor 
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <param name="shoppingCartItem"></param>
+        /// <param name="userManager"></param>
         public CartController(ICart cart, IShoppingCartItem shoppingCartItem, UserManager<ApplicationUser> userManager)
         {
             _cart = cart;

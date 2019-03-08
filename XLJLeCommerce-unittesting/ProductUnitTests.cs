@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using XLJLeCommerce.Data;
 using XLJLeCommerce.Models;
+using XLJLeCommerce.Models.Services;
 using Xunit;
 
 namespace XLJLeCommerce_unittesting
@@ -101,5 +104,129 @@ namespace XLJLeCommerce_unittesting
             testProd10.ImageURL = "aNewImageURL";
             Assert.Equal("aNewImageURL", testProd10.ImageURL);
         }
+
+/// <summary>
+/// create a product
+/// </summary>
+        [Fact]
+        public async void TestCreateOrder()
+        {
+            DbContextOptions<CreaturesDbcontext> options = new DbContextOptionsBuilder<CreaturesDbcontext>().UseInMemoryDatabase("CreateProduct").Options;
+
+            using (CreaturesDbcontext context = new CreaturesDbcontext(options))
+            {
+
+                Product p = new Product();
+               p.ID = 1;
+                ProductManagementService Service = new ProductManagementService(context);
+
+                await Service.Create(p);
+
+                var r = await context.Products.FirstOrDefaultAsync(c => c.ID == p.ID);
+
+                Assert.Equal(p, r);
+            }
+        }
+        /// <summary>
+        /// can get one product
+        /// </summary>
+        [Fact]
+        public async void TestGetOneProduct()
+        {
+            DbContextOptions<CreaturesDbcontext> options = new DbContextOptionsBuilder<CreaturesDbcontext>().UseInMemoryDatabase("GetOneProduct").Options;
+
+            using (CreaturesDbcontext context = new CreaturesDbcontext(options))
+            {
+
+
+                Product p = new Product();
+                p.ID = 1;
+                Product pp = new Product();
+                pp.ID = 2;
+                ProductManagementService Service = new ProductManagementService(context);
+
+                await Service.Create(p);
+                await Service.Create(pp);
+                
+                var res = await Service.GetProduct(2);
+
+                Assert.Equal(pp, res);
+            }
+        }
+
+        /// <summary>
+        /// can get all products
+        /// </summary>
+        [Fact]
+        public async void TestGetallProducts()
+        {
+            DbContextOptions<CreaturesDbcontext> options = new DbContextOptionsBuilder<CreaturesDbcontext>().UseInMemoryDatabase("GetProducts").Options;
+
+            using (CreaturesDbcontext context = new CreaturesDbcontext(options))
+            {
+
+
+                Product p = new Product();
+                p.ID = 1;
+                Product pp = new Product();
+                pp.ID = 2;
+                ProductManagementService Service = new ProductManagementService(context);
+
+                await Service.Create(p);
+                await Service.Create(pp);
+
+                var res = await Service.GetAllProducts();
+
+                Assert.Equal(2, res.Count);
+            }
+        }
+
+        /// <summary>
+        /// can delete one product
+        /// </summary>
+        [Fact]
+        public async void TestdeleteProduct()
+        {
+            DbContextOptions<CreaturesDbcontext> options = new DbContextOptionsBuilder<CreaturesDbcontext>().UseInMemoryDatabase("DeleteProduct").Options;
+
+            using (CreaturesDbcontext context = new CreaturesDbcontext(options))
+            {
+                Product p = new Product();
+                p.ID = 1;
+                Product pp = new Product();
+                pp.ID = 2;
+                ProductManagementService Service = new ProductManagementService(context);
+
+                await Service.Create(p);
+                await Service.Create(pp);
+
+                 await Service.DeleteProduct(1);
+                var expect = await context.Products.FirstOrDefaultAsync(c => c.ID == 1);
+                Assert.Null(expect);
+            }
+        }
+
+        /// <summary>
+        /// can update product
+        /// </summary>
+        [Fact]
+        public async void TestupdateProduct()
+        {
+            DbContextOptions<CreaturesDbcontext> options = new DbContextOptionsBuilder<CreaturesDbcontext>().UseInMemoryDatabase("updateProduct").Options;
+
+            using (CreaturesDbcontext context = new CreaturesDbcontext(options))
+            {
+                Product p = new Product();
+                p.ID = 1;
+                p.Name = "unicorn";
+                ProductManagementService Service = new ProductManagementService(context);
+                await Service.Create(p);
+                p.Name = "test";
+               await Service.UpdateProduct(p);
+                var expect = await context.Products.FirstOrDefaultAsync(c => c.ID == 1);
+                Assert.Equal("test",expect.Name);
+            }
+        }
+
     }
 }

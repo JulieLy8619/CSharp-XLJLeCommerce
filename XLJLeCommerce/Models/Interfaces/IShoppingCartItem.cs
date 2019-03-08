@@ -12,7 +12,7 @@ namespace XLJLeCommerce.Models.Interfaces
         //gets one specific item from the cart
         Task<ShoppingCartItem> GetShoppingCartItem(int id);
         //gets all the items in the cart
-        Task<IEnumerable<ShoppingCartItem>> GetAllShoppingCartItems(int id);
+        Task<List<ShoppingCartItem>> GetAllShoppingCartItems(int id);
         //updates one item in the cart
         //Task UpdateShoppingCartItem(ShoppingCartItem shoppingCartItem);
         Task UpdateShoppingCartItem(int id, int qty);

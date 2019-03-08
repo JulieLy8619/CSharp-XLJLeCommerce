@@ -20,7 +20,10 @@ namespace XLJLeCommerce.Controllers
             _userManager = userManager;
             _context = context;
         }
-
+        /// <summary>
+        /// find what user it is now, and find the user's order with the email
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
             string userEmail = User.Identity.Name;

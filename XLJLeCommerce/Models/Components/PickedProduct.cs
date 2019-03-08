@@ -24,7 +24,10 @@ namespace XLJLeCommerce.Models.Components
             _userManager = userManager;
             _shoppingCartItem = shoppingCartItem;
         }
-
+        /// <summary>
+        /// invoke the viewcomponents action here, using the useremail to find the user and find user's cart and get all the items in the cart,show them on the page
+        /// </summary>
+        /// <returns></returns>
         public async Task<IViewComponentResult> InvokeAsync() 
         {
             if (User.Identity.Name != null)
