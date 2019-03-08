@@ -8,12 +8,21 @@
 }
 
 <h2>Profile Page</h2>
-<form>
-    <label method="post" asp-for="User.Name"></label>
-    <input asp-for="User.Name" />
+<form method="post">
+    <label asp-for="AppUser.FirstName"></label>
+    <input asp-for="AppUser.FirstName" />
+   
+    <label asp-for="AppUser.LastName"></label>
+    <input asp-for="AppUser.LastName" />
+ 
+    <label asp-for="AppUser.Birthdate"></label>
+    <input asp-for="AppUser.Birthdate" />
 
-    <label method="post" asp-for="User.Email"></label>
-    <label asp-for="User.Email" />
+    <label asp-for="AppUser.Email"></label>
+    <input asp-for="AppUser.Email" />
+
+    <label asp-for="AppUser.Address"></label>
+    <input asp-for="AppUser.Address" />
 
     <button type="submit">Save</button>
 
