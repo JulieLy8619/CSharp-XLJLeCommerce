@@ -22,10 +22,12 @@ namespace XLJLeCommerce.Pages.Profile
             _signInManager = signInManager;
         }
 
+        [BindProperty]
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [BindProperty]
         [Required]
         [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
