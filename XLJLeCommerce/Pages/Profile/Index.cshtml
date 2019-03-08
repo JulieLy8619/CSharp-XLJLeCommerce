@@ -1,0 +1,21 @@
+﻿@page
+@model XLJLeCommerce.Pages.Profile.IndexModel
+
+
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>Profile Page</h2>
+<form>
+    <label method="post" asp-for="User.Name"></label>
+    <input asp-for="User.Name" />
+
+    <label method="post" asp-for="User.Email"></label>
+    <label asp-for="User.Email" />
+
+    <button type="submit">Save</button>
+
+
+</form>
