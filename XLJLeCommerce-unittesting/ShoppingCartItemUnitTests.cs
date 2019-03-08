@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using XLJLeCommerce.Data;
 using XLJLeCommerce.Models;
 using XLJLeCommerce.Models.Services;
@@ -124,5 +125,114 @@ namespace XLJLeCommerce_unittesting
             }
 
         }
+
+        /// <summary>
+        /// get all shoppingcartitems
+        /// </summary>
+        [Fact]
+        public async void TestGetAllShoppingCartItems()
+        {
+            DbContextOptions<CreaturesDbcontext> options = new DbContextOptionsBuilder<CreaturesDbcontext>().UseInMemoryDatabase("GetAllShoppingcartItems").Options;
+
+            using (CreaturesDbcontext context = new CreaturesDbcontext(options))
+            {
+
+                ShoppingCartItem si = new ShoppingCartItem();
+                si.ID = 1;
+                si.CartID = 1;
+                ShoppingCartItem st = new ShoppingCartItem();
+                st.ID = 2;
+                st.CartID = 1;
+                ShoppingCartItemManagementService Service = new ShoppingCartItemManagementService(context);
+
+                await Service.CreateShoppingCartItem(si);
+                await Service.CreateShoppingCartItem(st);
+
+               List<ShoppingCartItem> res = await Service.GetAllShoppingCartItems(1);
+
+                Assert.Equal(2,res.Count);
+            }
+        }
+        /// <summary>
+        /// get one shoppingcartitem
+        /// </summary>
+        [Fact]
+        public async void TestGetOneShoppingCartItems()
+        {
+            DbContextOptions<CreaturesDbcontext> options = new DbContextOptionsBuilder<CreaturesDbcontext>().UseInMemoryDatabase("GetOneShoppingcartItem").Options;
+
+            using (CreaturesDbcontext context = new CreaturesDbcontext(options))
+            {
+
+                ShoppingCartItem si = new ShoppingCartItem();
+                si.ID = 1;
+                si.CartID = 1;
+                ShoppingCartItem st = new ShoppingCartItem();
+                st.ID = 2;
+                st.CartID = 1;
+                ShoppingCartItemManagementService Service = new ShoppingCartItemManagementService(context);
+
+                await Service.CreateShoppingCartItem(si);
+                await Service.CreateShoppingCartItem(st);
+
+                var res = await Service.GetShoppingCartItem(1);
+
+                Assert.Equal(1, res.ID);
+            }
+        }
+        /// <summary>
+        /// can update item quantity
+        /// </summary>
+        [Fact]
+        public async void canuodatequantity()
+        {
+            DbContextOptions<CreaturesDbcontext> options = new DbContextOptionsBuilder<CreaturesDbcontext>().UseInMemoryDatabase("updatequantity").Options;
+
+            using (CreaturesDbcontext context = new CreaturesDbcontext(options))
+            {
+
+                ShoppingCartItem si = new ShoppingCartItem();
+                si.ID = 1;
+                si.ProdQty = 10;
+                ShoppingCartItemManagementService Service = new ShoppingCartItemManagementService(context);
+
+                await Service.CreateShoppingCartItem(si);
+                var res =  Service.UpdateShoppingCartItem(1, 7);
+
+                var expect = await context.ShoppingCartTable.FirstOrDefaultAsync(c => c.ID == si.ID);
+
+                Assert.Equal(7, expect.ProdQty);
+            }
+
+        }
+        /// <summary>
+        /// can delete one shoppingcartitem
+        /// </summary>
+        [Fact]
+        public async void candeleteoneshoppingcartitem()
+        {
+            DbContextOptions<CreaturesDbcontext> options = new DbContextOptionsBuilder<CreaturesDbcontext>().UseInMemoryDatabase("deleteshoppingcartitem").Options;
+
+            using (CreaturesDbcontext context = new CreaturesDbcontext(options))
+            {
+
+                ShoppingCartItem si = new ShoppingCartItem();
+                si.ID = 1;
+                si.ProdQty = 10;
+                ShoppingCartItem st = new ShoppingCartItem();
+                st.ID = 2;
+                st.ProdQty = 4;
+                ShoppingCartItemManagementService Service = new ShoppingCartItemManagementService(context);
+
+                await Service.CreateShoppingCartItem(si);
+                await Service.CreateShoppingCartItem(st);
+                await Service.DeleteShoppingCartItem(2);
+                var expect = await context.ShoppingCartTable.FirstOrDefaultAsync(c => c.ID == 2);
+
+                Assert.Null(await context.ShoppingCartTable.FirstOrDefaultAsync(c => c.ID == 2));
+            }
+
+        }
+
     }
 }
