@@ -44,8 +44,6 @@ namespace XLJLeCommerce_unittesting
             Assert.Equal(300, testOrder4.Totalprice);
         }
 
-        //Do I need to test the List "public List<OrderedItems> OrderedItems { get; set; }"
-
         //create order
         [Fact]
         public async void TestCreateOrder()

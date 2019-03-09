@@ -17,7 +17,6 @@ namespace XLJLeCommerce.Controllers
 {
     public class CheckoutController : Controller
     {
-        private CreaturesDbcontext _context;
         private readonly IOrder _order;
         private readonly IShoppingCartItem _shoppingCartItem;
         private readonly ICart _cart;
@@ -25,7 +24,16 @@ namespace XLJLeCommerce.Controllers
         private IEmailSender _emailSender;
         private UserManager<ApplicationUser> _userManager;
 
-        public CheckoutController(CreaturesDbcontext context,ICart cart, IShoppingCartItem shoppingCartItem, IOrder order, UserManager<ApplicationUser> userManager, IOrderedItems ordereditems, IEmailSender emailSender)
+        /// <summary>
+        /// injects other tables
+        /// </summary>
+        /// <param name="cart">cart table</param>
+        /// <param name="shoppingCartItem">shopping cart item table</param>
+        /// <param name="order">order table</param>
+        /// <param name="userManager">identityd table</param>
+        /// <param name="ordereditems">ordered items table</param>
+        /// <param name="emailSender">email table</param>
+        public CheckoutController(ICart cart, IShoppingCartItem shoppingCartItem, IOrder order, UserManager<ApplicationUser> userManager, IOrderedItems ordereditems, IEmailSender emailSender)
         {
             _ordereditems = ordereditems;
             _cart = cart;
@@ -33,7 +41,6 @@ namespace XLJLeCommerce.Controllers
             _shoppingCartItem = shoppingCartItem;
             _userManager = userManager;
             _emailSender = emailSender;
-            _context = context;
         }
 
         /// <summary>
@@ -60,7 +67,7 @@ namespace XLJLeCommerce.Controllers
             //move all shopping items in cart to order items
             //find their carts
             Cart cartObj = await _cart.GetCart(userID);
-                //get all the items in the cart
+            //get all the items in the cart
             IEnumerable<ShoppingCartItem> cartitems = await _shoppingCartItem.GetAllShoppingCartItems(cartObj.ID);
 
             if (cartitems.Count() <= 0)
@@ -69,11 +76,8 @@ namespace XLJLeCommerce.Controllers
             }
             else
             {
-
-
                 decimal totalprice = 0m;
                 //convert it to orderitem
-
                 foreach (var item in cartitems)
                 {
                     totalprice += (item.ProdQty * item.Product.Price);
@@ -87,10 +91,8 @@ namespace XLJLeCommerce.Controllers
                 {
                     OrderedItems tempOrdItem = new OrderedItems();
                     tempOrdItem.OrderID = ord.ID;
-                    //tempOrdItem.CartID = item.CartID;
                     tempOrdItem.ProductID = item.ProductID;
                     tempOrdItem.ProdQty = item.ProdQty;
-                    //tempOrdItem.ShoppingCartItemID = item.ID;
                     await _ordereditems.CreateOrderedItem(tempOrdItem);
                 }
 
@@ -110,9 +112,6 @@ namespace XLJLeCommerce.Controllers
         public string ReceiptEmailBuilder(Order order, List<OrderedItems> ordItems)
         {
             string returnMessage = $"Confirmation number {order.ID}{order.UserID} <br /> You ordered: <br />";
-            //iterate through ordered items looking for order number
-            //then for each of those, put that in the message
-            //List<OrderedItems> ordedItems = await _ordereditems.GetAllOrderedItems(order.ID);
 
             int total = 0;
 
@@ -133,7 +132,7 @@ namespace XLJLeCommerce.Controllers
         /// <summary>
         /// just view the payment page by using httpget
         /// </summary>
-        /// <returns></returns>
+        /// <returns>payment page</returns>
         [HttpGet]
         public IActionResult Payment()
         {
@@ -143,7 +142,7 @@ namespace XLJLeCommerce.Controllers
         /// bring in the paymentviewmodle and get payment information from the modle
         /// </summary>
         /// <param name="pvm"></param>
-        /// <returns></returns>
+        /// <returns>receipt page if payment processed correctly</returns>
         [HttpPost]
         public async Task<IActionResult> Payment(PaymentViewModel pvm)
         {
@@ -161,7 +160,6 @@ namespace XLJLeCommerce.Controllers
                 expirationDate = pvm.ExpDate
             };
 
-         
             customerAddressType billingAddress = new customerAddressType()
             {   firstName=pvm.FirstName,
                 lastName = pvm.LastName,
@@ -183,11 +181,8 @@ namespace XLJLeCommerce.Controllers
             {
                 OrderedItems tempOrdItem = new OrderedItems();
                 tempOrdItem.OrderID = ord.ID;
-                //tempOrdItem.CartID = item.CartID;
                 tempOrdItem.ProductID = item.ProductID;
                 tempOrdItem.ProdQty = item.ProdQty;
-                //tempOrdItem.ShoppingCartItemID = item.ID;
-                //then delete it from shopping cart or wait to do this when we pay
                 totalprice += (item.ProdQty * item.Product.Price);
             }
 
@@ -230,14 +225,13 @@ namespace XLJLeCommerce.Controllers
                     return View();
                 }
             }
-
             return View();
-
         }
+
         /// <summary>
         /// will view the receipt page after payment
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the receipt page</returns>
         [HttpGet]
         public async Task<IActionResult> Receipt()
         {
@@ -255,7 +249,6 @@ namespace XLJLeCommerce.Controllers
             {
                 OrderedItems tempOrdItem = new OrderedItems();
                 tempOrdItem.OrderID = ord.ID;
-                //tempOrdItem.ShoppingCartItemID = item.ID;
                 totalprice += (item.ProdQty * item.Product.Price);
                 await _shoppingCartItem.DeleteShoppingCartItem(item.ID);
             }

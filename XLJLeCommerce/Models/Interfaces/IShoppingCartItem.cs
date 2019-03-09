@@ -14,7 +14,6 @@ namespace XLJLeCommerce.Models.Interfaces
         //gets all the items in the cart
         Task<List<ShoppingCartItem>> GetAllShoppingCartItems(int id);
         //updates one item in the cart
-        //Task UpdateShoppingCartItem(ShoppingCartItem shoppingCartItem);
         Task UpdateShoppingCartItem(int id, int qty);
         //deletes an item from the cart
         Task DeleteShoppingCartItem(int id);

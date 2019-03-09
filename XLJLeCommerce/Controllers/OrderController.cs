@@ -13,17 +13,25 @@ namespace XLJLeCommerce.Controllers
     public class OrderController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
-        private CreaturesDbcontext _context;
+        private readonly IOrder _order;
+        private readonly CreaturesDbcontext _context;
 
-        public OrderController(UserManager<ApplicationUser> userManager, CreaturesDbcontext context)
+        /// <summary>
+        /// access to other tables
+        /// </summary>
+        /// <param name="userManager">identity table</param>
+        /// <param name="order">order table</param>
+        public OrderController(UserManager<ApplicationUser> userManager, IOrder order, CreaturesDbcontext context)
         {
             _userManager = userManager;
+            _order = order;
             _context = context;
         }
+
         /// <summary>
         /// find what user it is now, and find the user's order with the email
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the order home page</returns>
         public async Task<IActionResult> Index()
         {
             string userEmail = User.Identity.Name;
@@ -31,7 +39,6 @@ namespace XLJLeCommerce.Controllers
             if (user != null)
             {
                 string userID = user.Id;
-                //await _order.GetOrder(userID);
                 var res = _context.OrderTable.Where(o => o.UserID == userID);
                 return View(res);
             }

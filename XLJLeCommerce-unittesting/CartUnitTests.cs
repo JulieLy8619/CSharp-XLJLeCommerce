@@ -29,8 +29,6 @@ namespace XLJLeCommerce_unittesting
             Assert.Equal("NewGoop", testCart2.UserID);
         }
 
-        //do I need to test the List "public List<ShoppingCartItem> CartItems {get;set;}"?
-
         //create cart
         [Fact]
         public async void TestCreateCart()

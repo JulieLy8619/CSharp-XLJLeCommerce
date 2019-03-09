@@ -18,6 +18,13 @@ namespace XLJLeCommerce.Controllers
         private readonly IShoppingCartItem _shoppingCartItem;
         private UserManager<ApplicationUser> _userManager;
 
+        /// <summary>
+        /// access to other tables
+        /// </summary>
+        /// <param name="product">prod table</param>
+        /// <param name="cart">cart table</param>
+        /// <param name="shoppingCartItem">shoppingcartitem table</param>
+        /// <param name="userManager">identity table</param>
         public ProductController(Iproduct product, ICart cart, IShoppingCartItem shoppingCartItem, UserManager<ApplicationUser> userManager)
         {
             _cart = cart;
@@ -29,7 +36,7 @@ namespace XLJLeCommerce.Controllers
         /// <summary>
         /// gets all the products to display on a page
         /// </summary>
-        /// <returns>page</returns>
+        /// <returns>prod home page</returns>
         public async Task<IActionResult> Index()
         {
             return View(await _product.GetAllProducts());
@@ -45,10 +52,6 @@ namespace XLJLeCommerce.Controllers
             var prod = await _product.GetProduct(id);
             return View(prod);
         }
-
-        //we won't have a create product because a a user can't add any
-
-        //we won't have a delete product because a user can't delete any
 
         /// <summary>
         /// adds a shopping cart item to the cart

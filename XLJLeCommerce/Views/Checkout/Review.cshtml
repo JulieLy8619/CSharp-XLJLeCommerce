@@ -9,16 +9,12 @@
 {
 <ul>
     <li>Name:@item.Product.Name</li>
-   <li> <img src="@item.Product.ImageURL" /></li>
+    <li> <img src="@item.Product.ImageURL" /></li>
     <li>Price: @item.Product.Price</li>
     <li>Quantity: @item.ProdQty</li>
 </ul>
-
 }
 
 <p>Total: @Model.FirstOrDefault().Order.Totalprice</p>
-@*<form method="post" asp-controller="Checkout" asp-action="Payment">
-    <button type="submit">Continue</button>
-</form>*@
 
 <a asp-controller="Checkout" asp-action="Payment">Continue</a>

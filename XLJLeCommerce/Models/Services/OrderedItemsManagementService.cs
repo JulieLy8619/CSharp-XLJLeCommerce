@@ -14,7 +14,7 @@ namespace XLJLeCommerce.Models.Services
         /// <summary>
         /// OrderedItemsManagementService constructor by bringing in the creatureDbContext 
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">the database</param>
         public OrderedItemsManagementService(CreaturesDbcontext context)
         {
             _context = context;
@@ -29,7 +29,6 @@ namespace XLJLeCommerce.Models.Services
         {
                  _context.OrderedItemsTable.Add(orderedItems);
                 await _context.SaveChangesAsync();      
-           
         }
 
         /// <summary>

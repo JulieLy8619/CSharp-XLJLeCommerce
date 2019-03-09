@@ -21,19 +21,15 @@ namespace XLJLeCommerce.Models.Handler
             {
                 return Task.CompletedTask;
             }
-                DateTime dateOfRegister = Convert.ToDateTime(context.User.FindFirst(u => u.Type == "RegisteredDate").Value);
 
-                int Day = DateTime.Today.DayOfYear - dateOfRegister.DayOfYear;
-            //Day = 3; //just for testing
-                if (Day >= 1)
-                {
-                    context.Succeed(requirement);
+            DateTime dateOfRegister = Convert.ToDateTime(context.User.FindFirst(u => u.Type == "RegisteredDate").Value);
 
-                }
-            
-                return Task.CompletedTask;
-            
-           
+            int Day = DateTime.Today.DayOfYear - dateOfRegister.DayOfYear;
+            if (Day >= 1)
+            {
+                context.Succeed(requirement);
+            }
+            return Task.CompletedTask;
         }
     }
 }

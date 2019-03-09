@@ -42,11 +42,19 @@ namespace XLJLeCommerce.Pages.Profile
         [BindProperty]
         public ApplicationUser ApplicationUser { get; set; }
 
+        /// <summary>
+        /// gets the user
+        /// </summary>
+        /// <returns>the user</returns>
         public async Task OnGet()
         {
             ApplicationUser = await _userManager.GetUserAsync(User);
         }
 
+        /// <summary>
+        /// updates the user's password
+        /// </summary>
+        /// <returns>to the profile index page</returns>
         public async Task<IActionResult> OnPost()
         {
             ApplicationUser = await _userManager.GetUserAsync(User);

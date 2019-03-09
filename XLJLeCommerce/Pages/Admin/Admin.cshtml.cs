@@ -20,7 +20,12 @@ namespace XLJLeCommerce.Pages.Admin
         private readonly IOrderedItems _ordereditems;
         protected IAuthorizationService _AuthorizationService { get; }
 
-
+        /// <summary>
+        /// access to other tables
+        /// </summary>
+        /// <param name="order">order table</param>
+        /// <param name="ordereditems">ordereditems tables</param>
+        /// <param name="authorizationService">roles table</param>
         public AdminModel(IOrder order, IOrderedItems ordereditems, IAuthorizationService authorizationService)
         {
             _order = order;
@@ -33,7 +38,10 @@ namespace XLJLeCommerce.Pages.Admin
         [BindProperty]
         public List<Order> Order { get; set; }
 
-        //[Authorize]
+        /// <summary>
+        /// gets last 10 orders of site
+        /// </summary>
+        /// <returns>the last 10 orders of the site</returns>
         public async Task OnGet()
         {
             Order = await _order.GetLastTenOrder(); 

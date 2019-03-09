@@ -9,10 +9,8 @@ namespace XLJLeCommerce.Models
     {
         public int ID { get; set; }
         public int OrderID { get; set; }
-        //public int CartID { get; set; }
         public int ProductID { get; set; }
         public int ProdQty { get; set; }
-        //public int ShoppingCartItemID { get; set; }
 
         //navigation
         public ICollection<Product> Prod { get; set; }

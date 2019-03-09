@@ -11,14 +11,16 @@ namespace XLJLeCommerce.Models.Services
     public class ShoppingCartItemManagementService : IShoppingCartItem
     {
         private CreaturesDbcontext _context { get; }
+
         /// <summary>
         /// constructor for shoppingcartitemmanagementservice and bring in the creaturesDbcontext
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">database</param>
         public ShoppingCartItemManagementService(CreaturesDbcontext context)
         {
             _context = context;
         }
+
         /// <summary>
         /// creates an item to add to the shopping cart
         /// </summary>
@@ -59,11 +61,7 @@ namespace XLJLeCommerce.Models.Services
                            where p.ID == sci.ProductID
                            select p;
                 sci.Prod = await prods.ToListAsync();
-               
             }
-
-
-
             return await cartItems.ToListAsync();
         }
 
@@ -78,15 +76,11 @@ namespace XLJLeCommerce.Models.Services
         }
 
         /// <summary>
-        /// updates the shopping cart item
+        /// updates the qty of a shoppingcartitem
         /// </summary>
-        /// <param name="shoppingCartItem">the shoping cart item</param>
-        /// <returns>the compelted task that it updated the database</returns>
-        //public async Task UpdateShoppingCartItem(ShoppingCartItem shoppingCartItem)
-        //{
-        //    _context.ShoppingCartTable.Update(shoppingCartItem);
-        //    await _context.SaveChangesAsync();
-        //}
+        /// <param name="id">which item</param>
+        /// <param name="qty">the new qty</param>
+        /// <returns>when task is done</returns>
         public async Task UpdateShoppingCartItem(int id, int qty)
         {
             var item = await _context.ShoppingCartTable.FirstOrDefaultAsync(sci => sci.ID == id);

@@ -11,7 +11,7 @@ namespace XLJLeCommerce.Controllers
         /// <summary>
         /// calls the defult home page
         /// </summary>
-        /// <returns></returns>
+        /// <returns>home page</returns>
         public IActionResult Index()
         {
             return View();

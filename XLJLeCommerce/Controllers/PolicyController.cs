@@ -17,6 +17,11 @@ namespace XLJLeCommerce.Controllers
         private readonly Iproduct _product;
         private UserManager<ApplicationUser> _userManager;
        
+        /// <summary>
+        /// access to other tables
+        /// </summary>
+        /// <param name="product">product table</param>
+        /// <param name="userManager">identity table</param>
         public PolicyController(Iproduct product, UserManager<ApplicationUser> userManager)
         {
             _product = product;
