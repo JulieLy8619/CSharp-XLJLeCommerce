@@ -62,34 +62,43 @@ namespace XLJLeCommerce.Controllers
             Cart cartObj = await _cart.GetCart(userID);
                 //get all the items in the cart
             IEnumerable<ShoppingCartItem> cartitems = await _shoppingCartItem.GetAllShoppingCartItems(cartObj.ID);
-            decimal totalprice = 0m;
-            //convert it to orderitem
-                    
-            foreach (var item in cartitems)
+
+            if (cartitems.Count() <= 0)
             {
-                totalprice += (item.ProdQty * item.Product.Price);
+                return RedirectToAction("Index", "Product");
             }
-            Order ord = new Order();
-            ord.UserID = userID;
-            ord.Totalprice = totalprice;
-            await _order.CreateOrder(ord);
-
-            foreach (var item in cartitems)
+            else
             {
-                OrderedItems tempOrdItem = new OrderedItems();
-                tempOrdItem.OrderID = ord.ID;
-                //tempOrdItem.CartID = item.CartID;
-                tempOrdItem.ProductID = item.ProductID;
-                tempOrdItem.ProdQty = item.ProdQty;
-                //tempOrdItem.ShoppingCartItemID = item.ID;
-                await _ordereditems.CreateOrderedItem(tempOrdItem);
+
+
+                decimal totalprice = 0m;
+                //convert it to orderitem
+
+                foreach (var item in cartitems)
+                {
+                    totalprice += (item.ProdQty * item.Product.Price);
+                }
+                Order ord = new Order();
+                ord.UserID = userID;
+                ord.Totalprice = totalprice;
+                await _order.CreateOrder(ord);
+
+                foreach (var item in cartitems)
+                {
+                    OrderedItems tempOrdItem = new OrderedItems();
+                    tempOrdItem.OrderID = ord.ID;
+                    //tempOrdItem.CartID = item.CartID;
+                    tempOrdItem.ProductID = item.ProductID;
+                    tempOrdItem.ProdQty = item.ProdQty;
+                    //tempOrdItem.ShoppingCartItemID = item.ID;
+                    await _ordereditems.CreateOrderedItem(tempOrdItem);
+                }
+
+                List<OrderedItems> ordedItems = await _ordereditems.GetAllOrderedItems(ord.ID);
+                string emailMessage = ReceiptEmailBuilder(ord, ordedItems).ToString();
+                await _emailSender.SendEmailAsync(userEmail, "Receipt for Mystical Creatures", emailMessage);
+                return View(await _ordereditems.GetAllOrderedItems(ord.ID));
             }
-
-            List<OrderedItems> ordedItems = await _ordereditems.GetAllOrderedItems(ord.ID);
-            string emailMessage = ReceiptEmailBuilder(ord, ordedItems).ToString() ;
-            await _emailSender.SendEmailAsync(userEmail, "Receipt for Mystical Creatures", emailMessage);
-           return View(await _ordereditems.GetAllOrderedItems(ord.ID));
-
         }
 
         /// <summary>
