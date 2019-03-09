@@ -17,7 +17,6 @@ namespace XLJLeCommerce.Controllers
 {
     public class CheckoutController : Controller
     {
-        private CreaturesDbcontext _context;
         private readonly IOrder _order;
         private readonly IShoppingCartItem _shoppingCartItem;
         private readonly ICart _cart;
