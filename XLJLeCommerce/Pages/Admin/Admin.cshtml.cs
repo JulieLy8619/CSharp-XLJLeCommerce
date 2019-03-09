@@ -33,7 +33,6 @@ namespace XLJLeCommerce.Pages.Admin
         [BindProperty]
         public List<Order> Order { get; set; }
 
-        //[Authorize]
         public async Task OnGet()
         {
             Order = await _order.GetLastTenOrder(); 

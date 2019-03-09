@@ -23,7 +23,6 @@
     <button type="submit">LOGIN</button>
 </form>
 
-
 @{
     var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToArray();
 
@@ -38,8 +37,6 @@
             <button style="width:40px;height:40px;" type="submit" name="provider" value="@loginProviders[1].Name" title="Log in using @loginProviders[1].DisplayName">
                 <img style="width:120%;height:80%" src="~/Assets/fb.png" alt="" />
             </button>
-
         </form>
-
     }
 }

@@ -11,8 +11,5 @@ namespace XLJLeCommerce.Models
 {
     public class Payment
     {   
-  
-
-      
     }
 }

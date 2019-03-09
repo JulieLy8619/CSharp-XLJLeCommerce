@@ -59,11 +59,7 @@ namespace XLJLeCommerce.Models.Services
                            where p.ID == sci.ProductID
                            select p;
                 sci.Prod = await prods.ToListAsync();
-               
             }
-
-
-
             return await cartItems.ToListAsync();
         }
 
@@ -77,16 +73,7 @@ namespace XLJLeCommerce.Models.Services
             return await _context.ShoppingCartTable.FirstOrDefaultAsync(sci => sci.ID == id);
         }
 
-        /// <summary>
-        /// updates the shopping cart item
-        /// </summary>
-        /// <param name="shoppingCartItem">the shoping cart item</param>
-        /// <returns>the compelted task that it updated the database</returns>
-        //public async Task UpdateShoppingCartItem(ShoppingCartItem shoppingCartItem)
-        //{
-        //    _context.ShoppingCartTable.Update(shoppingCartItem);
-        //    await _context.SaveChangesAsync();
-        //}
+
         public async Task UpdateShoppingCartItem(int id, int qty)
         {
             var item = await _context.ShoppingCartTable.FirstOrDefaultAsync(sci => sci.ID == id);

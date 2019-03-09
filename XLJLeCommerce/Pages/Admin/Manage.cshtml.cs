@@ -30,11 +30,8 @@ namespace XLJLeCommerce.Pages.Admin
         /// <returns></returns>
         public async Task OnGet()
         {
-
             Product = await _product.GetProduct(ID.GetValueOrDefault()) ?? new Product();
-
         }
-
 
         /// <summary>
         /// update the product

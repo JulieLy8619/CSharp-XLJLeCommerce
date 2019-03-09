@@ -7,12 +7,7 @@ namespace XLJLeCommerce.Models.Interfaces
 {
     public interface IOrder
     {
-        //need to add orders
         Task CreateOrder(Order order);
-        //i don't think we need to read orders (we would read ordered Items)
-        //will we want to be able to update orders??? I vote no
-        //we shouldn't delete orders
-
         Task<List<Order>> GetOrder(string id);
         Task<List<Order>> GetLastTenOrder();
     }

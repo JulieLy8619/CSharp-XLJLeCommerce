@@ -26,7 +26,6 @@ namespace XLJLeCommerce.Models
                 dbContext.Database.EnsureCreated();
                 AddRoles(dbContext);
             }
-
         }
 
         private static void AddRoles(ApplicationDbcontext context)

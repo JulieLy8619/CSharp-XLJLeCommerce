@@ -60,7 +60,7 @@ namespace XLJLeCommerce.Controllers
             //move all shopping items in cart to order items
             //find their carts
             Cart cartObj = await _cart.GetCart(userID);
-                //get all the items in the cart
+            //get all the items in the cart
             IEnumerable<ShoppingCartItem> cartitems = await _shoppingCartItem.GetAllShoppingCartItems(cartObj.ID);
 
             if (cartitems.Count() <= 0)
@@ -69,11 +69,8 @@ namespace XLJLeCommerce.Controllers
             }
             else
             {
-
-
                 decimal totalprice = 0m;
                 //convert it to orderitem
-
                 foreach (var item in cartitems)
                 {
                     totalprice += (item.ProdQty * item.Product.Price);
@@ -87,10 +84,8 @@ namespace XLJLeCommerce.Controllers
                 {
                     OrderedItems tempOrdItem = new OrderedItems();
                     tempOrdItem.OrderID = ord.ID;
-                    //tempOrdItem.CartID = item.CartID;
                     tempOrdItem.ProductID = item.ProductID;
                     tempOrdItem.ProdQty = item.ProdQty;
-                    //tempOrdItem.ShoppingCartItemID = item.ID;
                     await _ordereditems.CreateOrderedItem(tempOrdItem);
                 }
 
@@ -110,9 +105,6 @@ namespace XLJLeCommerce.Controllers
         public string ReceiptEmailBuilder(Order order, List<OrderedItems> ordItems)
         {
             string returnMessage = $"Confirmation number {order.ID}{order.UserID} <br /> You ordered: <br />";
-            //iterate through ordered items looking for order number
-            //then for each of those, put that in the message
-            //List<OrderedItems> ordedItems = await _ordereditems.GetAllOrderedItems(order.ID);
 
             int total = 0;
 
@@ -183,11 +175,8 @@ namespace XLJLeCommerce.Controllers
             {
                 OrderedItems tempOrdItem = new OrderedItems();
                 tempOrdItem.OrderID = ord.ID;
-                //tempOrdItem.CartID = item.CartID;
                 tempOrdItem.ProductID = item.ProductID;
                 tempOrdItem.ProdQty = item.ProdQty;
-                //tempOrdItem.ShoppingCartItemID = item.ID;
-                //then delete it from shopping cart or wait to do this when we pay
                 totalprice += (item.ProdQty * item.Product.Price);
             }
 
@@ -230,9 +219,7 @@ namespace XLJLeCommerce.Controllers
                     return View();
                 }
             }
-
             return View();
-
         }
         /// <summary>
         /// will view the receipt page after payment
@@ -255,7 +242,6 @@ namespace XLJLeCommerce.Controllers
             {
                 OrderedItems tempOrdItem = new OrderedItems();
                 tempOrdItem.OrderID = ord.ID;
-                //tempOrdItem.ShoppingCartItemID = item.ID;
                 totalprice += (item.ProdQty * item.Product.Price);
                 await _shoppingCartItem.DeleteShoppingCartItem(item.ID);
             }

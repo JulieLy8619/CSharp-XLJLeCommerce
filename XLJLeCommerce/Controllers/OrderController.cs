@@ -31,7 +31,6 @@ namespace XLJLeCommerce.Controllers
             if (user != null)
             {
                 string userID = user.Id;
-                //await _order.GetOrder(userID);
                 var res = _context.OrderTable.Where(o => o.UserID == userID);
                 return View(res);
             }

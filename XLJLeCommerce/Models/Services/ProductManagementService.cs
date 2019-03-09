@@ -67,8 +67,7 @@ namespace XLJLeCommerce.Models.Services
             }
 
             else
-            {  //update it if it exsits
-
+            {  
                 _context.Products.Update(product);
             }
             await _context.SaveChangesAsync();

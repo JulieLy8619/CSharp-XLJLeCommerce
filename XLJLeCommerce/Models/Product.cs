@@ -8,7 +8,6 @@ namespace XLJLeCommerce.Models
     public class Product
     {
         public int ID { get; set; }
-        //public int CartID { get; set; }
         public string Name { get; set; }
         public string Sku { get; set; }
         public decimal Price { get; set; }
