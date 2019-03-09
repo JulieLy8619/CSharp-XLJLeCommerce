@@ -66,22 +66,6 @@ namespace XLJLeCommerce.Models.Services
 
                 }
 
-                //foreach (OrderedItems ois in ordItems)
-                //{
-                //    var sci = from s in _context.ShoppingCartTable
-                //              where s.ID == ois.ShoppingCartItemID
-                //              select s;
-                //    ois.SCItems = await sci.ToListAsync();
-
-                //    foreach (ShoppingCartItem si in sci)
-                //    {
-                //        var prods = from p in _context.Products
-                //                    where p.ID == si.ProductID
-                //                    select p;
-                //        si.Prod = await prods.ToListAsync();
-
-                //    }
-                //}
             }
 
             return await orders.ToListAsync();

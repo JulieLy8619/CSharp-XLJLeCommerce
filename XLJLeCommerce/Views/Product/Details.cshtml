@@ -1,6 +1,7 @@
 ﻿@model XLJLeCommerce.Models.Product
 @using XLJLeCommerce.Models
-
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> signInManager
 
 @{
     Layout = "_Layout";
@@ -21,9 +22,12 @@
     <p>@Html.DisplayNameFor(model => model.Sku)</p>
     <p>@Html.DisplayFor(model => model.Sku)</p>
 
-    <form asp-controller="Product" asp-action="AddToCart" asp-route-id="@Model.ID" method="post">
-        <button type="submit">Add to Cart</button>
-    </form>
+    @if (signInManager.IsSignedIn(User))
+    {
+        <form asp-controller="Product" asp-action="AddToCart" asp-route-id="@Model.ID" method="post">
+            <button type="submit">Add to Cart</button>
+        </form>
 
+    }
     <a asp-action="Index">Back to all Creatures</a>
 </div>
