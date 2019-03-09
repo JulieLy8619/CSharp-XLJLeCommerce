@@ -25,6 +25,11 @@ namespace XLJLeCommerce.Pages.Profile
         [BindProperty]
         [Required]
         [DataType(DataType.Password)]
+        public string CurrPassword { get; set; }
+
+        [BindProperty]
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [BindProperty]
@@ -44,16 +49,11 @@ namespace XLJLeCommerce.Pages.Profile
 
         public async Task<IActionResult> OnPost()
         {
-            //find the user
-            //find the user's password
-            //update it
-            //save it
+            ApplicationUser = await _userManager.GetUserAsync(User);
+            await _userManager.ChangePasswordAsync(ApplicationUser, CurrPassword, Password);
 
-            //var user = await _userManager.GetUserAsync(User);
-            string newPW = Password;
-            string token = await _userManager.GeneratePasswordResetTokenAsync(ApplicationUser);
 
-            await _userManager.ResetPasswordAsync(ApplicationUser, token, newPW);
+
             return RedirectToPage("/Profile/Index");
         }
     }
