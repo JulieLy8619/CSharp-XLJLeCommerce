@@ -13,7 +13,7 @@
 @{
     var lastTenOrders = await OrderInjection.GetLastTenOrder();
 }
-<a href="Manage">Create New Product</a>
+
 <h2>Administrator Dashboard</h2>
 
 <h3>Last 10 Orders from the site</h3>
@@ -34,6 +34,7 @@
 
 
 <h3>All items in inventory</h3>
+<a href="Manage">Create New Product</a>
 @{
     var prods = await ProductManagementService.GetAllProducts();
 }

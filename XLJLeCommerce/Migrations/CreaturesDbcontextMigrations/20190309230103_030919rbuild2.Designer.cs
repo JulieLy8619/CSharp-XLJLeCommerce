@@ -10,8 +10,8 @@ using XLJLeCommerce.Data;
 namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 {
     [DbContext(typeof(CreaturesDbcontext))]
-    [Migration("20190307220548_iiil")]
-    partial class iiil
+    [Migration("20190309230103_030919rbuild2")]
+    partial class _030919rbuild2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace XLJLeCommerce.Migrations.CreaturesDbcontextMigrations
 {
-    public partial class _030719rbuild27 : Migration
+    public partial class _030919rbuild2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
