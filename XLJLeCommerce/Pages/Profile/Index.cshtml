@@ -11,15 +11,15 @@
 <form method="post">
     <label asp-for="AppUser.FirstName"></label>
     <input asp-for="AppUser.FirstName" />
-   
+
     <label asp-for="AppUser.LastName"></label>
     <input asp-for="AppUser.LastName" />
- 
+
     <label asp-for="AppUser.Birthdate"></label>
     <input asp-for="AppUser.Birthdate" />
 
     <label asp-for="AppUser.Email"></label>
-    <input asp-for="AppUser.Email" />
+    <p> @Model.AppUser.Email</p>
 
     <label asp-for="AppUser.Address"></label>
     <input asp-for="AppUser.Address" />
@@ -28,3 +28,5 @@
 
 
 </form>
+
+<a asp-page="/Profile/PassWord"> Change Password</a>
