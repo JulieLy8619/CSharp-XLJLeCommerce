@@ -14,16 +14,18 @@ namespace XLJLeCommerce.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private readonly IOrder _order;
+        private readonly CreaturesDbcontext _context;
 
         /// <summary>
         /// access to other tables
         /// </summary>
         /// <param name="userManager">identity table</param>
         /// <param name="order">order table</param>
-        public OrderController(UserManager<ApplicationUser> userManager, IOrder order)
+        public OrderController(UserManager<ApplicationUser> userManager, IOrder order, CreaturesDbcontext context)
         {
             _userManager = userManager;
             _order = order;
+            _context = context;
         }
 
         /// <summary>
@@ -37,7 +39,7 @@ namespace XLJLeCommerce.Controllers
             if (user != null)
             {
                 string userID = user.Id;
-                var res = _order.GetOrder(userID);
+                var res = _context.OrderTable.Where(o => o.UserID == userID);
                 return View(res);
             }
 

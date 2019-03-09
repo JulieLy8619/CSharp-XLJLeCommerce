@@ -20,7 +20,7 @@
             @if (signInManager.IsSignedIn(User))
             {
                     <li><a asp-page="/Profile/Index">Welcome @User.Claims.First(c => c.Type == "FullName").Value</a></li>
-                    <li><a asp-controller="Order" asp-action="Index">Order History</a></li>
+                    @*<li><a asp-controller="Order" asp-action="Index">Order History</a></li>*@
 
                 if (User.IsInRole("Admin"))
                 {
