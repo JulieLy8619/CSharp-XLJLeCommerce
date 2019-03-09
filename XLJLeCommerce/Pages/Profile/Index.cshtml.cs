@@ -47,14 +47,18 @@ namespace XLJLeCommerce.Pages.Profile
            
             var user = await _userManager.GetUserAsync(User);
           var cc=User.Claims.FirstOrDefault(c => c.Type == "FullName");
+            var add = User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.StreetAddress);
             await _signInManager.UserManager.RemoveClaimAsync(user, cc);
+            await _signInManager.UserManager.RemoveClaimAsync(user, add);
             user.FirstName = FirstName;
             user.LastName = LastName;
             user.Address = Address;
 
             await _userManager.UpdateAsync(user);
             Claim fn= new Claim("FullName", $"{user.FirstName} {user.LastName}");
-           await _signInManager.UserManager.AddClaimAsync(user, fn);
+            Claim adr =new Claim(ClaimTypes.StreetAddress, $"{ user.Address }");
+            await _signInManager.UserManager.AddClaimAsync(user, fn);
+            await _signInManager.UserManager.AddClaimAsync(user, adr);
             return RedirectToPage("/Profile/Index");
         }
 
