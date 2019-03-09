@@ -55,6 +55,7 @@ namespace XLJLeCommerce.Controllers
         /// </summary>
         /// <param name="id">id of which product one wants to add</param>
         /// <returns>page after task completed</returns>
+        [HttpPost]
         public async Task<IActionResult> AddToCart(int id)
         {
             var prod = await _product.GetProduct(id);

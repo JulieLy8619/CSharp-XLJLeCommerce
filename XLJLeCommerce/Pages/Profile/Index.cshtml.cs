@@ -36,7 +36,7 @@ namespace XLJLeCommerce.Pages.Profile
 
         public async Task OnGet()
         {
-            AppUser = await _userManager.GetUserAsync(User);
+          AppUser= await _userManager.GetUserAsync(User);
         }
 
         public async Task<IActionResult> OnPost()
