@@ -34,11 +34,19 @@ namespace XLJLeCommerce.Pages.Profile
         [BindProperty]
         public string Address { get; set; }
 
+        /// <summary>
+        /// gets the signed in user
+        /// </summary>
+        /// <returns>the user</returns>
         public async Task OnGet()
         {
           AppUser= await _userManager.GetUserAsync(User);
         }
 
+        /// <summary>
+        /// updates the user's info
+        /// </summary>
+        /// <returns>the profile index page</returns>
         public async Task<IActionResult> OnPost()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -46,7 +54,6 @@ namespace XLJLeCommerce.Pages.Profile
             user.FirstName = FirstName;
             user.LastName = LastName;
             user.Address = Address;
-
 
             await _userManager.UpdateAsync(user);
             return RedirectToPage("/Profile/Index");

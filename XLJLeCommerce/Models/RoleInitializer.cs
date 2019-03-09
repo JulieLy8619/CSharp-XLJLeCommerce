@@ -11,12 +11,19 @@ namespace XLJLeCommerce.Models
 {
     public class RoleInitializer
     {
+        /// <summary>
+        /// set up admin and member roles
+        /// </summary>
         private static readonly List<IdentityRole> Roles = new List<IdentityRole>()
         {
             new IdentityRole{Name= ApplicationRoles.Member, NormalizedName = ApplicationRoles.Member.ToUpper(), ConcurrencyStamp = Guid.NewGuid().ToString() },
             new IdentityRole{Name = ApplicationRoles.Admin, NormalizedName = ApplicationRoles.Admin.ToUpper(), ConcurrencyStamp = Guid.NewGuid().ToString()}
         };
 
+        /// <summary>
+        /// adds roles to identity db
+        /// </summary>
+        /// <param name="serviceProvider">helper object so can add roles</param>
         public static void SeedData(IServiceProvider serviceProvider)
         {
 
@@ -28,6 +35,10 @@ namespace XLJLeCommerce.Models
             }
         }
 
+        /// <summary>
+        /// adds roles to database
+        /// </summary>
+        /// <param name="context">which database</param>
         private static void AddRoles(ApplicationDbcontext context)
         {
             if (context.Roles.Any()) return;

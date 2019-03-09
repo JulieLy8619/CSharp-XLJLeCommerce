@@ -19,15 +19,21 @@ namespace XLJLeCommerce.Pages.Admin
         [BindProperty]
         public Product Product { get; set; }
 
+        /// <summary>
+        /// access to other tables
+        /// </summary>
+        /// <param name="product">product table</param>
+        /// <param name="configuration">configuration table</param>
         public ManageModel(Iproduct product, IConfiguration configuration)
         {
             _product= product;
 
         }
+
         /// <summary>
         /// get the product with the ID, if not exsits create a new one
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the product</returns>
         public async Task OnGet()
         {
             Product = await _product.GetProduct(ID.GetValueOrDefault()) ?? new Product();
@@ -36,7 +42,7 @@ namespace XLJLeCommerce.Pages.Admin
         /// <summary>
         /// update the product
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the admin page</returns>
         public async Task<IActionResult> OnPost()
         {
             
@@ -51,12 +57,12 @@ namespace XLJLeCommerce.Pages.Admin
             // Save the product in the database
             await _product.UpdateProduct(pro);
 
-            return RedirectToPage("Admin", new { id = pro.ID });
+            return RedirectToPage("Admin");
         }
         /// <summary>
         /// delete the product
         /// </summary>
-        /// <returns></returns>
+        /// <returns>to the admin page</returns>
         public async Task<IActionResult> OnPostDelete()
         {
             await _product.DeleteProduct(ID.Value);
