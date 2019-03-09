@@ -24,11 +24,32 @@ namespace XLJLeCommerce.Pages.Profile
         }
         [BindProperty]
         public ApplicationUser AppUser { get; set; }
-        
+
+        [BindProperty]
+        public string FirstName { get; set; }
+
+        [BindProperty]
+        public string LastName { get; set; }
+
+        [BindProperty]
+        public string Address { get; set; }
+
         public async Task OnGet()
         {
           AppUser= await _userManager.GetUserAsync(User);
+        }
 
+        public async Task<IActionResult> OnPost()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            user.FirstName = FirstName;
+            user.LastName = LastName;
+            user.Address = Address;
+
+
+            await _userManager.UpdateAsync(user);
+            return RedirectToPage("/Profile/Index");
         }
 
     }
