@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -49,13 +52,21 @@ namespace XLJLeCommerce.Pages.Profile
         /// <returns>the profile index page</returns>
         public async Task<IActionResult> OnPost()
         {
+           
             var user = await _userManager.GetUserAsync(User);
-
+          var cc=User.Claims.FirstOrDefault(c => c.Type == "FullName");
+            var add = User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.StreetAddress);
+            await _signInManager.UserManager.RemoveClaimAsync(user, cc);
+            await _signInManager.UserManager.RemoveClaimAsync(user, add);
             user.FirstName = FirstName;
             user.LastName = LastName;
             user.Address = Address;
 
             await _userManager.UpdateAsync(user);
+            Claim fn= new Claim("FullName", $"{user.FirstName} {user.LastName}");
+            Claim adr =new Claim(ClaimTypes.StreetAddress, $"{ user.Address }");
+            await _signInManager.UserManager.AddClaimAsync(user, fn);
+            await _signInManager.UserManager.AddClaimAsync(user, adr);
             return RedirectToPage("/Profile/Index");
         }
 
