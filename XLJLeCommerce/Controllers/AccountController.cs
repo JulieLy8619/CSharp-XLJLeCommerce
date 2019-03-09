@@ -22,17 +22,16 @@ namespace XLJLeCommerce.Controllers
         /// <summary>
         /// Accountcontroller constructor
         /// </summary>
-        /// <param name="userManager"></param>
-        /// <param name="signInManager"></param>
-        /// <param name="cart"></param>
-        /// <param name="emailSender"></param>
+        /// <param name="userManager">identity table</param>
+        /// <param name="signInManager">identity table</param>
+        /// <param name="cart">cart table</param>
+        /// <param name="emailSender">email table</param>
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ICart cart, IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _cart = cart;
             _emailSender = emailSender;
-
         }
 
         /// <summary>
@@ -63,7 +62,6 @@ namespace XLJLeCommerce.Controllers
                     Address = rvm.Address,
                     RegisteredDate = DateTime.Now
                 };
-
 
                 var result = await _userManager.CreateAsync(user, rvm.Password);
 
@@ -155,7 +153,6 @@ namespace XLJLeCommerce.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
         /// <summary>
         /// asking external service for access
         /// </summary>
@@ -180,7 +177,6 @@ namespace XLJLeCommerce.Controllers
 
             if (error != null)
             {
-
                 TempData["Error"] = "Error with Provider";
                 return RedirectToAction("Login");
             }
@@ -195,7 +191,6 @@ namespace XLJLeCommerce.Controllers
 
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
 
-
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Product");
@@ -203,9 +198,7 @@ namespace XLJLeCommerce.Controllers
 
             var email = info.Principal.FindFirstValue(ClaimTypes.Email);
 
-
             return View("ExternalLogin", new ExternalLoginViewModel { Email = email });
-
         }
 
         /// <summary>
@@ -275,7 +268,6 @@ namespace XLJLeCommerce.Controllers
                         await _emailSender.SendEmailAsync(elvm.Email, "Successfully registered with us!", "<p>Thank you for registering</p>");
 
                         return RedirectToAction("Index", "Product");
-
                     }
                 }
             }
@@ -291,6 +283,10 @@ namespace XLJLeCommerce.Controllers
             return RedirectToAction("Index", "Policy");
         }
 
+        /// <summary>
+        /// calls the profile page
+        /// </summary>
+        /// <returns>the profile page</returns>
         public IActionResult Profile()
         {
             return View();
