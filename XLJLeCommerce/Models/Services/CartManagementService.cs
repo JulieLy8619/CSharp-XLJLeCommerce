@@ -14,7 +14,7 @@ namespace XLJLeCommerce.Models.Services
         /// <summary>
         /// CartManagementService Constructor by taking in the CreaturesDbcontext
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">the database</param>
         public CartManagementService(CreaturesDbcontext context)
         {
             _context = context;
@@ -23,7 +23,7 @@ namespace XLJLeCommerce.Models.Services
         /// <summary>
         /// Adds a cart
         /// </summary>
-        /// <param name="cart">the cart</param>
+        /// <param name="cart">the cart one wants to add</param>
         /// <returns>a task</returns>
         public async Task Create(Cart cart)
         {
@@ -36,8 +36,8 @@ namespace XLJLeCommerce.Models.Services
         /// <summary>
         /// get one cart by taking in the userID since each user has one Cart.
         /// </summary>
-        /// <param name="userid"></param>
-        /// <returns></returns>
+        /// <param name="userid">which user</param>
+        /// <returns>the carts of that user</returns>
         public async Task<Cart> GetCart(string userid)
         {
             var carts = await _context.Carts.FirstOrDefaultAsync(i => i.UserID == userid);

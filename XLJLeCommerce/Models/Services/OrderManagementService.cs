@@ -14,7 +14,7 @@ namespace XLJLeCommerce.Models.Services
         /// <summary>
         /// OrderManagementService constructor by bringing in the creaturesDbcontext
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">the database</param>
         public OrderManagementService(CreaturesDbcontext context)
         {
             _context = context;
@@ -34,16 +34,24 @@ namespace XLJLeCommerce.Models.Services
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// gets the orders of a user
+        /// </summary>
+        /// <param name="userid">which user</param>
+        /// <returns>the orders of a specific user</returns>
         public async Task<List<Order>> GetOrder(string userid)
         {
             var orders = from ci in _context.OrderTable
                               .Where(i => i.UserID == userid)
                          select ci;
 
-
             return await orders.ToListAsync();
         }
 
+        /// <summary>
+        /// gets the last 10 order of the whole "store"
+        /// </summary>
+        /// <returns>list of last 10 orders</returns>
         public async Task<List<Order>> GetLastTenOrder()
         {
             var orders = (from o in _context.OrderTable

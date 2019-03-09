@@ -11,14 +11,16 @@ namespace XLJLeCommerce.Models.Services
     public class ShoppingCartItemManagementService : IShoppingCartItem
     {
         private CreaturesDbcontext _context { get; }
+
         /// <summary>
         /// constructor for shoppingcartitemmanagementservice and bring in the creaturesDbcontext
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">database</param>
         public ShoppingCartItemManagementService(CreaturesDbcontext context)
         {
             _context = context;
         }
+
         /// <summary>
         /// creates an item to add to the shopping cart
         /// </summary>
@@ -73,7 +75,12 @@ namespace XLJLeCommerce.Models.Services
             return await _context.ShoppingCartTable.FirstOrDefaultAsync(sci => sci.ID == id);
         }
 
-
+        /// <summary>
+        /// updates the qty of a shoppingcartitem
+        /// </summary>
+        /// <param name="id">which item</param>
+        /// <param name="qty">the new qty</param>
+        /// <returns>when task is done</returns>
         public async Task UpdateShoppingCartItem(int id, int qty)
         {
             var item = await _context.ShoppingCartTable.FirstOrDefaultAsync(sci => sci.ID == id);

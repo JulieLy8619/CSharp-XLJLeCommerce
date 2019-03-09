@@ -14,7 +14,6 @@ namespace XLJLeCommerce.Models.Components
         private readonly ICart _cart;
         private readonly IShoppingCartItem _shoppingCartItem;
         private UserManager<ApplicationUser> _userManager;
-    
         private CreaturesDbcontext _context { get; set; }
 
         public PickedProduct(ICart cart, IShoppingCartItem shoppingCartItem, UserManager<ApplicationUser> userManager, CreaturesDbcontext context)
