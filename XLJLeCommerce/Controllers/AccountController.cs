@@ -271,12 +271,13 @@ namespace XLJLeCommerce.Controllers
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
 
+                        //send user email after successfully registered with us
+                        await _emailSender.SendEmailAsync(elvm.Email, "Successfully registered with us!", "<p>Thank you for registering</p>");
+
                         return RedirectToAction("Index", "Product");
 
                     }
                 }
-
-
             }
             return View(elvm);
         }
