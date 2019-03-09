@@ -16,7 +16,12 @@ namespace XLJLeCommerce.Controllers
         private readonly ICart _cart;
         private readonly IShoppingCartItem _shoppingCartItem;
         private UserManager<ApplicationUser> _userManager;
-
+        /// <summary>
+        /// cartcontroller constructor 
+        /// </summary>
+        /// <param name="cart">cart table</param>
+        /// <param name="shoppingCartItem">shoppingcartitem table</param>
+        /// <param name="userManager">identitdy table</param>
         public CartController(ICart cart, IShoppingCartItem shoppingCartItem, UserManager<ApplicationUser> userManager)
         {
             _cart = cart;
@@ -36,27 +41,24 @@ namespace XLJLeCommerce.Controllers
             {
                 string userEmail = User.Identity.Name;
                 var user = await _userManager.FindByEmailAsync(userEmail);
-               
-                    string userID = user.Id;
+                string userID = user.Id;
 
                 //so can find their carts
                 Cart cartObj = await _cart.GetCart(userID);
 
                 return View(await _shoppingCartItem.GetAllShoppingCartItems(cartObj.ID));
-                
             }
             else //user not in DB
             {
                 return RedirectToAction("Register", "Account");
             }
-
         }
 
         /// <summary>
         /// gets page for editing
         /// </summary>
         /// <param name="id">which shoping cart item</param>
-        /// <returns>page</returns>
+        /// <returns>the product edit page</returns>
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -86,7 +88,7 @@ namespace XLJLeCommerce.Controllers
         /// deletes a shoping cart item
         /// </summary>
         /// <param name="id">which item to delete</param>
-        /// <returns>the page</returns>
+        /// <returns>the home page after it delete from table</returns>
         [HttpGet]
         public async Task<IActionResult> DeleteItem(int? id)
         {

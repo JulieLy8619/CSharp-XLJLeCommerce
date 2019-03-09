@@ -18,5 +18,7 @@ namespace XLJLeCommerce.Models.ViewModels
         [Required]
         public string LastName { get; set; }
 
+        [Required]
+        public string Address { get; set; }
     }
 }

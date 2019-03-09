@@ -1,0 +1,28 @@
+﻿@page "{id}"
+@model XLJLeCommerce.Pages.Admin.ProductdetailModel
+@{
+    ViewData["Title"] = "Productdetail";
+}
+@{
+    Layout = "_Layout";
+}
+<h2>Productdetail</h2>
+
+<img src="@Model.Product.ImageURL" />
+
+<div>
+    <label asp-for="Product.Name">Name:</label>
+    <label asp-for="Product.Name">@Model.Product.Name</label>
+</div>
+
+<div>
+    <label asp-for="Product.Sku">Price:</label>
+    <label asp-for="Product.Sku">@Model.Product.Sku</label>
+</div>
+
+
+<div>
+    <label asp-for="Product.Price">Price:</label>
+    <label asp-for="Product.Price">@Model.Product.Price</label>
+</div>
+<a asp-page="Manage" asp-route-id="@Model.Product.ID">Edit Details</a>

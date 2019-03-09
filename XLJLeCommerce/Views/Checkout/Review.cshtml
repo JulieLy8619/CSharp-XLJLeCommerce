@@ -1,0 +1,20 @@
+﻿@model List<XLJLeCommerce.Models.OrderedItems>
+
+@{
+    Layout = "_Layout";
+}
+<h3>Review your order</h3>
+
+@foreach (var item in Model)
+{
+<ul>
+    <li>Name:@item.Product.Name</li>
+    <li> <img src="@item.Product.ImageURL" /></li>
+    <li>Price: @item.Product.Price</li>
+    <li>Quantity: @item.ProdQty</li>
+</ul>
+}
+
+<p>Total: @Model.FirstOrDefault().Order.Totalprice</p>
+
+<a asp-controller="Checkout" asp-action="Payment">Continue</a>

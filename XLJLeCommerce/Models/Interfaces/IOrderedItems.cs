@@ -11,8 +11,5 @@ namespace XLJLeCommerce.Models.Interfaces
         Task CreateOrderedItem(OrderedItems orderedItems);
         //need to be able to read all ordered items
         Task<List<OrderedItems>> GetAllOrderedItems(int id);
-
-        //we shouldn't be able to delete ordered items
-        //we shouldn't be able to udpate ordered items
     }
 }

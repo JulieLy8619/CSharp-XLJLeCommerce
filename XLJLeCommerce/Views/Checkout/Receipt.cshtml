@@ -1,20 +1,12 @@
-﻿@model List<XLJLeCommerce.Models.OrderedItems>
+﻿@model XLJLeCommerce.Models.Order
+
 
 @{
     Layout = "_Layout";
 }
-<h3>Your order Receipt</h3>
 
-@foreach (var item in Model)
-{
-<ul>
-    <li>Name:@item.ShoppingCartItem.Product.Name</li>
-   <li> <img src="@item.ShoppingCartItem.Product.ImageURL" /></li>
-    <li>Price: @item.ShoppingCartItem.Product.Price</li>
-    <li>Quantity: @item.ShoppingCartItem.ProdQty</li>
-</ul>
+Thank you for shopping on our website!
 
-}
-
-<p>Total: @Model.FirstOrDefault().Order.Totalprice</p>
-
+Receipt
+  
+Total amount: @Model.Totalprice

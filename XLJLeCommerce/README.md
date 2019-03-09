@@ -16,9 +16,11 @@ Xia  Liu -- Developer 2;
 ##Technology 
 
 We use Microsoft Azure Devops to create our repo and create milstione and sprints and tasks.
-We use C# language.
+We use C# language, HTML and CSS.
 We use Asp.Net Core platform.
 We use SQL server database.
+We use Dependency Injection.
+We use Razor Pages.
 
 ## Claims
 
@@ -42,13 +44,13 @@ Our policy is We have Prime members who have been registered over a certain time
 
 ##OAUTH Providers
 
-We have two third-party providers for external login: Microsoft an Facebook
+We have two third-party providers for external login: Microsoft and Facebook
 
 ##Structure/Database schema
 
 The following image is our database schema:
 
-![img](schema.png)
+![img](/assets/schema.png)
 
 Product:  product has Name, Sku, Price,Description, ImageUrl and boolean type to check if this is a VIP product
 
@@ -64,18 +66,10 @@ When user register successfully with our website, user will be given a cart, and
 
 after adding items to cart, when user checkout, ordereditems will be created  based on the cartID associated with UserID and then move all the items from shoppingCartItem table to OrderedItems table,then create the final order.
 
+## Acknoledgements
+- Used https://pixabay.com/ for product images
+- used https://www.photoresizer.com/ for image manipulation
 
+##Vulnerability-report
 
-
-
-<!--
-Notes for citing:
-Images from Pixabay
-Used this for resizing images: https://www.photoresizer.com/
-
-needed to make a change for commit since it doesn't recog changes in user secret
-
--->
-
-
-
+[Vulnerability-report](vulnerability-report.md)
