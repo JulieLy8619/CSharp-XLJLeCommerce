@@ -50,7 +50,7 @@ We have two third-party providers for external login: Microsoft and Facebook
 
 The following image is our database schema:
 
-![img](/assets/schema.png)
+![img](assets/schema.png)
 
 Product:  product has Name, Sku, Price,Description, ImageUrl and boolean type to check if this is a VIP product
 
